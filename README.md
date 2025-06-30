@@ -1,7 +1,7 @@
 # MagicalMap
 Magical map is an all-in-one ttyd modding tool that combines:
 
-1: TTYDAnimationTool
+1:
 
 2: TTYDBattleTool
 
