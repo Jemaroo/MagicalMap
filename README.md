@@ -1,14 +1,34 @@
 # MagicalMap
-Magical map is an all-in-one ttyd modding tool that combines:
+Magical map is an all-in-one ttyd modding suite that combines:
 
-1:
+- [TTYDBattleUnitTool](https://github.com/Jemaroo/TTYDBattleUnitTool)
+- [TTYDItemDataTool](https://github.com/Jemaroo/TTYDItemDataTool)
 
-2: TTYDBattleTool
+<br/>
 
-3: 
+## Updates
 
-=========LATEST USAGE==========
+UPDATED v1.0.0 (7/12/25): Initial Release Version, added TTYDBattleUnitTool and TTYDItemDataTool
 
-Requirements: N/A
+<br/>
 
-1: N/A
+## Additional Mentions
+
+Huge thanks to **Jdaster64** for [documentation](https://github.com/jdaster64/ttyd-utils/blob/master/docs/ttyd_structures_pseudocode.txt) on TTYD's structures which helped create TTYDBattleUnitTool and TTYDItemDataTool
+
+<br/>
+
+## Latest Usage
+
+**Requirements: A recent installation of Java**
+
+1: Download the latest release, it should contain a zip file.
+
+2: Unzip the file, and in the root of the folder should be tool exe files.
+
+3: Make sure to only use one tool at a time.
+
+<br/>
+
+## Planned Future Features/Additions
+- Add a GUI that lets you open the exe files
