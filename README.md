@@ -31,4 +31,5 @@ Huge thanks to **Jdaster64** for [documentation](https://github.com/jdaster64/tt
 <br/>
 
 ## Planned Future Features/Additions
+- Additional Tools
 - Add a GUI that lets you open the exe files
