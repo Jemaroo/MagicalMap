@@ -8,6 +8,8 @@ Magical map is an all-in-one ttyd modding suite that combines:
 
 ## Updates
 
+Updated v1.0.6 (8/8/25): TTYDItemDataTool updated to v1.4.0
+
 UPDATED v1.0.5 (8/2/25): TTYDBattleUnitTool updated to v2.1.0.
 
 UPDATED v1.0.4 (7/26/25): TTYDItemDataTool updated to v1.3.0.
