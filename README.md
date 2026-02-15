@@ -6,35 +6,15 @@ Magical map is an all-in-one ttyd modding suite that combines:
 
 <br/>
 
-## Updates
-
-UPDATED v1.0.9 (1/10/26): TTYDBattleUnitTool updated to v2.3.1 and TTYDItemDataTool updated to v1.5.0
-
-UPDATED v1.0.8 (9/19/25): TTYDBattleUnitTool updated to v2.2.0 and TTYDItemDataTool updated to v1.4.2
-
-UPDATED v1.0.7 (9/18/25): TTYDItemDataTool updated to v1.4.1
-
-UPDATED v1.0.6 (8/8/25): TTYDItemDataTool updated to v1.4.0
-
-UPDATED v1.0.5 (8/2/25): TTYDBattleUnitTool updated to v2.1.0.
-
-UPDATED v1.0.4 (7/26/25): TTYDItemDataTool updated to v1.3.0.
-
-UPDATED v1.0.3 (7/25/25): TTYDItemDataTool updated to v1.2.0.
-
-UPDATED v1.0.2 (7/24/25): TTYDItemDataTool updated to v1.1.0.
-
-UPDATED v1.0.1 (7/15/25): TTYDBattleUnitTool updated to v2.0.2.
-
-UPDATED v1.0.0 (7/12/25): Initial Release Version, added TTYDBattleUnitTool and TTYDItemDataTool.
-
-<br/>
-
 ## Additional Mentions
 
 Huge thanks to **Jdaster64** for [documentation](https://github.com/jdaster64/ttyd-utils/blob/master/docs/ttyd_structures_pseudocode.txt) on TTYD's structures which helped create TTYDBattleUnitTool and TTYDItemDataTool
 
 Huge thanks to **NWPlayer123** for their [decomped item tables](https://github.com/doldecomp/ttyd/blob/f3ce61550f927cfd08b1e97ff1079f9f476f4d9f/include/evt/evt_badgeshop.h) which helped create TTYDItemDataTool
+
+Huge thanks to **Silver** for their work on writing the tooltips and research on [various flag and value scenarios](https://www.youtube.com/@SilverGames136/videos) with the battle tool!
+
+Shoutouts to hirothetraveler, Reed, Diagamma, cursedGM, and others for their suggestions and feedback!
 
 <br/>
 
