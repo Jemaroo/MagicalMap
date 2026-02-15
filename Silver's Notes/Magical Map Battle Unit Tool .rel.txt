@@ -1,0 +1,1517 @@
+Written by @silver_136. Feel free to reach out to me on discord with any information, corrections, changes, additions, etc. that you find.
+Thanks to @jemaroo for the battle tool, it made testing significantly easier. Also thanks for assisting in figuring out what some flags do.
+Thanks to @jdaster64 for various documentation that was referenced while writing this.
+Thanks to @cursed_gm, @hirothetraveler,and @reed for various assistance and ideas in figuring out what some flags do.
+
+---All enemies found in the various .rel files---
+This document is going to focus on all of the different enemies found in every .rel. Since various enemies appear in more than 1 .rel file the enemies will be only appear once and it will be done in the order the Tattle Log shows them. Enemies that don't appear in the Tattle Log such as Fuzzy Horde, X-Punch, etc. will be placed right after the respective enemy/boss they belong to.
+
+---Universal---
+Various behaviors are universal on enemies, to avoid redundancy they will all be listed here. If enemies have more than 1 of the various structs, those will be documented with the respective enemy.
+•If an enemy does not have a particular struct noted (EX. Kind Struct 1, Part Struct 1, Defense Struct 1, Defense Attributes Struct 1, or Status Vulnerability Struct 1) then assume it has no special properties and just applies to whatever entity it is tied to. EX. Goomba only has 1 part struct, so it goes unmentioned since it has no special cases or behaviors, it applies to the Goomba as a whole. Other enemies that have more than 1 part, EX. Paragoomba, will note any unique part structs, but not the default one.
+•Base Damage Parameter 1 - This sets the damage of the attack. Parameters 2-8 do nothing.
+•Base FP Damage Parameter 1 - This only functions on Flower Fuzzy in vanilla. On all other enemies it does nothing. Parameters 2-8 do nothing.
+•Most other flags including Statuses, Stage Effects, and targeting rules apply. See the Universal Flags.txt for details, most flags that don't work on enemies are noted there.
+
+1. Goomba
+-=Attacks=-
+•Headbonk - Goomba Headbonk attack.
+
+2. Paragoomba
+-=Part Struct=-
+•Part Struct 2 - The Paragoomba once grounded.
+
+-=Defense=-
+•Defense Struct 2 - The Paragoomba's defenses once grounded.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Paragoomba's defensive attributes once grounded.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - The Paragoomba's status vulnerabilities once grounded.
+
+-=Attacks=-
+•Bash Attack - Paragoomba Bash Attack. Can only be used while airborne.
+•Headbonk - Paragoomba Headbonk attack. Can only be used once grounded.
+
+3. Spiky Goomba
+-=Attacks=-
+•Headbonk - Spiky Goomba Headbonk attack.
+
+4. Hyper Goomba
+-=Attacks=-
+•Headbonk - Hyper Goomba Headbonk attack.
+•Charge - Hyper Goomba Charge move.
+
+5. Hyper Paragoomba
+-=Part Struct=-
+•Part Struct 2 - The Hyper Paragoomba once grounded.
+
+-=Defense=-
+•Defense Struct 2 - The Hyper Paragoomba's defenses once grounded.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Hyper Paragoomba's defensive attributes once grounded.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - The Hyper Paragoomba's status vulnerabilities once grounded.
+
+-=Attacks=-
+•Bash Attack - Hyper Paragoomba Bash Attack. Can only be used while airborne.
+•Charge 1 - Hyper Paragoomba Charge move. Can only be used while airborne.
+•Headbonk - Hyper Paragoomba Headbonk attack. Can only be used once grounded.
+•Charge 2 - Hyper Paragoomba Charge move. Can only be used once grounded.
+
+6. Hyper Spiky Goomba
+-=Attacks=-
+•Headbonk - Hyper Spiky Goomba Headbonk attack.
+•Charge - Hyper Spiky Goomba Charge move.
+
+7. Gloomba
+-=Attacks=-
+•Headbonk - Gloomba Headbonk attack.
+
+8. Paragloomba
+-=Part Struct=-
+•Part Struct 2 - The Paragloomba once grounded.
+
+-=Defense=-
+•Defense Struct 2 - The Paragloomba's defenses once grounded.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Paragloomba's defensive attributes once grounded.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - The Paragloomba's status vulnerabilities once grounded.
+
+-=Attacks=-
+•Bash Attack - Paragloomba Bash Attack. Can only be used while airborne.
+•Headbonk - Paragloomba Headbonk attack. Can only be used once grounded.
+
+9. Spiky Gloomba
+-=Attacks=-
+•Headbonk - Spiky Gloomba Headbonk attack.
+
+10. Koopa Troopa
+-=Defense=-
+•Defense Struct 2 - The Koopa Troopa's defenses once flipped.
+
+-=Attacks=-
+•Shell Toss - Koopa Troopa's Shell Toss attack.
+
+11. Paratroopa
+-=Part Struct=-
+•Part Struct 2 - The Paratroopa once grounded.
+
+-=Defense=-
+•Defense Struct 2 - The Paratroopa's defenses once grounded.
+•Defense Struct 3 - The Paratroopa's defenses once grounded and flipped.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Paratroopa's defensive attributes once grounded.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - The Paratroopa's status vulnerabilities once grounded.
+
+-=Attacks=-
+•Bash Attack - Paratroopa Bash Attack. Can only be used while airborne.
+•Shell Toss - ParaTroopa's Shell Toss attack. Can only be used once grounded.
+
+12. KP Koopa
+-=Defense=-
+•Defense Struct 2 - The KP Koopa's defenses once flipped.
+
+-=Attacks=-
+•Shell Toss - KP Koopa's Shell Toss attack.
+
+13. KP Paratroopa
+-=Part Struct=-
+•Part Struct 2 - The KP Paratroopa once grounded.
+
+-=Defense=-
+•Defense Struct 2 - The KP Paratroopa's defenses once grounded.
+•Defense Struct 3 - The KP Paratroopa's defenses once grounded and flipped.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The KP Paratroopa's defensive attributes once grounded.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - The KP Paratroopa's status vulnerabilities once grounded.
+
+-=Attacks=-
+•Bash Attack - KP Paratroopa Bash Attack. Can only be used while airborne.
+•Shell Toss - KP Paratroopa's Shell Toss attack. Can only be used once grounded.
+
+14. Shady Koopa
+-=Defense=-
+•Defense Struct 2 - The KP Koopa's defenses once flipped.
+
+-=Attacks=-
+•Shell Toss - Shady Koopa's Shell Toss attack.
+•Flipped Shell Attack - Shady Koopa's Shell attack when flipped.
+
+15. Shady Paratroopa
+-=Part Struct=-
+•Part Struct 2 - The KP Paratroopa once grounded.
+
+-=Defense=-
+•Defense Struct 2 - The Shady Paratroopa's defenses once grounded.
+•Defense Struct 3 - The Shady Paratroopa's defenses once grounded and flipped.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Shady Paratroopa's defensive attributes once grounded.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - The Shady Paratroopa's status vulnerabilities once grounded.
+
+-=Attacks=-
+•Bash Attack - Shady Paratroopa Bash Attack. Can only be used while airborne.
+•Shell Toss - Shady Paratroopa's Shell Toss attack. Can only be used once grounded.
+•Flipped Shell Attack - Shady Paratroopa's Shell attack when flipped.
+
+16. Dark Koopa
+-=Defense=-
+•Defense Struct 2 - The Dark Koopa's defenses once flipped.
+
+-=Attacks=-
+•Shell Toss - Dark Koopa's Shell Toss attack.
+
+17. Dark Paratroopa
+-=Part Struct=-
+•Part Struct 2 - The Dark Paratroopa once grounded.
+
+-=Defense=-
+•Defense Struct 2 - The Dark Paratroopa's defenses once grounded.
+•Defense Struct 3 - The Dark Paratroopa's defenses once grounded and flipped.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Dark Paratroopa's defensive attributes once grounded.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - The Dark Paratroopa's status vulnerabilities once grounded.
+
+-=Attacks=-
+•Bash Attack - Dark Paratroopa Bash Attack. Can only be used while airborne.
+•Shell Toss - Dark ParaTroopa's Shell Toss attack. Can only be used once grounded.
+
+18. Koopatrol
+-=Defense=-
+•Defense Struct 2 - The Koopatrol's defenses once flipped.
+•Defense Struct 3 - The Koopatrol's defenses when in its shell.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Koopatrol's defensive attributes once flipped.
+•Defense Attribute Struct 3 - The Koopatrol's defensive attributes when in its shell.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - The Koopatrol's status vulnerabilities once flipped.
+•Status Vulnerability Struct 3 - The Koopatrol's status vulnerabilities when in its shell.
+
+-=Attacks=-
+•Ram Attack - Koopatrol Ram attack.
+•Shell Attack - Koopatrol Shell attack.
+•Charge - Koopatrol Charge move.
+
+19. Dark Koopatrol
+-=Defense=-
+•Defense Struct 2 - The Dark Koopatrol's defenses once flipped.
+•Defense Struct 3 - The Dark Koopatrol's defenses when in its shell.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Dark Koopatrol's defensive attributes once flipped.
+•Defense Attribute Struct 3 - The Dark Koopatrol's defensive attributes when in its shell.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - The Dark Koopatrol's status vulnerabilities once flipped.
+•Status Vulnerability Struct 3 - The Dark Koopatrol's status vulnerabilities when in its shell.
+
+-=Attacks=-
+•Ram Attack - Dark Koopatrol Ram attack.
+•Shell Attack - Dark Koopatrol Shell attack.
+•Charge - Dark Koopatrol Charge move.
+
+20. Dull Bones
+-=Part Struct=-
+•Part Struct 2 - The Dull Bones thrown bone.
+•Part Struct 3 - The Dull Bones head. Presumably from an unused "downed" state.
+•Part Struct 4 - The Dull Bones built when another Dull Bones builds a friend.
+
+-=Attacks=-
+•Bone Throw - Dull Bones Bone Throw attack.
+
+21. Red Bones
+-=Part Struct=-
+•Part Struct 2 - The Red Bones thrown bone.
+•Part Struct 3 - Seems to be the Red Bones when it is destroyed by a fire attack. May also be the regular downed state.
+•Part Struct 4 - The Dull Bones built when another Red Bones builds a friend.
+
+-=Attacks=-
+•Bone Throw - Red Bones Bone Throw attack.
+
+22. Dry Bones
+-=Part Struct=-
+•Part Struct 2 - The Dry Bones thrown bone from Bone Throw
+•Part Struct 3 - The Dry Bones bone. Presumably from its downed state.
+•Part Struct 4 - The Dry Bones thrown bone from Multiple Bone Throw.
+•Part Struct 5 - Seems to be the Dry Bones when it is destroyed by a fire attack. May also be the regular downed state.
+•Part Struct 6 - Unsure
+
+-=Attacks=-
+•Bone Throw - Dry Bones Bone Throw attack.
+•Multiple Bone Throw - Dry Bones Multiple Bone Throw attack.
+
+23. Dark Bones
+-=Part Struct=-
+•Part Struct 2 - The Dry Bones thrown bone from Bone Throw
+•Part Struct 3 - The Dry Bones bone. Presumably from its downed state.
+•Part Struct 4 - The Dry Bones thrown bone from Multiple Bone Throw.
+•Part Struct 5 - Seems to be the Dry Bones when it is destroyed by a fire attack. May also be the regular downed state.
+•Part Struct 6 - Unsure
+
+-=Attacks=-
+•Bone Throw - Dark Bones Bone Throw attack.
+•Bone Throw - Dark Bones Multiple Bone Throw attack.
+
+24. Hammer Bro
+-=Part Struct=-
+•Part Struct 2 - A Hammer Bro model, the first hammer thrown in any of Hammer Bro's attacks.
+•Part Struct 3 - A Hammer Bro model, the second hammer thrown in any of Hammer Bro's multi-hit attacks.
+•Part Struct 4 - A Hammer Bro model, the third hammer thrown in any of Hammer Bro's multi-hit attacks.
+•Part Struct 5 - A Hammer Bro model, the fourth hammer thrown in any of Hammer Bro's multi-hit attacks.
+•Part Struct 6 - A Hammer Bro model, seems unused.
+
+-=Attacks=-
+•Hammer Throw Attack - Hammer Bro single hammer throw.
+•Multi Hammer Throw Attack 1 - Hammer Bro multi hammer throw. Single Target.
+•Multi Hammer Throw Attack 2 - Hammer Bro multi hammer throw. Multiple Target.
+
+25. Boomerang Bro
+-=Part Struct=-
+•Part Struct 2 - A Boomerang Bro model, the first boomerang thrown in any of Boomerang Bro's attacks.
+•Part Struct 3 - A Boomerang Bro model, seems unused.
+•Part Struct 4 - A Boomerang Bro model, the second boomerang thrown in any of Boomerang Bro's multi-hit attacks.
+
+-=Attacks=-
+•Boomerang Attack - Boomerang Bro single boomerang throw.
+•Multi Boomerang Throw Attack - Boomerang Bro multi boomerang throw.
+
+26. Fire Bro
+-=Part Struct=-
+•Part Struct 2 - A Fire Bro model, the first fire ball in any of Fire Bro's attacks.
+•Part Struct 3 - A Fire Bro model, the second fire ball in any of Fire Bro's multi-hit attacks.
+•Part Struct 4 - A Fire Bro model, the third fire ball in any of Fire Bro's multi-hit attacks.
+•Part Struct 5 - A Fire Bro model, the fourth fire ball in any of Fire Bro's multi-hit attacks.
+•Part Struct 6 - A Fire Bro model, the fifth fire ball in any of Fire Bro's multi-hit attacks.
+•Part Struct 7 - A Fire Bro model, the sixth fire ball in any of Fire Bro's multi-hit attacks.
+
+-=Attacks=-
+•Fire Spit Attack - Fire Bro single fire ball spit.
+•Multi Hammer Throw Attack 1 - Fire Bro multi fire ball spit. Single Target.
+•Multi Hammer Throw Attack 2 - Fire Bro multi fire ball spit. Multiple Target.
+
+27. Lakitu
+-=Part Struct=-
+•Part Struct 2 - A curled Spiny. Used when Lakitu does the Spiny Throw Attack.
+
+-=Attacks=-
+•Spiny Throw Attack - Lakitu throws a Spiny.
+
+28. Dark Lakitu
+-=Part Struct=-
+•Part Struct 2 - A curled Sky Blue Spiny. Used when Dark Lakitu does the Spiny Throw Attack.
+
+-=Attacks=-
+•Spiny Throw Attack - Dark Lakitu throws a Sky Blue Spiny.
+•Charge - Dark Lakitu Charge move.
+
+29. Spiny
+-=Defense=-
+•Defense Struct 2 - The Spiny's defenses once flipped.
+•Defense Struct 3 - The Spiny's defenses when in its shell.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Spiny's defensive attributes once flipped.
+•Defense Attribute Struct 3 - The Spiny's defensive attributes when in its shell.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - The Spiny's status vulnerabilities once flipped.
+•Status Vulnerability Struct 3 - The Spiny's status vulnerabilities when in its shell.
+
+-=Attacks=-
+•Roll Attack - Spiny Roll attack.
+
+30. Sky Blue Spiny
+-=Defense=-
+•Defense Struct 2 - The Sky Blue Spiny's defenses once flipped.
+•Defense Struct 3 - The Sky Blue Spiny's defenses when in its shell.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Sky Blue Spiny's defensive attributes once flipped.
+•Defense Attribute Struct 3 - The Sky Blue Spiny's defensive attributes when in its shell.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - The Sky Blue Spiny's status vulnerabilities once flipped.
+•Status Vulnerability Struct 3 - The Sky Blue Spiny's status vulnerabilities when in its shell.
+
+-=Attacks=-
+•Roll Attack - Sky Blue Spiny Roll attack.
+•Charge - Sky Blue Spiny Charge move.
+
+31. Buzzy Beetle
+-=Defense=-
+•Defense Struct 2 - The Buzzy Beetle's defenses once flipped.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Buzzy Beetle's defensive attributes once flipped.
+
+-=Attacks=-
+•Shell Toss - Buzzy Beetle's Shell Toss Attack. Can only be used while grounded.
+•Ceiling Attack - Buzzy Beetle's attack when it drops from the ceiling. Can only be used while on the ceiling.
+
+32. Spike Top/Spiky Buzzy
+-=Defense=-
+•Defense Struct 2 - Spike Top's defenses once flipped.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Spike Top's defensive attributes once flipped.
+
+-=Attacks=-
+•Shell Toss - Spike Top's Shell Toss Attack. Can only be used while grounded.
+•Ceiling Attack - Spike Top's attack when it drops from the ceiling. Can only be used while on the ceiling.
+
+33. Parabuzzy
+-=Part Struct=-
+•Part Struct 2 - The Parabuzzy once grounded.
+
+-=Defense=-
+•Defense Struct 2 - The Parabuzzy's defenses once grounded.
+•Defense Struct 3 - The Parabuzzy's defenses once flipped.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Parabuzzy's defensive attributes once grounded.
+•Defense Attribute Struct 3 - The Parabuzzy's defensive attributes once flipped.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - The Parabuzzy's status vulnerabilities once grounded.
+
+-=Attacks=-
+•Bash Attack - Parabuzzy Bash attack. Can only be used while airborne.
+•Shell Attack - Parabuzzy Shell attack. Can only be used once grounded.
+•Ceiling Drop Attack - Parabuzzy attack when it drops from the ceiling. Can only be used while on the ceiling.
+
+34. Spiky Parabuzzy
+-=Part Struct=-
+•Part Struct 2 - The Spiky Parabuzzy once grounded.
+
+-=Defense=-
+•Defense Struct 2 - The Spiky Parabuzzy's defenses once grounded.
+•Defense Struct 3 - The Spiky Parabuzzy's defenses once flipped.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Spiky Parabuzzy's defensive attributes once grounded.
+•Defense Attribute Struct 3 - The Spiky Parabuzzy's defensive attributes once flipped.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - The Spiky Parabuzzy's status vulnerabilities once grounded.
+
+-=Attacks=-
+•Bash Attack - Spiky Parabuzzy Bash attack. Can only be used while airborne.
+•Shell Attack - Spiky Parabuzzy Shell attack. Can only be used once grounded.
+•Ceiling Drop Attack - Spiky Parabuzzy attack when it drops from the ceiling. Can only be used while on the ceiling.
+
+35. Red Spiky Buzzy
+-=Defense=-
+•Defense Struct 2 - The Red Spiky Buzzy's defenses once flipped.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 2 - The Red Spiky Buzzy's defensive attributes once flipped.
+
+-=Attacks=-
+•Shell Toss - Red Spiky Buzzy's Shell Toss attack. Can only be used while grounded.
+•Ceiling Attack - Red Spiky Buzzy's attack when it drops from the ceiling. Can only be used while on the ceiling.
+
+36. Magikoopa
+-=Kind Struct=-
+•Kind Struct 2 - This Kind Struct handles the clones.
+
+-=Part Struct=-
+•Part Struct 2 - Seems to be a duplicate of the Magikoopa. This is not called when a Magikoopa clones.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - Clone Status vulnerabilities.
+
+-=Attacks=-
+•Magic Attack - Magikoopa Magic attack.
+•Huge Magic - Magikoopa Huge Magic.
+•Electric Magic - Magikoopa Electric Magic.
+•Invisible Magic - Magikoopa Invisible Magic.
+•Defense Up Magic - Magikoopa Defense Up Magic.
+•Heal - Magikoopa Heal Magic.
+•Heal All - Magikoopa Heal All Magic.
+
+37. Red Magikoopa
+-=Kind Struct=-
+•Kind Struct 2 - This Kind Struct handles the clones.
+
+-=Part Struct=-
+•Part Struct 2 - Seems to be a duplicate of the Red Magikoopa. This is not called when a Red Magikoopa clones.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - Clone Status vulnerabilities.
+
+-=Attacks=-
+•Magic Attack - Red Magikoopa Magic attack.
+•Huge Magic - Red Magikoopa Huge Magic.
+•Electric Magic - Red Magikoopa Electric Magic.
+•Invisible Magic - Red Magikoopa Invisible Magic.
+•Defense Up Magic - Red Magikoopa Defense Up Magic.
+•Heal - Red Magikoopa Heal Magic.
+•Heal All - Red Magikoopa Heal All Magic.
+
+38. White Magikoopa
+-=Kind Struct=-
+•Kind Struct 2 - This Kind Struct handles the clones.
+
+-=Part Struct=-
+•Part Struct 2 - Seems to be a duplicate of the White Magikoopa. This is not called when a White Magikoopa clones.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - Clone Status vulnerabilities.
+
+-=Attacks=-
+•Magic Attack - White Magikoopa Magic attack.
+•Huge Magic - White Magikoopa Huge Magic.
+•Electric Magic - White Magikoopa Electric Magic.
+•Invisible Magic - White Magikoopa Invisible Magic.
+•Defense Up Magic - White Magikoopa Defense Up Magic.
+•Heal - White Magikoopa Heal Magic.
+•Heal All - White Magikoopa Heal All Magic.
+
+39. Green Magikoopa
+-=Kind Struct=-
+•Kind Struct 2 - This Kind Struct handles the clones.
+
+-=Part Struct=-
+•Part Struct 2 - Seems to be a duplicate of the Green Magikoopa. This is not called when a Green Magikoopa clones.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 2 - Clone Status vulnerabilities.
+
+-=Attacks=-
+•Magic Attack - Green Magikoopa Magic attack.
+•Huge Magic - Green Magikoopa Huge Magic.
+•Electric Magic - Green Magikoopa Electric Magic.
+•Invisible Magic - Green Magikoopa Invisible Magic.
+•Defense Up Magic - Green Magikoopa Defense Up Magic.
+•Heal - Green Magikoopa Heal Magic.
+•Heal All - Green Magikoopa Heal All Magic.
+
+40. Kammy Koopa
+-=Part Struct=-
+•Part Struct 2 - A Kammy Koopa model, Kammy Koopa when she falls off her broom.
+
+-=Attacks=-
+•Magic Attack - Kammy Koopa's Magic attack.
+•Huge Magic - Kammy Koopa's Huge Magic.
+•Electric Magic - Kammy Koopa's Electric Magic.
+•Defense Up Magic - Kammy Koopa's Defense Up Magic.
+•Invisible Magic - Kammy Koopa's Invisible Magic.
+•Heal - Kammy Koopa's Heal Magic.
+
+41. Bowser - Chapter 3/8
+-=Attacks=-
+•Jump Attack - Bowser's Jump attack.
+•Bite Attack - Bowser's Bite attack.
+•Critical Bite Attack - An unused Bite Attack.
+•Fire Breath Attack - Bowser's Fire Breath attack.
+
+42. Gus
+-=Part Struct=-
+•Part Struct 2 - A Gus model, used for his Spear Throw attack.
+
+-=Attacks=-
+•Ram Attack - Gus' Ram attack.
+•Spear Throw Attack - Gus' Spear Throw attack.
+
+43. Dark Craw
+-=Part Struct=-
+•Part Struct 2 - A Dark Craw model, used for his Spear Throw attack.
+
+-=Attacks=-
+•Ram Attack - Dark Craw's Ram attack.
+•Spear Throw Attack - Dark Craw's Spear Throw attack.
+
+44. Bandit
+-=Attacks=-
+•Bash Attack - Bandit's Bash Attack.
+
+45. Big Bandit
+-=Attacks=-
+•Bash Attack - Big Bandit's Bash Attack.
+
+46. Badge Bandit
+-=Attacks=-
+•Bash Attack - Badge Bandit's Bash Attack.
+
+47. Spinia
+-=Attacks=-
+•Spin Attack - Spinia's Spin Attack.
+
+48. Spania
+-=Attacks=-
+•Spin Attack - Spania's Spin Attack.
+
+49. Spunia
+-=Attacks=-
+•Spin Attack - Spunia's Spin Attack.
+
+50. Fuzzy
+-=Attacks=-
+•Leech Attack 1 - Fuzzy's Leech attack.
+•Leech Attack 2 - Fuzzy's second Leech attack, seems to be related to related to the electrified status. Changing damage parameters does nothing.
+
+51. Gold Fuzzy
+-=Attacks=-
+•Jump Attack - Gold Fuzzy's Jump attack.
+
+51A. Fuzzy Horde
+-=Part Struct=-
+•Part Struct 1 - A normal Fuzzy, normally invisible. Seems to be what you target to damage Fuzzy Horde. The Fuzzy Horde itself seems to spawn in based on Gold Fuzzy script.
+
+52. Green Fuzzy
+-=Attacks=-
+•Leech Attack 1 - Green Fuzzy's Leech attack.
+•Leech Attack 2 - Green Fuzzy's second Leech attack, seems to be related to related to the electrified status. Changing damage parameters does nothing.
+
+53. Flower Fuzzy
+-=Attacks=-
+•Leech Attack 1 - Flower Fuzzy's Leech attack.
+•FP Leech Attack - Flower Fuzzy's FP Leech attack.
+•Charged Attack - Flower Fuzzy's Charged attack. Only used when Flower Fuzzy has drained FP.
+•Leech Attack 2 - Fuzzy's second Leech attack, seems to be related to related to the electrified status. Changing damage parameters does nothing.
+
+54. Pokey
+-=Part Struct=-
+•Part Struct 2 - A Pokey model, used in Spike Launch attack (4 Segments).
+•Part Struct 3 - A Pokey model, used in Spike Launch attack (3 Segments).
+•Part Struct 4 - A Pokey model, used in Spike Launch attack (2 Segments).
+•Part Struct 5 - A Pokey segment model, used in Spike Launch attack. Also disappears when a Shell attack is used to remove a segment.
+
+-=Attacks=-
+•Bonk Attack (4 Segments) - Pokey Bonk attack with 4 segments.
+•Bonk Attack (3 Segments) - Pokey Bonk attack with 3 segments.
+•Bonk Attack (2 Segments) - Pokey Bonk attack with 2 segments.
+•Bonk Attack (1 Segments) - Pokey Bonk attack with 1 segment.
+•Spike Launch attack (4 Segments) - Pokey Spike Launch attack with 4 Segments.
+•Spike Launch attack (3 Segments) - Pokey Spike Launch attack with 3 Segments.
+•Spike Launch attack (2 Segments) - Pokey Spike Launch attack with 2 Segments.
+
+55. Poison Pokey
+-=Part Struct=-
+•Part Struct 2 - A Poison Pokey model, used in Spike Launch attack (4 Segments).
+•Part Struct 3 - A Poison Pokey model, used in Spike Launch attack (3 Segments).
+•Part Struct 4 - A Poison Pokey model, used in Spike Launch attack (2 Segments).
+•Part Struct 5 - A Poison Pokey segment model, used in Spike Launch attack. Also disappears when a Shell attack is used to remove a segment.
+
+-=Attacks=-
+•Bonk Attack (4 Segments) - Pokey Bonk attack with 4 segments.
+•Bonk Attack (3 Segments) - Pokey Bonk attack with 3 segments.
+•Bonk Attack (2 Segments) - Pokey Bonk attack with 2 segments.
+•Bonk Attack (1 Segments) - Pokey Bonk attack with 1 segment.
+•Spike Launch attack (4 Segments) - Pokey Spike Launch attack with 4 Segments.
+•Spike Launch attack (3 Segments) - Pokey Spike Launch attack with 3 Segments.
+•Spike Launch attack (2 Segments) - Pokey Spike Launch attack with 2 Segments.
+
+56. Pale Piranha
+-=Attacks=-
+•Bite Attack - Pale Piranha's Bite attack.
+
+57. Putrid Piranha
+-=Attacks=-
+•Bite Attack - Putrid Piranha's Bite attack.
+•Poison Spray Attack - Putrid Piranha's Poison Spray attack.
+
+58. Frost Piranha
+-=Attacks=-
+•Bite Attack - Frost Piranha's Bite attack.
+
+59. Piranha Plant
+-=Attacks=-
+• Bite Attack - Piranha Plant's Bite attack.
+
+60. Crazee Dayzee
+-=Attacks=-
+•Sing Attack - Crayzee Dayzee's Sing attack.
+
+61. Amazy Dayzee
+-=Attacks=-
+•Sing Attack - Amazy Dayzee's Sing attack.
+
+62. Pider
+-=Part Struct=-
+•Part Struct 2 - A Pider Model, used in the Web Spit of any of Pider's attacks.
+•Part Struct 3 - A Pider Model, used in the Web Spit of any of Pider's attacks.
+•Part Struct 4 - A Pider Model, the second Web Spit in Pider's Multishot attack.
+•Part Struct 5 - A Pider Model, the third Web Spit in Pider's Multishot attack.
+
+-=Attacks=-
+•Shoot Attack - Pider's single shot attack.
+•Multishot Attack - Pider's Multishot attack.
+
+63. Arantula
+-=Part Struct=-
+•Part Struct 2 - An Arantula Model, used in the Web Spit of any of Pider's attacks.
+•Part Struct 3 - An Arantula Model, used in the Web Spit of any of Pider's attacks.
+•Part Struct 4 - An Arantula Model, the second Web Spit in Pider's Multishot attack.
+•Part Struct 5 - An Arantula Model, the third Web Spit in Pider's Multishot attack.
+
+-=Attacks=-
+•Shoot Attack - Arantula's single shot attack.
+•Multishot Attack - Arantula's Multishot attack.
+
+64. Swooper
+•Ram Attack 1 - Swooper's Leech attack.
+•Ram Attack 2 - Swooper's second Ram attack, seems to be related to related to the electrified status. Changing damage parameters does nothing.
+
+65. Swoopula
+•Leech Attack 1 - Swoopula's Leech attack.
+•Leech Attack 2 - Swoopula's second Leech attack, seems to be related to related to the electrified status. Changing damage parameters does nothing.
+
+66. Swampire
+•Leech Attack 1 - Swampire's Leech attack.
+•Leech Attack 2 - Swampire's second Leech attack, seems to be related to related to the electrified status. Changing damage parameters does nothing.
+
+67. Dark Puff
+-=Attacks=-
+•Bash Attack - Dark Puff's Bash attack.
+•Thunder Attack - Dark Puff's Thunder attack.
+
+68. Ruff Puff
+-=Attacks=-
+•Bash Attack - Ruff Puff's Bash attack.
+•Thunder Attack - Ruff Puff's Thunder attack.
+
+69. Ice Puff
+-=Attacks=-
+•Bash Attack - Ice Puff's Bash attack.
+•Frost Breath Attack - Ice Puff's Frost Breath attack.
+
+70. Poison Puff
+-=Attacks=-
+•Bash Attack - Poison Puff's Bash attack.
+•Poison Gas Attack - Poison Puff's Poison Gas attack.
+
+71. Boo
+-=Attacks=-
+•Scare Attack - Boo's Scare attack.
+•Turn Invisible - Boo turns itself invisible.
+•Turn Other Invisible - Boo turns other ally invisible.
+•Change Height - Boo changes height.
+
+72. Atomic Boo
+•Slam Attack - Atomic Boo's Slam attack.
+•Stop Scare Attack - Atomic Boo's Stop Scare attack, inflicts Stop.
+•Confuse Scare Attack - Atomic Boo's Confuse Scare attack, inflicts Confusion.
+•Boo Spray Attack - Atomic Boo's Boo Spray attack.
+
+73 Dark Boo
+-=Attacks=-
+•Scare Attack - Dark Boo's Scare attack.
+•Turn Invisible - Dark Boo turns itself invisible.
+•Turn Other Invisible - Dark Boo turns other ally invisible.
+•Change Height - Dark Boo changes height.
+
+74. Ember
+-=Part Struct=-
+•Part Struct 2 - An Ember model, used in Ember's Flame launch Attack.
+
+-=Attacks=-
+•Burn Attack - Ember's Burn attack.
+•Flame Launch Attack - Ember's Flame Launch attack.
+•Flamethrower Attack - Ember's Flamethrower attack.
+
+75. Lava Bubble
+-=Part Struct=-
+•Part Struct 2 - A Lava Bubble model, used in Lava Bubble's Flame launch Attack.
+
+-=Attacks=-
+•Burn Attack - Lava Bubble's Burn attack.
+•Flame Launch Attack - Lava Bubble's Flame Launch attack.
+
+76. Phantom Ember
+-=Part Struct=-
+•Part Struct 2 - A Phantom Ember model, used in Phantom Ember's Flame launch Attack.
+
+-=Attacks=-
+•Burn Attack - Phantom Ember's Burn attack.
+•Flame Launch Attack - Phantom Ember's Flame Launch attack.
+
+77. Bald Cleft
+-=Defense=-
+•Defense Struct 2 - The Bald Cleft's defenses once flipped.
+
+-=Attacks=-
+•Bash Attack - Bald Cleft's Bash attack.
+
+78. Hyper Bald Cleft
+-=Defense=-
+•Defense Struct 2 - The Hyper Bald Cleft's defenses once flipped.
+
+-=Attacks=-
+•Bash Attack - Hyper Bald Cleft's Bash attack.
+•Charge - Hyper Bald Cleft's Charge move.
+
+79. Cleft
+-=Defense=-
+•Defense Struct 2 - The Cleft's defenses once flipped.
+
+-=Attacks=-
+•Bash Attack - Cleft's Bash attack
+
+80. Iron Cleft (Red Shoes)
+-=Defense=-
+•Defense Struct 2 - The Iron Cleft's defenses once flipped. This is unused since Iron Cleft can't be flipped.
+
+-=Attacks=-
+•Bash Attack - Iron Cleft's Bash attack
+
+81. Iron Cleft (Green Shoes)
+-=Defense=-
+•Defense Struct 2 - The Iron Cleft's defenses once flipped. This is unused since Iron Cleft can't be flipped.
+
+-=Attacks=-
+•Bash Attack - Iron Cleft's Bash attack
+
+82. Hyper Cleft
+-=Defense=-
+•Defense Struct 2 - The Hyper Cleft's defenses once flipped.
+
+-=Attacks=-
+•Bash Attack - Hyper Cleft's Bash attack.
+•Charge - Hyper Cleft's Charge move.
+
+83. Moon Cleft
+-=Defense=-
+•Defense Struct 2 - The Moon Cleft's defenses once flipped.
+
+-=Attacks=-
+•Bash Attack - Moon Cleft's Bash attack
+
+84. Bristle
+-=Defense=-
+•Defense Struct 2 - The Bristle's defenses once flipped.
+
+-=Attacks=-
+•Spin Attack - Bristle's Spin attack
+
+85. Dark Bristle
+-=Defense=-
+•Defense Struct 2 - The Dark Bristle's defenses once flipped.
+
+-=Attacks=-
+•Spin Attack - Dark Bristle's Spin attack
+
+86. Bob-omb
+-=Attacks=-
+•Bash Attack - Bob-omb's Bash attack
+
+87. Bulky Bob-omb
+-=Part Struct=-
+•Part Struct 2 - An invisible target above the Bulky Bob-omb. Disappears when the Bulky Bob-omb explodes.
+
+-=Attacks=-
+•Explosion - Bulky Bob-ombs' explosion.
+•Charge 1 - Bulky Bob-ombs' first Charge move.
+•Charge 2 - Bulky Bob-ombs' second Charge move.
+•Charge 2 - Bulky Bob-ombs' third Charge move.
+
+88. Bob-ulk
+-=Part Struct=-
+•Part Struct 2 - An invisible target above the Bob-ulk. Disappears when the Bob-ulk explodes.
+
+-=Attacks=-
+•Explosion - Bob-ulk's explosion.
+•Charge 1 - Bob-ulk's first Charge move.
+•Charge 2 - Bob-ulk's second Charge move.
+•Charge 2 - Bob-ulk's third Charge move.
+
+89. Chain-Chomp
+-=Part Struct=-
+•Part Struct 2 - A part of Chain-Chomp's chain.
+•Part Struct 3 - A part of Chain-Chomp's chain.
+•Part Struct 4 - A part of Chain-Chomp's chain.
+•Part Struct 5 - A part of Chain-Chomp's chain.
+•Part Struct 6 - A part of Chain-Chomp's chain.
+•Part Struct 7 - A part of Chain-Chomp's chain.
+•Part Struct 8 - A part of Chain-Chomp's chain.
+•Part Struct 9 - A part of Chain-Chomp's chain.
+
+-=Attacks=-
+•Bite Attack - Chain Chomp's Bite attack.
+
+90. Red Chomp
+-=Part Struct=-
+•Part Struct 2 - A part of Red Chomp's chain.
+•Part Struct 3 - A part of Red Chomp's chain.
+•Part Struct 4 - A part of Red Chomp's chain.
+•Part Struct 5 - A part of Red Chomp's chain.
+•Part Struct 6 - A part of Red Chomp's chain.
+•Part Struct 7 - A part of Red Chomp's chain.
+•Part Struct 8 - A part of Red Chomp's chain.
+•Part Struct 9 - A part of Red Chomp's chain.
+
+-=Attacks=-
+•Bite Attack - Red Chomp's Bite attack.
+
+91. Bill Blaster
+-=Part Struct=-
+•Part Struct 2 - An invisible target. Becomes visible when the Bill Blaster aims up to fire a Bullet Bill high.
+•Part Struct 3 - An invisible target. Becomes visible when the Bill Blaster aims up to fire a Bullet Bill high.
+
+-=Attacks=-
+•None - While the Bullet Bill has no attacks it will always fire a Bullet Bill if there is room.
+
+92. Bullet Bill
+=Attacks=-
+•Shoot Attack - The Bullet Bill's Shoot attack.
+
+93. Bombshell Bill Blaster
+-=Part Struct=-
+•Part Struct 2 - An invisible target. Becomes visible when the Bombshell Bill Blaster aims up to fire a Bombshell Bill high.
+•Part Struct 3 - An invisible target. Becomes visible when the Bombshell Bill Blaster aims up to fire a Bombshell Bill high.
+
+-=Attacks=-
+•None - While the Bombshell Bill Blaster has no attacks it will always fire a Bombshell Bill if there is room.
+
+94. Bombshell Bill
+=Attacks=-
+•Shoot Attack - The Bombshell Bill's Shoot attack.
+
+95. Dark Wizzerd
+-=Kind Struct=-
+•Kind Struct 2 - This Kind Struct handles the clones.
+
+-=Part Struct=-
+•Part Struct 2 - The Dark Wizzerds top left hand.
+•Part Struct 3 - The Dark Wizzerds top right hand.
+•Part Struct 4 - The Dark Wizzerds bottom left hand.
+•Part Struct 5 - The Dark Wizzerds bottom right hand.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 1 - Seems to be the Dark Wizzerd's clones status vulnerabilities.
+•Status Vulnerability Struct 2 - The Dark Wizzerd's status vulnerabilities.
+•Note - It seems the devs mixed up the Status Vulnerability Structs in between the Pit Dark Wizzerds and the Palace of Shadow Dark Wizzerds. In the Pit 1 and 2 are swapped.
+-=Attacks=-
+•Green Beam Attack - Dark Wizzerd's Green Beam attack.
+•Lightning Attack - Dark Wizzerd's Lightning attack.
+•Hands Attack - Dark Wizzerd's Hands attack.
+•Invisible Magic - Dark Wizzerd's Invisible magic.
+•Dodgy Magic - Dark Wizzerd's Dodgy magic.
+•Huge Magic - Dark Wizzerd's Huge magic.
+•Defense Up Magic - Dark Wizzerd's Defense Up magic.
+•Heal Magic - Dark Wizzerd's Heal magic.
+
+96. Wizzerd
+-=Part Struct=-
+•Part Struct 2 - The Wizzerds top left hand.
+•Part Struct 3 - The Wizzerds top right hand.
+•Part Struct 4 - The Wizzerds bottom left hand.
+•Part Struct 5 - The Wizzerds bottom right hand.
+
+-=Attacks=-
+•Green Beam Attack - Wizzerd's Green Beam attack.
+•Lightning Attack - Wizzerd's Lightning attack.
+•Huge Magic - Wizzerd's Huge magic.
+•Defense Up Magic - Wizzerd's Defense Up magic.
+•Confuse Magic - Wizzerd's Confuse magic.
+•Heal Magic - Wizzerd's Heal magic.
+
+97. Elite Wizzerd
+-=Kind Struct=-
+•Kind Struct 2 - This Kind Struct handles the clones.
+
+-=Part Struct=-
+•Part Struct 2 - The Elite Wizzerds top left hand.
+•Part Struct 3 - The Elite Wizzerds top right hand.
+•Part Struct 4 - The Elite Wizzerds bottom left hand.
+•Part Struct 5 - The Elite Wizzerds bottom right hand.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 1 - The Elite Wizzerd's status vulnerabilities.
+•Status Vulnerability Struct 2 - Seems to be the Elite Wizzerd's clones status vulnerabilities. 
+
+-=Attacks=-
+•Green Beam Attack - Elite Wizzerd's Green Beam attack.
+•Lightning Attack - Elite Wizzerd's Lightning attack.
+•Hands Attack - Elite Wizzerd's Hands attack.
+•Invisible Magic - Elite Wizzerd's Invisible magic.
+•Dodgy Magic - Elite Wizzerd's Dodgy magic.
+•Huge Magic - Elite Wizzerd's Huge magic.
+•Defense Up Magic - Elite Wizzerd's Defense Up magic.
+•Heal Magic - Elite Wizzerd's Heal magic.
+
+98. Blooper
+-=Defense=-
+•Defense Struct 1 - Blooper when standing.
+•Defense Struct 2 - Blooper when on the ceiling.
+•Defense Struct 3 - Blooper when toppled.
+
+-=Defense Attributes=-
+•Defense Attribute Struct 1 - Blooper defense attributes when standing.
+•Defense Attribute Struct 2 - Blooper defense attributes when on the ceiling.
+•Defense Attribute Struct 3 - Blooper defense attributes when toppled.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 1 - Blooper status vulnerabilities when standing.
+•Status Vulnerability Struct 2 - Blooper status vulnerabilities when on the ceiling.
+•Status Vulnerability Struct 3 - Blooper Status vulnerabilities when toppled.
+
+98A. Blooper Right Tentacle
+-=Attacks=-
+•Front Slap Attack - Right Tentacle's Front Slap attack.
+•Back Slap Attack - Right Tentacle's Back Slap attack.
+
+99B. Blooper Left Tentacle
+-=Attacks=-
+•Slap Attack - Left Tentacle's Slap attack.
+
+99. Hooktail
+-=Part Struct=-
+•Part Struct 1 - Handles targeting for Hooktail's Feet. Visually handles Hooktail's feet and head.
+•Part Struct 2 - Handles targeting for Hooktail's Head. Visually handles Hooktail's body when dropping into the battle at the beginning of the fight.
+•Part Struct 3 - Handles the Toads that Hooktail eats in phase 2.
+
+-=Attacks=-
+•Stomp Attack - Hooktail's Stomp attack.
+•Fire Breath Attack - Hooktail's Fire Breath attack.
+•Bite Attack - Hooktail's Bite attack.
+
+100. Gloomtail
+-=Part Struct=-
+•Part Struct 1 - Handles targeting for Gloomtail's Feet. Visually handles Gloomtail's feet and head.
+•Part Struct 2 - Handles targeting for Gloomtail's Head. Visually handles Gloomtail's body when dropping into the battle at the beginning of the fight.
+
+-=Attacks=-
+•Stomp Attack - Gloomtail's Stomp attack.
+•Bite Attack - Gloomtail's Bite attack.
+•Poison Breath - Gloomtail's Poison Breath attack.
+•Earthquake Attack - Gloomtail's Earthquake attack.
+•Charge - Gloomtail's Charge move.
+•Mega Breath - Gloomtail's Mega Breath attack.
+
+101. Bonetail
+-=Part Struct=-
+•Part Struct 1 - Handles targeting for Bonetail's Feet. Visually handles Bonetail's feet and head.
+•Part Struct 2 - Handles targeting for Bonetail's Head. Visually handles Bonetail's body when dropping into the battle at the beginning of the fight.
+
+-=Attacks=-
+•Stomp Attack - Bonetail's Stomp attack.
+•Bite Attack - Bonetail's Bite attack.
+•Ice Breath - Bonetail's Ice Breath attack.
+•Confuse Breath - Bonetail's Confuse Breath attack.
+•Sleep Breath - Bonetail's Charge move.
+•Tiny Breath - Bonetail's Tiny Breath attack.
+•Heal - Bonetail's Heal move.
+
+102. Rawk Hawk
+-=Attacks=-
+•Slide Attack - Rawk Hawk's Slide attack.
+•Spin Attack - Rawk Hawk's Spin attack.
+•Flying Punch Attack - Rawk Hawk's Flying Punch attack.
+•Ceiling Drop Attack - Rawk Hawk's Ceiling Drop attack.
+•Ceiling Heal - Rawk Hawk's Ceiling Heal move.
+•Ceiling Shake 1 - Rawk Hawk's Ceiling Shake attack.
+•Ceiling Shake 2 - Rawk Hawk's Ceiling Shake 2 attack. Does no damage, however statuses will work on the attack. Can target dead party member.
+
+103. Macho Grubba
+-=Attacks=-
+•Fast Power - Grubba's self fast status move.
+•Attack Up Power - Grubba's self Attack Up move.
+•Defense Up Power - Grubba's self Defense Up move.
+•Dodgy Power - Grubba's self Dodgy status move.
+•Jump Attack - Grubba's Jump attack.
+•Charge - Grubba's Charge move.
+•Punch Attack - Grubba's Punch attack.
+•Backflip Attack - Grubba's Backflip attack.
+
+104. Doopliss Solo - Chapter 4
+-=Part Struct=-
+•Part Struct 1 - Handles targeting and flags for Doopliss.
+•Part Struct 1 - Handles targeting and flags for Shadow Mario Doopliss.
+
+-=Attacks=-
+•Bash Attack - Doopliss' Bash Attack.
+•Jump - Shadow Mario Doopliss' Jump attack.
+•Hammer - Shadow Mario Doopliss' Hammer attack.
+•Spin Jump - Shadow Mario Doopliss' Spin Jump attack.
+•Super Hammer - Shadow Mario Doopliss' Super Hammer attack.
+
+104A. Shadow Mario Doopliss Solo - Twilight Trail
+-=Attacks=-
+•Jump - Shadow Mario Doopliss' Jump attack.
+•Hammer - Shadow Mario Doopliss' Hammer attack.
+•Spin Jump - Shadow Mario Doopliss' Spin Jump attack.
+•Super Hammer - Shadow Mario Doopliss' Super Hammer attack.
+
+104B. Shadow Mario Doopliss with Partners - Chapter 4
+-=Attacks=-
+•Jump - Shadow Mario Doopliss' Jump attack.
+•Hammer - Shadow Mario Doopliss' Hammer attack.
+•Spin Jump - Shadow Mario Doopliss' Spin Jump attack.
+•Super Hammer - Shadow Mario Doopliss' Super Hammer attack.
+
+104B-I - Goombella
+-=Attacks=-
+•Headbonk - Goombella's Headbonk attack.
+
+104B-II - Koops
+-=Attacks=-
+•Shell Toss 1 - Koops' single target Shell Toss.
+•Shell Toss 2 - Koops' multi target Shell Toss, may be an unused Power Shell.
+
+104B-III - Flurrie
+-=Attacks=-
+•Body Slam - Flurrie's Body Slam attack.
+
+104B-IV - Yoshi
+-=Attacks=-
+•Ground Pound - Yoshi's Ground Pound attack.
+
+104C - Doopliss - Chapter 8
+-=Part Struct=-
+•Part Struct 1 - Handles targeting and flags for Doopliss.
+•Part Struct 2 - Handles targeting and flags for Shadow Mario Doopliss.
+•Part Struct 3 - Handles targeting and flags for Doopliss Goombella.
+•Part Struct 4 - Handles targeting and flags for Doopliss Koops.
+•Part Struct 5 - Handles targeting and flags for Doopliss Flurrie.
+•Part Struct 6 - Handles targeting and flags for Doopliss Yoshi.
+•Part Struct 7 - Handles targeting and flags for Doopliss Vivian.
+•Part Struct 8 - Handles targeting and flags for Doopliss Bobbery.
+•Part Struct 9 - Handles targeting and flags for Doopliss Mowz.
+
+-=Defense=-
+•Defense Struct 1 - Handles defenses for Doopliss.
+•Defense Struct 2 - Handles defenses for Shadow Mario Doopliss.
+•Defense Struct 3 - Handles defenses for Doopliss Goombella.
+•Defense Struct 4 - Handles defenses for Doopliss Koops.
+•Defense Struct 5 - Handles defenses for Doopliss Koops when flipped.
+•Defense Struct 6 - Handles defenses for Doopliss Flurrie.
+•Defense Struct 7 - Handles defenses for Doopliss Yoshi.
+•Defense Struct 8 - Handles defenses for Doopliss Vivian.
+•Defense Struct 9 - Handles defenses for Doopliss Bobbery.
+•Defense Struct 10 - Handles defenses for Doopliss Mowz.
+
+-=Defense Attribute=-
+•Defense Attribute Struct 1 - Handles defense attributes for Doopliss.
+•Defense Attribute Struct 2 - Handles defense attributes for Shadow Mario Doopliss.
+•Defense Attribute Struct 3 - Handles defense attributes for Doopliss Goombella.
+•Defense Attribute Struct 4 - Handles defense attributes for Doopliss Koops.
+•Defense Attribute Struct 5 - Handles defense attributes for Doopliss Flurrie.
+•Defense Attribute Struct 6 - Handles defense attributes for Doopliss Yoshi.
+•Defense Attribute Struct 7 - Handles defense attributes for Doopliss Vivian.
+•Defense Attribute Struct 8 - Handles defense attributes for Doopliss Bobbery.
+•Defense Attribute Struct 9 - Handles defense attributes for Doopliss Mowz.
+
+-=Status Vulnerability=-
+•Status Vulnerability Struct 1 - Handles status vulnerabilities for Doopliss.
+•Status Vulnerability Struct 2 - Handles status vulnerabilities for Shadow Mario Doopliss.
+•Status Vulnerability Struct 3 - Handles status vulnerabilities for Doopliss Goombella.
+•Status Vulnerability Struct 4 - Handles status vulnerabilities for Doopliss Koops.
+•Status Vulnerability Struct 5 - Handles status vulnerabilities for Doopliss Flurrie.
+•Status Vulnerability Struct 6 - Handles status vulnerabilities for Doopliss Yoshi.
+•Status Vulnerability Struct 7 - Handles status vulnerabilities for Doopliss Vivian.
+•Status Vulnerability Struct 8 - Handles status vulnerabilities for Doopliss Bobbery.
+•Status Vulnerability Struct 9 - Handles status vulnerabilities for Doopliss Mowz.
+
+-=Attacks=-
+•Bash Attack - Doopliss' Bash Attack.
+•Jump - Shadow Mario Doopliss' Jump attack.
+•Hammer - Shadow Mario Doopliss' Hammer attack.
+•Spin Jump - Shadow Mario Doopliss' Spin Jump attack. Unused.
+•Super Hammer - Shadow Mario Doopliss' Super Hammer attack. Unused.
+•Headbonk - Doopliss Goombella's Headbonk attack.
+•Shell Toss 1 - Doopliss Koops' single target Shell Toss.
+•Shell Toss 2 - Doopliss Koops' multi target Shell Toss, may be an unused Power Shell.
+•Body Slam - Doopliss Flurrie's Body Slam attack.
+•Ground Pound - Doopliss Yoshi's Ground Pound attack.
+•Shade Fist - Doopliss Vivian's Shade Fist attack.
+•Bomb - Doopliss Bobbery's Bomb attack.
+•Love Slap 1 - Doopliss Mowz's Love Slap 1 attack. Unused.
+•Love Slap 2 - Doopliss Mowz's Love Slap 2 attack. Unused.
+•Love Slap 3 - Doopliss Mowz's Love Slap 3 attack.
+•Love Slap 4 - Doopliss Mowz's Love Slap 4 attack.
+
+105. Cortez
+-=Part Struct=-
+•Part Struct 1 - Handles targeting and flags for Cortez's head, body, and gem in all phases.
+•Part Struct 2 - Handles targeting and flags for Cortez's spine? in all phases.
+•Part Struct 3 - Handles targeting and flags for Cortez's base, placed under the Bone Pile in phases 1 and 2.
+•Part Struct 4 - Handles targeting and flags for Cortez's Bone Pile.
+•Part Struct 5 - Handles targeting and flags for a bone placed in Cortez's Bone Pile.
+•Part Struct 6 - Handles targeting and flags for a bone used in Cortez's Bone Toss Attack.
+•Part Struct 7 - Handles targeting and flags for a bone placed center stage.
+•Part Struct 8 - Handles targeting and flags for a bone placed center stage.
+•Part Struct 9 - Handles targeting and flags for a bone used in Cortez's Bone Toss Attack.
+•Part Struct 10 - Handles targeting and flags for a bone placed center stage.
+•Part Struct 11 - Handles targeting and flags for a bone placed center stage.
+•Part Struct 12 - Handles targeting and flags for a bone used in Cortez's Bone Toss Attack.
+•Part Struct 13 - Handles targeting and flags for a bone used in Cortez's Bone Toss Attack.
+•Part Struct 14 - Handles targeting and flags for a bone used in Cortez's Bone Toss Attack.
+•Part Struct 15 - Handles targeting and flags for a bone used in Cortez's Bone Toss Attack.
+•Part Struct 16 - Handles targeting and flags for a bone used in Cortez's Bone Toss Attack.
+•Part Struct 17 - Handles targeting and flags for a bone used in Cortez's Bone Toss Attack.
+•Part Struct 18 - Handles targeting and flags for a bone used in Cortez's Bone Toss Attack.
+•Part Struct 19 - Handles targeting and flags for a bone used in Cortez's Bone Toss Attack.
+
+-=Defense=-
+•Defense Struct 1 - Handles Cortez's Bone Pile's defenses in phases 1 and 2.
+•Defense Struct 2 - Handles Cortez's head defense in phase 2 when at full height.
+•Defense Struct 3 - May handle Cortez's gem defense at full height. Seems to go unused since you can't target the gem at this height.
+•Defense Struct 4 - Unknown
+•Defense Struct 5 - Handles Cortez's head defense in phase 2 when at medium height.
+•Defense Struct 6 - May handle Cortez's gem defense at medium height. Seems to go unused since you can't target the gem at this height.
+•Defense Struct 7 - Unknown
+•Defense Struct 8 - Handles Cortez's head defense in phase 2 when the gem is exposed.
+•Defense Struct 9 - Handles Cortez's gem defense when the gem is exposed.
+•Defense Struct 10 - Unknown
+•Defense Struct 11 - Handles Cortez's head defense in phase 3.
+•Defense Struct 12 - Handles Cortez's head defense in phase 1.
+
+-=Defense Attribute=-
+•Defense Attribute Struct 1 - Handles Cortez's Bone Pile's defense attributes in phases 1 and 2.
+•Defense Attribute Struct 2 - Handles Cortez's head defense attributes in phase 2 when at full height.
+•Defense Attribute Struct 3 - May handle Cortez's gem defense attributes at full height. Seems to go unused since you can't target the gem at this height.
+•Defense Attribute Struct 4 - Unknown
+•Defense Attribute Struct 5 - Handles Cortez's head defense attributes in phase 2 when at medium height.
+•Defense Attribute Struct 6 - May handle Cortez's gem defense attributes at medium height. Seems to go unused since you can't target the gem at this height.
+•Defense Attribute Struct 7 - Unknown
+•Defense Attribute Struct 8 - Handles Cortez's head defense attributes in phase 2 when the gem is exposed.
+•Defense Attribute Struct 9 - Handles Cortez's gem defense attributes when the gem is exposed.
+•Defense Attribute Struct 10 - Unknown
+•Defense Attribute Struct 11 - Handles Cortez's head defense attributes in phase 3.
+•Defense Attribute Struct 12 - Handles Cortez's head defense attributes in phase 1.
+
+-=Attacks=-
+•Front Weapon Attack - Cortez's Front Weapon attack in phase 1.
+•Back Weapon Attack - Cortez's Back Weapon attack in phase 1.
+•Multiweapon Attack - Cortez's Multiweapon attack in phase 1.
+•Head Bash Attack - Cortez's Head Bash attack in phase 2.
+•Charge - Cortez's Charge move in phase 2.
+•Bone Toss Attack - Cortez's Bone Toss attack in phase 2.
+•Bite Attack - Cortez's Bite attack in phase 3.
+
+105A. Bone Pile
+-=Part Struct=-
+•Part Struct 1 - Has no impact on the actual Bone Pile. Everything about Bone Pile is handled in Cortez's Structs.
+
+105B. Cortez Sword
+-=Attacks=-
+•Swing - Cortez Sword's Swing attack.
+
+105C. Cortez Hook
+-=Attacks=-
+•Swing - Cortez Hook's Swing attack.
+
+105D. Cortez Rapier
+-=Attacks=-
+•Swing - Cortez Rapier's Swing attack.
+
+105E. Cortez Sabre
+-=Attacks=-
+•Swing - Cortez Sabre's Swing attack.
+
+106. Smorg
+-=Part Struct=-
+•Part Struct 1 - Smorg's body. Has "Is Immune to Damage and Status" flag set when the 3 tentacles are out. Is not set when the claw is out.
+
+-Defense=-
+•Defense Struct 1 - Smorg's body when the 3 tentacles are out. Normally the body is Immune to Damage and Status during this phase.
+•Defense Struct 2 - Smorg's body when all the tentacles/claw are defeated.
+•Defense Struct 3 - Smorg's body when the claw is out.
+
+-=Attacks=-
+•weapon_moamoa_tsunami_attack - Presumably an unused Smorg attack.
+
+106A. Smorg Tentacle 1
+-=Part Struct=-
+•Part Struct 1 - The back tentacle.
+
+-=Attacks=-
+•Slap Attack - Smorg Tentacle 1's Slap attack.
+
+106B. Smorg Tentacle 2
+-=Part Struct=-
+•Part Struct 1 - The middle tentacle.
+
+-=Attacks=-
+•Slap Attack - Smorg Tentacle 2's Slap attack.
+
+106C. Smorg Tentacle 3
+-=Part Struct=-
+•Part Struct 1 - The front tentacle.
+
+-=Attacks=-
+•Slap Attack - Smorg Tentacle 3's Slap attack.
+
+106D. - Smorg Claw
+-=Attacks=-
+•Bite Attack - Smorg Claw's Bite attack.
+
+107. X-Naut
+-=Attacks=-
+•Chest Attack - X-Naut's Chest attack.
+•Jump Attack - X-Naut's Jump attack.
+•Potion Drink - X-Naut's Potion Drink move.
+
+108. X-Naut PhD
+-=Part Struct=-
+•Part Struct 2 - An X-Naut PhD model, used for all of the potion throw attacks.
+
+-=Attacks=-
+•Burn Potion - X-Naut PhD's Burn Potion attack.
+•Defense Down Potion - X-Naut PhD's Defense Down Potion attack.
+•Dodgy Potion - X-Naut PhD's Dodgy Potion move.
+•Tiny Potion - X-Naut PhD's Tiny Potion attack.
+•Single Heal Potion - X-Naut PhD's Single Heal Potion move.
+•Multi Heal Potion - X-Naut PhD's Multi Heal Potion move.
+•HP Regen Potion - X-Naut PhD's HP Regen Potion move.
+
+109. Elite X-Naut
+-=Attacks=-
+•Chest Attack - Elite X-Naut's Chest attack.
+•Jump Attack - Elite X-Naut's Jump attack.
+•Potion Drink - Elite X-Naut's Potion Drink move.
+
+110. Yux
+-=Part Struct=-
+•Part Struct 2 - A Yux model, used in the visual effect when the Yux does its attack.
+•Part Struct 3 - A Yux model, used in the visual effect when the Yux does its attack.
+•Part Struct 4 - A Yux model, used in the visual effect when the Yux does its attack.
+•Part Struct 5 - A Yux model, used in the visual effect when the Yux does its attack.
+•Part Struct 6 - A Yux model, used in the visual effect when the Yux does its attack.
+•Part Struct 7 - A Yux model, used in the Beam attack and the first shot in the Charged Beam attack.
+•Part Struct 8 - A Yux model, the second shot fired in the Charged Beam attack.
+•Part Struct 9 - A Yux model, the third shot fired in the Charged Beam attack.
+•Part Struct 10 - A Yux Model, an unused part, presumably from a fourth shot from the Charged Beam attack.
+•Part Struct 11 - A Yux Model, an unused part, presumably from a fifth shot from the Charged Beam attack.
+
+-=Attacks=-
+•Beam Attack - Yux's Beam attack.
+•Charged Beam Attack - Yux's Charged Beam attack.
+
+111. Mini-Yux
+-=Part Struct=-
+•Part Struct 2 - A Yux model, used in the visual effect when the Mini Yux spawns.
+•Part Struct 3 - A Yux model, used in the visual effect when the Mini Yux spawns.
+•Part Struct 4 - A Yux model, used in the visual effect when the Mini Yux spawns.
+•Part Struct 5 - A Yux model, used in the visual effect when the Mini Yux spawns.
+•Part Struct 6 - A Yux model, used in the visual effect when the Mini Yux spawns.
+
+112. Z-Yux
+-=Part Struct=-
+•Part Struct 2 - A Z-Yux model, used in the visual effect when the Z-Yux does its attack.
+•Part Struct 3 - A Z-Yux model, used in the visual effect when the Z-Yux does its attack.
+•Part Struct 4 - A Z-Yux model, used in the visual effect when the Z-Yux does its attack.
+•Part Struct 5 - A Z-Yux model, used in the visual effect when the Z-Yux does its attack.
+•Part Struct 6 - A Z-Yux model, used in the visual effect when the Z-Yux does its attack.
+•Part Struct 7 - A Z-Yux model, used in the Beam attack and the first shot in the Charged Beam attack.
+•Part Struct 8 - A Z-Yux model, the second shot fired in the Charged Beam attack.
+•Part Struct 9 - A Z-Yux model, the third shot fired in the Charged Beam attack.
+•Part Struct 10 - A Z-Yux Model, the fourth shot from the Charged Beam attack.
+•Part Struct 11 - A Z-Yux Model, the fifth shot from the Charged Beam attack.
+
+-=Attacks=-
+•Beam Attack - Z-Yux's Beam attack.
+•Charged Beam Attack - Z-Yux's Charged Beam attack.
+
+113. Mini-Z-Yux
+-=Part Struct=-
+•Part Struct 2 - A Yux model, used in the visual effect when the Mini-Z-Yux spawns.
+•Part Struct 3 - A Yux model, used in the visual effect when the Mini-Z-Yux spawns.
+•Part Struct 4 - A Yux model, used in the visual effect when the Mini-Z-Yux spawns.
+•Part Struct 5 - A Yux model, used in the visual effect when the Mini-Z-Yux spawns.
+•Part Struct 6 - A Yux model, used in the visual effect when the Mini-Z-Yux spawns.
+
+114. X-Yux
+-=Part Struct=-
+•Part Struct 2 - An X-Yux model, used in the visual effect when the X-Yux does its attack.
+•Part Struct 3 - An X-Yux model, used in the visual effect when the X-Yux does its attack.
+•Part Struct 4 - An X-Yux model, used in the visual effect when the X-Yux does its attack.
+•Part Struct 5 - An X-Yux model, used in the visual effect when the X-Yux does its attack.
+•Part Struct 6 - An X-Yux model, used in the visual effect when the X-Yux does its attack.
+•Part Struct 7 - An X-Yux model, used in the Beam attack and the first shot in the Charged Beam attack.
+•Part Struct 8 - An X-Yux model, the second shot fired in the Charged Beam attack.
+•Part Struct 9 - An X-Yux model, the third shot fired in the Charged Beam attack.
+•Part Struct 10 - An X-Yux Model, the fourth shot from the Charged Beam attack.
+•Part Struct 11 - An X-Yux Model, the fifth shot from the Charged Beam attack.
+
+-=Attacks=-
+•Beam Attack - X-Yux's Beam attack.
+•Charged Beam Attack - X-Yux's Charged Beam attack.
+
+115. Mini-X-Yux
+-=Part Struct=-
+•Part Struct 2 - A Yux model, used in the visual effect when the Mini-X-Yux spawns.
+•Part Struct 3 - A Yux model, used in the visual effect when the Mini-X-Yux spawns.
+•Part Struct 4 - A Yux model, used in the visual effect when the Mini-X-Yux spawns.
+•Part Struct 5 - A Yux model, used in the visual effect when the Mini-X-Yux spawns.
+•Part Struct 6 - A Yux model, used in the visual effect when the Mini-X-Yux spawns.
+
+116. Grodus X
+-=Attacks=-
+•Bash Attack - Grodus X's Bash attack.
+
+117. Magnus
+-=Part Struct=-
+•Part Struct 1 - Handles targeting and flags for Magnus' upper body.
+•Part Struct 2 - A Magnus model. Handles targeting and flags for Magnus' feet.
+•Part Struct 3 - The outline of the glass dome of Magnus' head. Not a target in vanilla.
+
+-=Attacks=-
+•Stomp Attack - Magnus' Stomp attack.
+•Earthquake Attack - Magnus' Earthquake attack.
+
+117A. X-Fist
+-=Attacks=-
+•Punch Attack - X-Fist's Punch Attack.
+
+118. Magnus 2.0
+-=Part Struct=-
+•Part Struct 1 - Handles targeting and flags for Magnus 2.0's upper body.
+•Part Struct 2 - A Magnus 2.0 model. Handles targeting and flags for Magnus 2.0's feet.
+•Part Struct 3 - The outline of the glass dome of Magnus 2.0's head. Not a target in vanilla.
+•Part Struct 4 - A Magnus 2.0 model. Used for the X from his Boomerang attack.
+
+-=Attacks=-
+•Drill Attack - Magnus 2.0's Drill attack.
+•Boomerang Attack - Magnus 2.0's Boomerang attack.
+•Audience Attack - Magnus 2.0's Audience Cannon attack.
+
+118A. X-Punch
+-=Attacks=-
+•Punch Attack - X-Punch's Punch Attack.
+
+119. Lord Crump - Prologue
+-=Attacks=-
+•Butt Attack - Crump's Butt attack.
+
+119A. Lord Crump - Chapter 5
+-Defense=-
+•Defense Struct 2 - Crump's defenses during an unused defend action.
+
+-=Attacks=-
+•Butt Attack - Crump's Butt attack.
+•Charge - Crump's Charge move.
+
+119A-I - X-Naut Platoon Formation 1
+-=Attacks=-
+•Jump Attack - Platoon 1's Jump attack.
+
+119A-II - X-Naut Platoon Formation 2
+-=Attacks=-
+•Fall Attack - Platoon 2's Fall attack.
+•Fork Attack - Platoon 2's Fork attack.
+
+119A-III - X-Naut Platoon Formation 3
+-=Attacks=-
+•Ball Attack - Platoon 3's Ball attack.
+
+120. Grodus
+-=Part Struct=-
+•Part Struct 1 - Handles targeting and flags for Grodus.
+•Part Struct 2 - Handles targeting and flags for Grodus' Staff.
+•Part Struct 3 - Unknown, some part of Grodus' body.
+•Part Struct 4 - Unknown.
+•Part Struct 5 - Unknown.
+•Part Struct 6 - Unknown.
+•Part Struct 7 - Unknown.
+
+-=Defense=-
+•Defense Struct 1 - Seems to be Grodus' staff defenses.
+•Defense Struct 2 - Seems to be Grodus' defenses.
+
+-=Defense Attribute=- 
+•Defense Attribute Struct 1 - Seems to be Grodus' staff defense attributes.
+•Defense Attribute Struct 2 - Seems to be Grodus' defense attributes.
+
+-=Attacks=-
+•Thunder Attack - Grodus' Thunder attack.
+•Fire Attack - Grodus' Fire attack.
+•Ice Attack - Grodus' Ice attack.
+•Payback Magic - Grodus' Payback Magic move.
+•Dodgy Magic - Grodus' Dodgy Magic move.
+•Stop Attack - Grodus' Stop attack.
+
+121. Beldam - Chapter 2
+-=Attacks=-
+•Punch Attack - Beldam's Punch attack.
+•Blizzard Attack - Beldam's Blizzard attack.
+•Huge Magic - Beldam's Huge Magic move.
+•Tiny Magic - Beldam's Tiny Magic attack.
+
+121B. Beldam - Chapter 8
+-=Attacks=-
+•Punch Attack - Beldam's Punch attack.
+•Blizzard Attack - Beldam's Blizzard attack.
+•Huge Magic - Beldam's Huge Magic move.
+•Tiny Magic - Beldam's Tiny Magic attack.
+•Poison Magic - Beldam's Poison Magic attack.
+•Slow Magic - Beldam's Slow Magic attack.
+•Fast Magic - Beldam's Fast Magic move.
+
+122. Marilyn - Chapter 2/8
+•Punch Attack - Marilyn's Punch attack.
+•Thunder Attack - Marilyn's Thunder attack.
+•Charge - Marilyn's Charge move.
+
+123. Vivian
+•Punch Attack - Vivian's Punch attack.
+•Fiery Jinx - Vivian's Fiery Jinx attack.
+
+124. Shadow Peach - Phase 1
+-=Part Struct=-
+•Part Struct 1 - Handles targeting and flags for Shadow Peach.
+•Part Struct 2 - Shadow Queen's body visual.
+•Part Struct 3 - Shadow Queen's moving head visual.
+•Part Struct 4 - Shadow Queen's hair visual.
+•Part Struct 5 - Shadow Queen's stationary head visual.
+•Part Struct 6 - Shadow Queen's right hand visual.
+•Part Struct 7 - Shadow Queen's left hand visual.
+*Note - Since Shadow Peach is also loaded in the second fight this means any of these parts made visible in fight one will appear as duplicates in fight two.
+
+-=Attacks=-
+•Thunder Attack - Shadow Peach's Thunder attack.
+•Attack and Defense Up Magic - Shadow Peach's Attack and Defense Up Magic move.
+
+124A. Shadow Queen
+-=Part Struct=-
+•Part Struct 1 - Handles targeting and flags for Shadow Peach.
+•Part Struct 2 - Shadow Queen's body visual.
+•Part Struct 3 - Shadow Queen's moving head visual.
+•Part Struct 4 - Shadow Queen's hair visual.
+•Part Struct 5 - Shadow Queen's stationary head visual.
+
+-=Attacks=-
+•Thunder Attack - Shadow Peach's Thunder attack. *This attack belongs to Shadow Peach but can be used in the second fight too.
+•Attack and Defense Up Magic - Shadow Peach's Attack and Defense Up Magic move. *This attack belongs to Shadow Peach but can be used in the second fight too.
+•Charge - Shadow Queen's Charge move.
+•Dark Wave Attack - Shadow Queen's Dark Wave attack.
+•Allergic Breath - Shadow Queen's Allergic Breath attack.
+•Confuse Breath - Shadow Queen's Confuse Breath attack.
+•Poison Breath - Shadow Queen's Poison Breath attack.
+
+124B. Shadow Hand 1 - Left Hand
+-=Attacks=-
+•Drain Attack - Shadow Hand 1's Drain attack.
+•Slap Attack - Shadow Hand 1's Slap attack.
+
+124C. Shadow Hand 2 - Right Hand
+-=Attacks=-
+•None
+*Note - This hand calls the same attacks as Shadow Hand 1, so changing any flags on Shadow Hand 1's attacks will have the same effect on Shadow Hand 2.
+
+124D. Small Shadow Hands 
+-=Attacks=-
+•Drag Down Attack 1 - Small Shadow Hands Drag Down attack 1.
+•Drag Down Attack 2 - Small Shadow Hands Drag Down attack 2. Has no damage, may be unused.
+•Run Attack - Small Shadow Hands Run attack.

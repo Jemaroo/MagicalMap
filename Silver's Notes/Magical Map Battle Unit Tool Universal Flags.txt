@@ -1,0 +1,353 @@
+Written by @silver_136. Feel free to reach out to me on discord with any information, corrections, changes, additions, etc. that you find.
+Thanks to @jemaroo for the battle tool, it made testing significantly easier. Also thanks for assisting in figuring out what some flags do.
+Thanks to @jdaster64 for various documentation that was referenced while writing this.
+Thanks to @cursed_gm, @hirothetraveler,and @reed for various assistance and ideas in figuring out what some flags do.
+
+---Universal---
+This document focuses on various structs that are found in every entities table. These are as follows, Kind Structs, Part Structs, Defense Structs, Defense Attribute Structs, Status Vulnerability Structs and any flags found in the attacks section. Flags relating to targeting priorities will be documented at a later time.
+
+- Kind Structs - 
+•Hp - Sets HP value for the target.
+•Danger HP - Sets Danger HP value for the target.
+•Peril HP - Sets Peril HP value for the target.
+•Level - Sets the targets level. Star Point value is enemy Level minus Mario's level multiplied by a value that changes depending on how many enemies exist at the start of battle. 0.5X for 1-2 enemies, 0.55x for 3 enemies, 0.65x for 4 enemies, and 0.75x for 5 enemies. Note that new enemies spawned mid-battle always use the 0.5x multiplier.
+•Bonus XP - Flat increase to Star Points gained. This amount is added after all calculations are done from the levels. Bonus XP is not given if Mario has a higher level than the enemy.
+•Bonus Coin - Amount of extra coins you can earn from an enemy.
+•Bonus Coin Rate - The chance of gaining the Bonus Coins. The probability is rolled for each Bonus Coin.
+•Base Coin - The base amount of coins dropped from an enemy.
+•Run Rate - What % of the Run Meter is filled when starting to run. The meters starting position is the average of all enemies run rate.
+•PB Cap - The maximum number of Power Bounce hits you can land in a single attack.
+•Swallow Chance - Yoshi's chance to swallow the target. 255 = Disabled.
+•Swallow Attribute - 
+^ None - Swallow with no knockback
+^ Swallow Bomb - Unused, happens when gulping an ignited Bob-Omb. Extra Animation Only.
+^ Spit Into Other Enemy - Gulp that spits into the next enemy.
+^ Spit Fireball - Unused, Gulps and spits fireballs if used on a fiery target.
+^ Swallow Part Of Enemy - Unused, only works on Pokey, swallows parts/head.
+•Hammer Knockback Chance - The chance of Super/Ultra hammer causing Knockback.
+•Item Steal Difficulty - What % of the meter on Kiss Thief is a successful action command. 100 = Full Bar. Can't be disabled with values -1/0/255.
+•Is Map Object - Sets actors position to 300 units back. This has an in-game effect of making that target no longer frontmost if other enemies are in the battle. If a part has "Ignore Map Object Offset (PAF 0x20000)" enabled then (UAF 0x1) is ignored.
+•Out of Reach - Makes the target out of reach, seems to be used when target is on the ceiling.
+•Is Unquakeable - Makes the target immune to Quake.
+•Is Invisible - Makes the target invisible. Seems to just be the invisible status, moves will miss unless the flag "Cannot Miss" is enabled.
+•Is Veiled - Makes the target act as if they are veiled. If set on an enemy they will be veiled at the start of battle and never be able to be hit.
+•Is Shell Shielded - Makes the target act as if they are Shell Shielded. Does nothing if target does not have a Shell Shield.
+•Disable Zero Gravity Floating - Disables the floating effect from the unused zero gravity battle effect.
+•Disable Zero Gravity Immobility - Disables the immobility caused  from the unused zero gravity battle effect.
+•Immune to Spin Hammer Knockback (UAF 0x4000) - Makes the target immune to knockback from Super/Ultra Hammer.
+•Is Undead - When enabled stops the target from dying when they reach 0HP. 
+•Is Corpse - This flag is used when any of the Dry Bones variants are in their "downed" state.
+•Is Leader - Designates target as a "leader". All "leaders" must be defeated on Mario's side for a game over to occur. If enabled on a partner then it is possible for a fight to continue even if Mario is downed. This flag seems to have no effect on enemies. Note, if no one on Mario's side is designated as a "leader" then a game over happens immediately.
+•Cannot Take Actions - When enabled on a target it prevents them from taking any actions. Function on enemies and Mario/Partner. They can not attack and if enabled on a boss with a phase change mid fight, like chapter 4 Doopliss, he won't transform into Shadow Mario until he reaches 0 HP, instead of 10 or lower.
+•Not Spun by Love Slap - When set the target is immune to the visual effect of the Love Slap damage patterns "Spin Once 1/2" and "Quickly Spin 1/2".
+•Disable Damage Stars - When set the target does not display the damage stars and number when taking damage.
+•Disable All Part Visibility - When enabled this flag disables the visibility of all parts relating to the target. This flag is a universal version of "Disable Part Visibility (PAF 0x1000000)", instead of being per part it applies to the entire target.
+•Disable HP Gauge (UAF 0x2000000) - Disables the HP Gauge in battle.
+•Non-Combatant (UAF 0x10000000) - Designates the target as a non-combatant.
+•No Shadow (UAF 0x20000000) - Disables the visibility of the targets shadow.
+
+•Disable Damage - This flag sets the target to be immune to taking damage. Does not prevent damage numbers from appearing, but health will not lower. Unlike "Is Immune To Damage And Status", this flag still allows statuses to be inflicted, but statuses that do damage will not deal damage. The only way to defeat a target with this flag seems to be Gale/OHKO/Fright.
+
+- Part Structs - 
+
+•Main Body Part - ???
+•Secondary Body Part - ???
+•Bombable Body Part - ???
+•Ignore Only Target Select Parts - When this flag is enabled the part becomes immune to any attack with the flag "Only Target Select Parts (TCF 0x200000)". By Default the "Only Target Select Parts (TCF 0x200000)" flag is only enabled on Bomb Squad, so this flag would only give immunity to that attack. However, if you were to disable "Only Target Select Parts" on Bomb Squad you could have a similar circumstance to "Unused Attack Type 1" and "Unused Immunity Type 1", where an attack can be a "Type" and an entity can have an immunity to that "Type".
+•Weak To Attack FX R - Determines if target has Attack FX R weakness. Doesn't work when enabled on enemies. If disabled on Hooktail her attack still drops, just not her defense. When enabled on Hooktail it can pierce up to 2 defense, whether its Base Defense or Status Defense. 
+•Weak to Ice Power - Determines if target is weak to Ice Power. Target takes +1 damage.
+•Is Winged - Decides if an entity has wings. Does nothing if enabled on a normal enemy. If disabled on a winged target then said target will not drop/lose wings when hit.
+•Is Shelled - Determines if an entity has a shell. Does nothing if enabled on a normal enemy. If disabled on a shelled target then said target will not flip when jumped on.
+•Is Bomb Flippable - Decides if an entity is flipped by Bomb attacks. Does nothing when enabled on a normal enemy, unless said target is normally flippable. In which case the target will still flip if the attack has the correct flags set. If disabled on a bomb flippable target then said target will not flip when hit with a Bomb attack.
+•Is Clone-like - Makes an enemy clone-like, similar to a Wizzerd/Magikoopa clone. If used on an enemy that can't normally clone they can not be targeted unless an attack has the "Can Hit Clone-like (SPF 0x40000)" flag. An enemy with "Is Clone-like" must be dropped to 0HP to be defeated, unlike regular clones which disappear on contact. The target can still be superguarded and damage will still apply. Lastly, the flag "Cannot Miss" does not make an attack hit an enemy with "Is Clone-like".
+•Disable Flat Paper Layering - When enabled makes an invisible target appear strangely, the model is no longer flattened. Enabling on an target that has it disabled by default changes nothing about the invisible status. This flag also makes the Dodgy idle animation not play, however the Dodgy dodge animation still plays.
+•Never Targetable - This flag prevents the target from being targeted by attacks.
+•Ignore Map Object Offset - This flag ignores the offset from "Is Map Object". 
+•Ignore Only Target Select and Preferred Parts - This flag gives the target immunity to both of the flags listed. Seems to be a variant on "Only Target Select Parts Immunity (PAF 0x10)" that includes immunity to "Only Target Preferred Parts TCF 0x100000".
+•Cannot be Tattled - The target can not be tattled.
+•Jump-like Attacks Cannot Target - Jump attacks and similar attacks cannot target the entity.
+•Hammer-like Attacks Cannot Target - Hammer attacks and similar attacks cannot target the entity.
+•Shell Toss-like Attacks Cannot Target - Shell Toss and similar attacks cannot target the entity.
+•Prevent Health Decrease - This flag sets the target to be immune to taking damage. Does not prevent damage numbers from appearing, but health will not lower. Unlike "Is Immune To Damage And Status", this flag still allows statuses to be inflicted, but statuses that do damage will not deal damage. The only way to defeat a target with this flag seems to be Gale/OHKO/Fright.
+•Disable Part Visibility - When enabled this flag disables the visibility of the model the Part Struct is related to. EX. Shadow Queen has 5 Parts, and each one relates to a different part of her body, enabling this flag makes that part invisible. For example, enabling this flag on Part Struct 1 will make Shadow Peach invisible.
+•Is Immune To Custom Type - This flag prevents attacks with the flag "Cannot Target Custom Type (TPF 0x4000000)" from targeting the entity. This flag functions on Mario/Partner and enemies. This flag has a side effect of disabling some animations and shadows.
+•Independence - Seems to be used on certain parts to handle moving objects. EX. When disabled on X-Naut PHD part struct 2 the thrown bottle will no longer travel to Mario, but just teleport instead.
+•Is Immune to Damage and Status - Target cannot be inflicted with statuses or take damage from attacks. Superguards still damage the target if their attack's superguard state is set to "superguardable with recoil."
+•Is Immune to OHKO - Target cannot be defeated by the OHKO status.
+•Is Immune to Status - The target can not be inflicted with any status.
+•Is Top Spiky - Sets the target to be top spiky. EX. Spiky Goomba
+•Is Preemptive Front Spiky - Sets the target to be front spiky and interrupt attacks that walk up to it ( Example attack - Hammer ). Only Bristle has this effect in vanilla.
+•Is Front Spiky - Sets the target to be front spiky. EX. Spiny
+•Is Fiery - Sets the target to be fiery on contact. User takes 1 damage on contact. No damage is dealt to the target.
+•Has a Fiery Status - Sets the target to inflict burn on contact. No damage is dealt to the target.
+•Is Icy - Sets the target to be icy on contact. User takes 1 damage on contact. No damage is dealt to the target. 
+•Has an Icy Status - Sets the target to inflict freeze on contact. No damage is dealt to the target.
+•Is Poisonous - Sets the target to be poisonous on contact. User takes 1 damage on contact. Target also receives damage.
+•Has a Poison Status - Sets the target to inflict poison on contact. Target also receives damage.
+•Is Electric - Sets the target to be electric on contact. User takes 1 damage on contact. No damage is dealt to the target.
+•Has an Electric Status - Sets the target to inflict electric on contact. User takes 1 damage on contact. No damage is dealt to the target. Once user has electric status they can make contact with the target.
+•Is Explosive - Sets the target to be explosive ( similar to Bob-Omb enemies ). Fire and Explosive attacks will cause target to be defeated instantly.
+•Is Volatile Explosive - Sets the target to be Volatile Explosive ( similar to Bob-Omb when ignited ) any form of contact/damage/item used on the target will cause said target to be immediately defeated. If contact is made user takes 1 damage.
+
+- Stat Upgrades -
+-Mario-
+•Starting HP - Sets Mario's base HP.
+•Starting FP - Sets Mario's base FP.
+•Starting BP - Sets Mario's base BP.
+•Upgrade HP - Sets how much to upgrade HP by per level.
+•Upgrade FP - Sets how much to upgrade FP by per level.
+•Upgrade BP - Sets how much to upgrade BP by per level.
+-Partners-
+•Level 1 HP - Sets partner base rank HP.
+•Level 2 HP - Sets partner super rank HP.
+•Level 3 HP - Sets partner ultra rank HP.
+
+- Defense Structs -
+•Normal Defense - Sets targets base defense. Can be negative to give target negative defense.
+•Fire Defense - Sets targets defense to fire attacks. Can be negative to give target negative defense.
+•Ice Defense - Sets targets defense to icy attacks. Can be negative to give target negative defense.
+•Explosion Defense - Sets targets defense to explosive attacks. Can be negative to give target negative defense.
+•Electric Defense - Sets targets defense to electric attacks. Can be negative to give target negative defense.
+
+- Defense Attribute Structs - 
+•Normal Attribute Defense - Sets what happens when a target is hit by a normal attack.
+•Fire Attribute Defense - Sets what happens when a target is hit by a fire attack.
+•Ice Attribute Defense - Sets what happens when a target is hit by a ice attack.
+•Explosion Attribute Defense - Sets what happens when a target is hit by an explosive attack.
+•Electric Attribute Defense - Sets what happens when a target is hit by an electric attack.
+
+^ Defense Attribute Effects ^
+•No Effect - Nothing unique happens when the target is hit.
+•Weak To - Target is weak to this attribute, target takes +1 damage from hits.
+•Immune To - Target cannot be damaged with this attribute.
+•Absorbs - When hit with this attribute the target takes no damage and heals based on the attacks damage.
+•Immune To (Except Gulp) - This target is immune to this attribute type, unless the attack is Gulp. The Iron Clefts use this in vanilla.
+
+- Status Vulnerability Struct -
+•All Status Susceptibility - Sets the probability that the target can be inflicted with the status. Final status probability is (Susceptibility X attack Status Chance).
+
+- Attacks -
+Anything documented here is universal and appears in all Attacks.
+
+•Accuracy - Probability the attack will hit. Can be set above 100% to reduce effects of dizzy/dodgy.
+•FP Cost - The amount of FP needed to use an attack. This does nothing when set on an enemy.
+•SP Cost - The amount of SP (in orbs) an attack costs to use. This does work when set on an enemy attack, it will drain Mario's SP.
+•Superguard State - Sets how a superguard will impact the target.
+^ Unsuperguardable - This attack can not be superguarded.
+^ Superguardable with Recoil - This attack can be superguarded and the enemy will take 1 damage.
+^ Superguardable without Recoil - This attack can be superguarded but the enemy will not take damage.
+•Stylish Multiplier - Impacts the amount of Star Power and Audience gained when using a stylish. 0 Will yield very little. Has no impact on an attack if the stylish is not performed. Can not be disabled with -1/255
+•Increase Bingo Slot Chance - Sets the chance that the attack will add a Bingo Slot. 0 Disables. Doesn't work with enemy attacks.
+•Element - Sets the attacks element. Normal, Fire, Ice, Explosive, Electric. 
+•Damage Pattern - Decides what effects are on an attack. Some are visual and some have functions.
+^ None - Normal attack
+^ Gulp Knockback onto Ground 1- Visual only, Gulp Knockback.
+^ Gulp Knocked onto Ground 2 - Visual only, buggy animations.
+^ Gulp Knocked into next Target - Functions, does Gulp knockback. Some visuals are buggy. Crashes if no partner is present and the attack is used.
+^ Remove Pokey Segment - This is set on most Shell moves. This property is what allows Shell moves to remove Pokey segments.
+^ Squashed Short - Visual, squishes for a short time.
+^ Squashed Medium - Visual, squishes for a medium amount of time.
+^ Squashed Long - Visual, squishes for a long time.
+^ Inked - Visual, Blooper Ink.
+^ Super Hammer Knocked Back - Functions, does Super Hammer Knockback. Seems to function without issue on single target attacks. Multi-target attacks can break.
+^ Ultra Hammer Knocked Back - Functions, incredibly buggy. Soft locks in many situations.
+^ Ultra Hammer Finisher - Has 2 different effects. When enabled on an attack it will not play an FX sound if you have the badges equipped. Also the damage "woosh" visual when an enemy takes damage is slightly bigger. May have other effects.
+^ Confusion Effect - Visual, confused effect.
+^ Spin Once 1/2 - Visual, spin.
+^ Quickly Spin 1/2 - Visual, quick spin.
+^ Blown Away - Visual, blows enemy away (seems to only work on defeating hit). Slightly buggy visuals for multihit attacks and winged enemies.
+^ Play Additional Ending Hurt Animation - Seems to be the finishing hit on some multi-hit attacks to ensure a 0HP target is defeated. Disables FX sounds if enabled on Mario. Enabled on Rawk Hawk's Ceiling Shake 2 and Shadow Queen's Small Hands Drag Down Attack 2.
+•Action Command Difficulty - Determines how difficult an action command is.
+^ Extremely Easy - 3 Simplifiers
+^ Very Easy - 2 Simplifiers
+^ Easy - 1 Simplifier
+^ None - Base
+^ Difficult - 1 Unsimplifier
+^ Very Difficult - 2 Unsimplifiers
+^ Extremely Difficult - 3 Unsimplifiers
+•Status Attributes - Determines what statuses an attack gives and for how long.
+^ Status Chance - Probability of the attack inflicting the status. Final status probability is (Susceptibility X attack Status Chance).
+^ Status Time - How many turns the status is applied for. 0 turn statuses wear off after the last enemy attacks.
+^ Status Strength - Determines how much of a buff a status gives or how much damage per turn a status does.
+•Stage Background Fall Chance 1 - Probability of making small and large stage objects fall. EX. Tree and Grass in Petal Meadows. Functions on enemy attacks.
+•Stage Background Fall Chance 2 - Probability of making large stage objects fall. EX. Tree in Petal Meadows. Functions on enemy attacks.
+•Stage Background Fall Chance 3 - Probability of making small stage objects fall. EX. Grass in Petal Meadows. Functions on enemy attacks.
+•Stage Background Fall Chance 4 - Probability of making the background wall fall. Only works if no small or large objects are in the way. Functions on enemy attacks.
+•Stage Nozzle Turn Chance - The probability that the nozzles on the stage change targets. Doesn't happen on base rank stage. Functions on enemy attacks.
+•Stage Nozzle Fire Chance - The probability that the nozzles on the stage will fire. Doesn't happen on base rank stage. Functions on enemy attacks.
+•Stage Ceiling Fall Chance - The chance the ceiling will fall. Doesn't work on a stage without a ceiling. Functions on enemy attacks.
+•Stage Object Fall Chance - Sets the probability that a stage prop will fall. Every object has a chance of falling depending your Rank/Stage level. Functions on enemy attacks.
+•Cannot Target Mario or Shell Shield - The attack can not target Mario or a Shell Shield.
+•Cannot Target Partner - The attack used can not target the partner character. Works when set on Mario and enemies.
+•Cannot Target Enemy - The attack used can not target an enemy. This seems to do nothing when set on an enemy.
+•Cannot Target Tree Or Switch - Seems to go unused, enabled on all attacks, disabling seems to change nothing.
+•Cannot Target System Units - Prevents the attack from targeting system units.
+•Cannot Target Opposite Alliance - The attack used cannot target the side opposite of the user. Mario and Partner can only target each other and enemies can only target each other.
+•Cannot Target Own Alliance - The attack used cannot target the users own Alliance. Mario and Partner cannot target their side and enemies cannot target their side.
+•Cannot Target Self - The attack used cannot target the user.
+•Cannot Target Same Species - The attack used cannot target the same type species/type of unit as the attacks user.
+•Only Target Self - The attack used can only target the user. 
+•Only Target Mario - The attack used will only target Mario.  
+•Only Target Tree Or Switch - Makes the attack only able to target Tree or Switch, since these don't exist it disables targeting for this move.
+•Only Target Preferred Parts - Makes the selected attack only able to target certain parts. This flag seems to only matter in fights with enemies that have multiple parts. Seems to disable targeting on Cortez Bone Pile, Cortez Gem, Magnus Feet, Magnus 2.0 Feet, Grodus' Staff, and All 3 of the Dragons feet, however those targets only seem to be disabled if the attack has another target it can hit. EX. Jump can target Cortez Head and Bone Pile, so with this flag enabled Bone Pile loses its targeting. However Hammer can not reach Cortez Head, so Bone Pile remains a target. Also, multitarget moves such as Multibounce and Quake Hammer have this enabled by default and disabling it allows Cortez Head, Bone Pile, and Gem to all be targeted at once. This flag is also the reason Fire Drive is the only multitarget that can target Grodus' Staff, since every other multi-part boss has one target in the air and one on the ground you would never see it, but Grodus and his Staff are both grounded, and Fire Drive doesn't have this flag set, thus letting Fire Drive hit both.
+•Only Target Select Parts - Makes the attack only able to target certain parts. Only used on Bomb Squad in vanilla, and seems to disable hitting multiple parts on bosses that have them. EX. With this flag disabled on Bomb Squad you can target Magnus/Magnus 2.0 feet and body, or Grodus and his Staff, getting 2 hits per bomb.
+•Single Target - Makes the attack only target a single entity. If set on a Multiple Target attack, EX. Fiery Jinx/Power Shell, the attack will still hit multiple targets, except it lets you pick an individual target when selecting the attack. If an enemy that is not the front enemy is selected it seems the targeting when attacking breaks. This seems to be a case by case basis on the attack.
+•Multiple Target - Makes the attack target all enemies except for those immune due to other flags. If the attack isn't a multiple target attack in vanilla then no extra hits are actually done. EX. Jump will show multiple targets but only damage one. There do seem to be a handful of attacks that will function when changed to multiple target. EX. The HP Drain item works as a multiple target attack.
+•Cannot Target Anything - Completely disables targeting options for the attack.
+•Is Tattle-like - Makes the attack be considered tattle-like, meaning a target that can't be tattled can't be targeted by the attack.
+•Cannot Target Floating 1 - Seems to disable targeting targets that are floating or flying. EX. Boos, Paragoombas, Wizzerds, Embers. This flag is normally only set on Fuzzy Horde, and that enemy can not target Flurrie, who is floating. This flag does not disable targeting enemies on the ceiling. There seem to be no enemies or statuses that are different between "Cannot Target Floating" and "Cannot Target Floating Variant". 
+•Cannot Target Ceiling - The attack will not be able to target a target on the ceiling.
+•Cannot Target Floating 2 - The attack will not be able to target a floating target.
+•Cannot Target Grounded 1 - The attack will not be able to target a target on the ground.
+•Is Jump-like - Makes the attack Jump-like, meaning a target with "Jump-like Attacks Cannot Target" set can not be targeted by this attack.
+•Is Hammer-like - Makes the attack Hammer-like, meaning a target with "Hammer-like Attacks Cannot Target" set can not be targeted by this attack.
+•Is Shell Toss-like - Makes the attack Shell Toss-like, meaning a target with "Shell Toss-like Attacks Cannot Target" set can not be targeted by this attack.
+•Cannot Target Grounded 2 - A broken version of Cannot Target Grounded, if an attack is Jump-like or has no attack "likeness" set, it cannot target grounded targets. If an attack is Shell Toss-like or Hammer-like it loses all targeting options.
+•Has Recoil Damage - Only enabled on Super Hammer 2, Ultra Hammer 2, and Gulp 5. They don't seem to do anything when enabled/disabled.
+•Can Only Target Frontmost - Makes the attack only able to target the frontmost target.
+•Cannot Target Shell Shield - Disables targeting targets with a Shell Shield.
+•Cannot Target Custom Type - Gives the attack an "Unused Attack Type" property. This seems to do nothing unless the target has the "Is Immune To Custom Type (PAF 0x2000000)" flag, in which case this attack can not target that entity. If this flag is set on enemies and Mario/Partner has the "Is Immune To Custom Type" flag the enemy can not target Mario/Partner.
+•Target Same Alliance Direction - Makes the attack target order follow the opposite direction the user is facing. EX. An attack used by Mario/Partner will target from right to left, and an attack used by an enemy will target from left to right.
+•Target Opposite Alliance Direction - Makes the attack target order follow the direction the user is facing. EX. An attack used by Mario/Partner will target from left to right, and an attack used by an enemy will target from right to left.
+^If neither "Target Same/Opposite Alliance Direction" are set then the attack will default to following "Target Opposite Alliance Direction" logic.
+^If both "Target Same/Opposite Alliance Direction" are set then the attack will default to following "Target Same Alliance Direction" logic.
+•Badge Can Affect Power - Determines if badges modify the power of the attack. This does not have any impact on stacking offensive badges when disabled. EX. Equipping Power Jump and then Power Plus will not see an attack increase, However 2 Power Jumps will still scale as normal. This setting also works on enemies.
+•Status Can Affect Power - Determines if statuses modify the power of the attack. This setting also works on enemies.
+•Is Chargeable - Determines if charge increases the power of the attack. If this setting is disabled and an entity has a charge then uses the attack, then said attack will not consume the charge. This setting also works on enemies.
+•Cannot Miss - The attack cannot miss. This setting ignores invisible, dodgy, and dizzy. Also ignores lucky badges. Also ignores veil, if an enemy attacks while you are veiled the target is always Mario, and you can guard/superguard as well. If Mario has any contact damage status/flag set while veiled they still apply. EX Electrified and Return Postage.
+•Has Diminishing Damage by Hit - Damage decreases on your attack by 1 per hit, but never to 0. EX. Power Bounce. If set on a multitarget attack like Power Shell there is no effect.
+•Has Diminishing Damage by Target - Damage decreases on your attack by 1 per target hit, but never to 0. EX. Fire Drive. If set on a single target multihit attack the damage still decreases. EX. Jump goes down by 1 on its second hit.
+•Pierces Defense - Makes the attack ignore all forms of defense, whether base, elemental, status, badges, and the defend action. Does not ignore P-Down D-Up or Guards.
+•Can Break Ice - Unused, does not function by default. If made to function this flag makes it so the attack will break a frozen target out of ice.
+•Ignore Target Status Vulnerability - Makes the attack ignore status vulnerabilities, unless the flag "Is Immune to Status" is checked, or if the status' vulnerability chance is 0 it will also fail.
+•Change Element to Fire if Target Burned - If the user is burned then the attack with this flag will be changed into the fire element. 
+•Play Active FX Sound - Enables FX sounds based on which FX badge(s) the user has on. Can be enabled on partners, enemies, and items and it does function, it will only play the sounds of the equipped FX badge(s).
+•Flips Shell Enemies - Attack will flip the enemy if they are shelled. Does nothing if "Is Shelled" is set on an enemy without a shell.
+•Flips Bomb-Flippable Enemies - Attack will flip the enemy if they are normally Bomb-Flippable. EX. Cleft. Does nothing if "Is Bomb-Flippable" is set on an enemy without a normally being Bomb-Flippable.
+•Grounds Winged Enemies - Attack will ground winged enemies. Does nothing if "Is Winged" is set on an enemy without wings.
+•Can be Used when Confused - The attack can be called as a random confused attack with this flag set. Some attacks/badges wont be called. If the attack called uses FP or SP then it will check if you have enough before using the attack, and if you do it will consume the appropriate cost. An attack can not be pulled if said attack has no target. EX. Mario wont use attacks on partner if there is no partner/partner is down. This flag has no unique properties when enabled on an enemy. When enabled on items it allows enemies to use items on Mario/Partner when confused.
+•Is Unguardable - The attack can not be guarded. This flag also disables superguarding.
+•Can Hit Clone-like - If this flag is enabled the attack will be able to target and make contact with a clone enemy. EX. Wizzerd or Magikoopa. The clone still disappears immediately when hit. If the clone flag "Is Clone-like (PAF 0x4000)" is enabled on an enemy that can't normally clone, they will be unable to be hit, but can still be superguarded and damaged. Healing items still work on them, status items will fail. If an enemy that isn't a clone has the flag "Is Clone-like (PAF 0x4000)" set and the attackers attack has the flag "Can Hit Clone-like Enemies (SPF 0x40000)" set then the enemy will take actual damage and must be dropped to 0 HP to be defeated, unlike a clone which fades. If this flag is enabled on offensive items they will damage the clone-like enemy, but not actual Wizzerd/Magikoopa clones.
+•Ignore X Resistance - Ignores resistances of the flag set.
+
+-----Base Damage Functions-----
+This section focuses on the Base Damage Functions, more specifically what they mean and what each parameter does when a function is set. 
+
+-Base Damage Function: None-
+When set this function makes the attack do no damage. No parameters will do anything. Badges that increase power will also have no effect. Note that if an attack is set to "None" be default and its attack script is one that normally doesn't do damage, then changing the Base Damage Function will not make that attack be able to deal damage. EX. Tattle.
+
+•X - No parameters function.
+
+-Base Damage Function: Get Jump Power-
+This function makes the attack scale with jump power. This means that as you upgrade your boots this attack will grow stronger. If disabled on a jump attack then Jumpman will not increase that attacks power. Functions on partner attacks.
+
+•1 - Normal Boots damage with a failed action command damage.
+•2 - Normal Boots damage with a successful action command damage.
+•3 - Super Boots damage with a failed action command damage.
+•4 - Super Boots damage with a successful action command damage.
+•5 - Ultra Boots damage with a failed action command damage.
+•6 - Ultra Boots damage with a successful action command damage.
+
+-Base Damage Function: Get Hammer Power-
+This function makes the attack scale with hammer power. This means that as you upgrade your hammer this attack will grow stronger. If disabled on a hammer attack then Hammerman will not increase that attacks power. Functions on partner attacks.
+
+•1 - Normal Hammer damage with a failed action command damage.
+•2 - Normal Hammer damage with a successful action command damage.
+•3 - Super Hammer damage with a failed action command damage.
+•4 - Super Hammer damage with a successful action command damage.
+•5 - Ultra Hammer damage with a failed action command damage.
+•6 - Ultra Hammer damage with a successful action command damage.
+
+-Base Damage Function: Get Default Power-
+This function makes the attack call damage parameter 1 for damage, regardless of an action command success/fail.
+
+•1 - Sets the attacks damage, regardless of an action command success/fail.
+
+-Base Damage Function: Get Badge Stacked Jump Power-
+This function makes the attack scale with jump power. 
+This function makes the attack scale with jump power. This means that as you upgrade your boots this attack will grow stronger. If disabled on a jump attack then Jumpman will not increase that attacks power. Also enables badge damage scaling with parameters 7 and 8. Functions on partner attacks.
+
+•1 - Normal Boots damage with a failed action command damage.
+•2 - Normal Boots damage with a successful action command damage.
+•3 - Super Boots damage with a failed action command damage.
+•4 - Super Boots damage with a successful action command damage.
+•5 - Ultra Boots damage with a failed action command damage.
+•6 - Ultra Boots damage with a successful action command damage.
+•7 - Badge ID for badge stacking damage. Any badge ID works in this parameter and will scale damage based on parameter 8.
+•8 - Value for increase or decrease in damage from stacked badges. Can be set to positive or negative.
+
+-Base Damage Function: Get Tornado Power-
+This function makes the attack damage behave like the Tornado Jump Tornadoes. Does not actually add tornadoes to an attack. Damage scaling badges still increase damage.
+
+•1 - The base damage of the attack.
+•2 - The amount of damage each extra copy of Tornado Jump adds to the attack.
+
+-Base Damage Function: Get Badge Stacked Hammer Power-
+This function makes the attack scale with hammer power. This means that as you upgrade your hammer this attack will grow stronger. If disabled on a hammer attack then Hammerman will not increase that attacks power. Also enables badge damage scaling with parameters 7 and 8. Functions on partner attacks.
+
+•1 - Normal Hammer damage with a failed action command damage.
+•2 - Normal Hammer damage with a successful action command damage.
+•3 - Super Hammer damage with a failed action command damage.
+•4 - Super Hammer damage with a successful action command damage.
+•5 - Ultra Hammer damage with a failed action command damage.
+•6 - Ultra Hammer damage with a successful action command damage.
+•7 - Badge ID for badge stacking damage. Any badge ID works in this parameter and will scale damage based on parameter 8.
+•8 - Value for increase or decrease in damage from stacked badges. Can be set to positive or negative.
+
+-Base Damage Function: Get Art Attack Power-
+This function makes the attack damage behave like Art Attack. Since Art Attack is handled by its script this function behaves similar to "None" on all other attacks. Damage scaling badges still increase damage.
+
+•X - No parameters function
+
+-Base Damage Function: Get Supernova Power-
+This function makes the attack damage behave like Supernova. Since Supernova is handled by its script this function behaves similar to "Get Default Power" on all other attacks. Damage scaling badges still increase damage. Has different behaviors when set on some multi-target attacks.
+
+•1 - Sets the attacks damage, regardless of an action command success/fail.
+
+-Base Damage Function: Get Earth Tremor Power-
+This function makes the attack damage behave like Earth Tremor. Since Earth Tremor is handled by its script this function makes all other attacks do 1 damage regardless of what damage parameters are set. Damage scaling badges still increase damage.
+
+•X - No parameters function, base damage is always 1.
+
+-Base Damage Function: Get Poison Shroom Power-
+This function makes the attack damage behave like Poison Shroom (Bingo). An attack with this flag will deal half of the targets HP, subtracting defense if applicable.
+
+•X - No parameters function, base damage is always half of targets HP, subtracting defense if applicable.
+
+-Base Damage Function: Get Partner Power-
+This function makes the attack scale in power based on partner rank. Since this requires checking the rank of a partner it seems to make all other attacks do 1 damage regardless of what damage parameters are set. Damage scaling badges still increase damage. Seems to make multi-hit moves have diminishing damage.
+
+•1 - Base Rank Partner failed action command damage.
+•2 - Base Rank Partner successful action command damage.
+•3 - Super Rank Partner failed action command damage.
+•4 - Super Rank Partner successful action command damage.
+•5 - Ultra Rank Partner failed action command damage.
+•6 - Ultra Rank Partner successful action command damage.
+
+-Base Damage Function: Get Partner Action Command Power-
+This function makes the attack check for action command success when using an attack. Used in a lot of attacks that have multiple success and fail states. Functions differently depending on whether the attack has a single button input, like Jump, multiple button inputs, like Fiery Jinx, or a meter, like Bob-ombast. I do not recommend changing an attack to "Get Partner Action Command Power" if its not vanilla due to inconsistent behaviors on attacks.
+
+•1 - Functions differently depending on the value and type of move.
+•2 - Sets base damage for the attack.
+
+-----Attack Script-----
+Attack Scripts change what move is used when an attack is selected. EX. If you change Jump to Quake Hammer Script then using Jump in battle will use the move Quake Hammer, except with the damage parameters, statuses, and targeting flags associated with Jump (Except for Single/Multiple Target, changing a script will make the attack target those normally hit by the selected script). So Jump with Quake Hammer Script will target all grounded enemies, it will still be countered by spiky enemies, will take contact damage from relevant statuses, etc. Changing attack scripts can break attacks entirely depending on what you change, so test everything. All Attack Scripts are named and easy to figure out, so I wont be documenting them all here. There are too many combinations of possible attacks and scripts to reasonably list them all.
+
+-----Targeting Preferences-----
+This section focuses on all of the targeting preference flags found in any attacks flags. Thanks to JDaster's documentation on this. Unlike most other documents where I did most of my own testing, I am sourcing my information directly from https://supermariofiles.wordpress.com/2022/12/18/attack-params/
+
+•Note - All other targeting rules apply first. EX. If an attack has "Cannot Target Floating" then no amount of targeting priority will make the attack be able to target something floating. 
+•Note - All numbers used for targeting weights are under the assumption an attack can target anything anywhere.
+•Default Targeting - Assuming no other targeting preferences are set the default weights for an enemy to target are 110 for frontmost and 100 for all others.
+•Prefer Targeting Mario - Makes Mario's weight 50% higher. 
+•Prefer Targeting Partner - Makes Partner's weight 50% higher.
+•Prefer Targeting Front - Multiplies the weights by 0.5, 0.9, 1.3, etc. from back to front. 
+•Prefer Targeting Back - Multiplies the weights by 0.5, 0.9, 1.3, etc. from front to back. 
+•Prefer Targeting Same Alliance - Makes teammates' weights 50% higher.
+•Prefer Targeting Opposite Alliance - Makes opposing alliance weights 50% higher.
+•Prefer Targeting Less Healthy - Multiplies weights by (2.0 - target's current fraction of Max HP)
+•Greatly Prefer Targeting Less Healthy - Multiplies weights by (1.0 - target's current fraction of Max HP)
+•Prefer Targeting Lower HP Target - Multiplies weights by (1.5 - target's current HP/20)
+•Prefer Targeting Higher HP Target - Multiplies weights by (1.5 + target's current HP/20)
+•Prefer Targeting Target in Peril - Multiplies weights of a target in Peril by 50%.
+•Choose Targeting Randomly - Picks from the final weights randomly. EX. If target A has a weight of 150 and target B has a weight of 50, then target A has a 150/200 chance to be selected and Target B has a 50/200 chance to be selected. If "Choose Targeting Randomly" is disabled then the move will choose the target with the higher weight. EX. If target A has a weight of 150 and target B has a weight of 50, then target A will always be chosen. If target A and B have the same weight then the attack will target the target closest to the front.
