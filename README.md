@@ -14,7 +14,7 @@ Huge thanks to **NWPlayer123** for their [decomped item tables](https://github.c
 
 Huge thanks to **Silver** for their work on writing the tooltips and research on [various flag and value scenarios](https://www.youtube.com/@SilverGames136/videos) with the battle tool!
 
-Shoutouts to hirothetraveler, Reed, Diagamma, cursedGM, and others for their suggestions and feedback!
+Shoutouts to **hirothetraveler**, **Reed**, **Diagamma**, **cursedGM**, and others for their suggestions and feedback!
 
 <br/>
 
