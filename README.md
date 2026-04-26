@@ -1,5 +1,5 @@
 # MagicalMap
-Magical map is an all-in-one ttyd modding suite that combines:
+Magical Map contains a variety of modding tools that allow you to modify TTYD
 
 - [TTYDBattleUnitTool](https://github.com/Jemaroo/TTYDBattleUnitTool)
 - [TTYDItemDataTool](https://github.com/Jemaroo/TTYDItemDataTool)
