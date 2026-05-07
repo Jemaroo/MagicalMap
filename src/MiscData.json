@@ -1,0 +1,1667 @@
+{
+    "File":
+    [
+        {
+            "Name": "main.dol",
+            "Data": 
+            [
+
+            ]
+        },
+        {
+            "Name": "Start.dol",
+            "Data": 
+            [
+                {
+                    "Name": "Mario's Run Speed",
+                    "Type": "General",
+                    "DataType": "Float",
+                    "Offsets": [3982904]
+                },
+                {
+                    "Name": "Mario's Jump Speed",
+                    "Type": "General",
+                    "DataType": "Float",
+                    "Offsets": [3945808]
+                },
+                {
+                    "Name": "Mario's Jump Acceleration",
+                    "Type": "General",
+                    "DataType": "Float",
+                    "Offsets": [3945812]
+                },
+                {
+                    "Name": "Mario's Jump Jerk",
+                    "Type": "General",
+                    "DataType": "Float",
+                    "Offsets": [3945816]
+                },
+                {
+                    "Name": "Mario's Jump Snap",
+                    "Type": "General",
+                    "DataType": "Float",
+                    "Offsets": [3945820]
+                },
+                {
+                    "Name": "Mario HP Limit",
+                    "Type": "Stats",
+                    "DataType": "twoint",
+                    "Offsets": [3977190]
+                },
+                {
+                    "Name": "Mario FP Limit",
+                    "Type": "Stats",
+                    "DataType": "twoint",
+                    "Offsets": [3977194]
+                },
+                {
+                    "Name": "Mario BP Limit",
+                    "Type": "Stats",
+                    "DataType": "twoint",
+                    "Offsets": [3977198]
+                },
+                {
+                    "Name": "Star Points Required for Level Up",
+                    "Type": "Stats",
+                    "DataType": "twoint",
+                    "Offsets": [2173646]
+                },
+                {
+                    "Name": "Experience Level Cutoff",
+                    "Type": "Stats",
+                    "DataType": "twoint",
+                    "Offsets": [2172898, 2173678]
+                },
+                {
+                    "Name": "B-List Star Level Requirement",
+                    "Type": "Stats",
+                    "DataType": "twoint",
+                    "Offsets": [3853340]
+                },
+                {
+                    "Name": "A-List Star Level Requirement",
+                    "Type": "Stats",
+                    "DataType": "twoint",
+                    "Offsets": [3853352]
+                },
+                {
+                    "Name": "Superstar Level Requirement",
+                    "Type": "Stats",
+                    "DataType": "twoint",
+                    "Offsets": [3853364]
+                },
+                {
+                    "Name": "Experience Multiplier",
+                    "Type": "Battle",
+                    "DataType": "twointWpatch",
+                    "Offsets": [1092002],
+                    "PatchOffsets": [1092000],
+                    "Vanilla": ["5400"],
+                    "Rewrites": ["1C80"]
+                },
+                {
+                    "Name": "Tattle No Longer Takes Turn",
+                    "Type": "Partner",
+                    "DataType": "Function",
+                    "Offsets": [3745044],
+                    "Vanilla": ["8010A26C"],
+                    "Rewrites": ["80189374"]
+                },
+                {
+                    "Name": "Tattle No Longer Gives SP",
+                    "Type": "Partner",
+                    "DataType": "Function",
+                    "Offsets": [3745024, 3745028, 3745032, 3745036],
+                    "Vanilla": ["0001005B", "80139AF4", "0001005B", "8010436C"],
+                    "Rewrites": ["00010009", "00000001", "00010009", "00000001"]
+                },
+                {
+                    "Name": "Mowz Smooch 0% - 33% Success Heal Amount",
+                    "Type": "Partner",
+                    "DataType": "fourint",
+                    "Offsets": [3685520]
+                },
+                {
+                    "Name": "Mowz Smooch 33% - 66% Success Heal Amount",
+                    "Type": "Partner",
+                    "DataType": "fourint",
+                    "Offsets": [3685504, 3685536]
+                },
+                {
+                    "Name": "Mowz Smooch 66% - 99% Success Heal Amount",
+                    "Type": "Partner",
+                    "DataType": "fourint",
+                    "Offsets": [3685484]
+                },
+                {
+                    "Name": "Mowz Smooch 100% Success Heal Amount",
+                    "Type": "Partner",
+                    "DataType": "fourint",
+                    "Offsets": [3685464]
+                },
+                {
+                    "Name": "Mowz Smooch Heal Amount Fix",
+                    "Type": "Partner",
+                    "DataType": "Function",
+                    "Offsets": [3685460, 3685480, 3685500, 3685516, 3685532, 3686112, 3686116, 3686120, 3686124],
+                    "Vanilla": ["FE363C85", "FE363C85", "FE363C85", "FE363C85", "FE363C85", "0003005B", "801078DC", "00000002", "FE363C85"],
+                    "Rewrites": ["FE363C88", "FE363C88", "FE363C88", "FE363C88", "FE363C88", "00020032", "FE363C85", "FE363C88", "00000000"]
+                },
+                {
+                    "Name": "Normal Guard Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059739]
+                },
+                {
+                    "Name": "Normal Guard (1 Simp.) Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059738]
+                },
+                {
+                    "Name": "Normal Guard (2 Simp.) Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059737]
+                },
+                {
+                    "Name": "Normal Guard (3 Simp.) Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059736]
+                },
+                {
+                    "Name": "Normal Guard (1 Unsimp.) Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059740]
+                },
+                {
+                    "Name": "Normal Guard (2 Unsimp.) Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059741]
+                },
+                {
+                    "Name": "Normal Guard (3 Unsimp.) Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059742]
+                },
+                {
+                    "Name": "Super Guard Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059747]
+                },
+                {
+                    "Name": "Super Guard (1 Simp.) Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059746]
+                },
+                {
+                    "Name": "Super Guard (2 Simp.) Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059745]
+                },
+                {
+                    "Name": "Super Guard (3 Simp.) Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059744]
+                },
+                {
+                    "Name": "Super Guard (1 Unsimp.) Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059748]
+                },
+                {
+                    "Name": "Super Guard (2 Unsimp.) Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059749]
+                },
+                {
+                    "Name": "Super Guard (3 Unsimp.) Frames",
+                    "Type": "Battle",
+                    "DataType": "oneint",
+                    "Offsets": [3059750]
+                },
+                {
+                    "Name": "Starting Coin Amount",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [964278]
+                },
+                {
+                    "Name": "Max Coin Limit",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [855550, 855558, 855626, 855634, 860410, 1284066, 1284074]
+                },
+                {
+                    "Name": "Mario Heart Pickup Heal",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [860514]
+                },
+                {
+                    "Name": "Partner Heart Pickup Heal",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [860558]
+                },
+                {
+                    "Name": "Flower Pickup Heal",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [860602]
+                },
+                {
+                    "Name": "Inn Stays Special Event Requirement",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [3389510]
+                },
+                {
+                    "Name": "Inn Stays Special Event Coin Reward",
+                    "Type": "Rewards",
+                    "DataType": "twoint",
+                    "Offsets": [3391222]
+                },
+                {
+                    "Name": "Max Item Inventory Size",
+                    "Type": "General",
+                    "DataType": "twointConstraint",
+                    "Offsets": [860978],
+                    "Lower": 0,
+                    "Upper": 20
+                },
+                {
+                    "Name": "Strange Sack Max Item Inventory Size",
+                    "Type": "General",
+                    "DataType": "twointConstraint",
+                    "Offsets": [860986],
+                    "Lower": 0,
+                    "Upper": 20
+                },
+                {
+                    "Name": "Max Badge Inventory Size",
+                    "Type": "General",
+                    "DataType": "twointConstraint",
+                    "Offsets": [858658],
+                    "Lower": 0,
+                    "Upper": 200
+                },
+                {
+                    "Name": "Top Spiky Contact Damage",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1013490]
+                },
+                {
+                    "Name": "Preemptive Front Spiky Contact Damage",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1013582]
+                },
+                {
+                    "Name": "Front Spiky Contact Damage",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1013674]
+                },
+                {
+                    "Name": "Fiery Status Contact Damage",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1013774]
+                },
+                {
+                    "Name": "Icy Status Contact Damage",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1013882]
+                },
+                {
+                    "Name": "Electric Status Contact Damage",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1014010]
+                },
+                {
+                    "Name": "Volatile Explosive Contact Damage",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1014230]
+                },
+                {
+                    "Name": "Sleep Wake Chance",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1030366]
+                },
+                {
+                    "Name": "Dodgy Status Dodge Chance",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1019150]
+                },
+                {
+                    "Name": "Confusion Confused Chance",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1148766]
+                },
+                {
+                    "Name": "Electrified Unable to Act Chance",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1148702]
+                },
+                {
+                    "Name": "Electrified Contact Damage",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1014342]
+                },
+                {
+                    "Name": "Burn HP Damage",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1650426]
+                },
+                {
+                    "Name": "Burn FP Damage",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1650430]
+                },
+                {
+                    "Name": "Freeze Thaw Damage",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1154170]
+                },
+                {
+                    "Name": "Can Break Ice Flag Probability",
+                    "Type": "Battle",
+                    "DataType": "twointWpatch",
+                    "Offsets": [1017394],
+                    "PatchOffsets": [1017400, 1017404, 1017408, 1017412, 1017416, 1017420],
+                    "Vanilla": ["3C800001", "7F63DB78", "38048717", "38810024", "90010024", "480003D1"],
+                    "Rewrites": ["7F63DB78", "38800009", "38A00000", "38C00000", "4802C565", "48000018"]
+                },
+                {
+                    "Name": "Chet Rippo HP Modifier",
+                    "Type": "Stats",
+                    "DataType": "twoint",
+                    "Offsets": [3977178]
+                },
+                {
+                    "Name": "Chet Rippo FP Modifier",
+                    "Type": "Stats",
+                    "DataType": "twoint",
+                    "Offsets": [3977182]
+                },
+                {
+                    "Name": "Chet Rippo BP Modifier",
+                    "Type": "Stats",
+                    "DataType": "twoint",
+                    "Offsets": [3977186]
+                },
+                {
+                    "Name": "Merlee Coin Multiplier",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [278382]
+                },
+                {
+                    "Name": "Happy Lucky Lottery Fourth Prize Base Required Days",
+                    "Type": "Lottery",
+                    "DataType": "twoint",
+                    "Offsets": [2430942]
+                },
+                {
+                    "Name": "Happy Lucky Lottery Fourth Prize Random Subtraction",
+                    "Type": "Lottery",
+                    "DataType": "twoint",
+                    "Offsets": [2430934]
+                },
+                {
+                    "Name": "Happy Lucky Lottery Third Prize Base Required Days",
+                    "Type": "Lottery",
+                    "DataType": "twoint",
+                    "Offsets": [2430870]
+                },
+                {
+                    "Name": "Happy Lucky Lottery Third Prize Random Subtraction",
+                    "Type": "Lottery",
+                    "DataType": "twoint",
+                    "Offsets": [2430862]
+                },
+                {
+                    "Name": "Happy Lucky Lottery Second Prize Base Required Days",
+                    "Type": "Lottery",
+                    "DataType": "twoint",
+                    "Offsets": [2430794]
+                },
+                {
+                    "Name": "Happy Lucky Lottery Second Prize Random Subtraction",
+                    "Type": "Lottery",
+                    "DataType": "twoint",
+                    "Offsets": [2430786]
+                },
+                {
+                    "Name": "Happy Lucky Lottery Grand Prize Base Required Days",
+                    "Type": "Lottery",
+                    "DataType": "twoint",
+                    "Offsets": [2430714]
+                },
+                {
+                    "Name": "Happy Lucky Lottery Grand Prize Random Subtraction",
+                    "Type": "Lottery",
+                    "DataType": "twoint",
+                    "Offsets": [2430706]
+                },
+                {
+                    "Name": "Merlee Attack Boost",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1026222]
+                },
+                {
+                    "Name": "Merlee Defense Boost",
+                    "Type": "Battle",
+                    "DataType": "twoint",
+                    "Offsets": [1027186]
+                },
+                {
+                    "Name": "Merlee Experience Multiplier",
+                    "Type": "Battle",
+                    "DataType": "twointWpatch",
+                    "Offsets": [2172886],
+                    "PatchOffsets": [2172884],
+                    "Vanilla": ["5400"],
+                    "Rewrites": ["1C00"]
+                },
+                {
+                    "Name": "Merluvlee Next Path Cost",
+                    "Type": "Payment",
+                    "DataType": "twointWpatch",
+                    "Offsets": [2081330, 2081418],
+                    "PatchOffsets": [2081328, 2081332, 2081336, 2081416, 2081420, 2081424],
+                    "Vanilla": ["4BED", "A803008A", "5405083C", "4BED", "A803008A", "5403083C"],
+                    "Rewrites": ["38A0", "60000000", "60000000", "3860", "60000000", "60000000"]
+                },
+                {
+                    "Name": "Merluvlee Star Piece Path Cost",
+                    "Type": "Payment",
+                    "DataType": "fourint",
+                    "Offsets": [3961596]
+                },
+                {
+                    "Name": "Merluvlee Shine Path Cost",
+                    "Type": "Payment",
+                    "DataType": "fourint",
+                    "Offsets": [3961600]
+                },
+                {
+                    "Name": "Wonky/Grifty Story Price",
+                    "Type": "Payment",
+                    "DataType": "twoint",
+                    "Offsets": [2065098]
+                },
+                {
+                    "Name": "Bingo Success SP Multiplier Scale",
+                    "Type": "Bingo",
+                    "DataType": "Float",
+                    "Offsets": [4009544]
+                },
+                {
+                    "Name": "Mushroom Bingo Success SP Multiplier Turn Count",
+                    "Type": "Bingo",
+                    "DataType": "twoint",
+                    "Offsets": [2101142]
+                },
+                {
+                    "Name": "Flower Bingo Success SP Multiplier Turn Count",
+                    "Type": "Bingo",
+                    "DataType": "twoint",
+                    "Offsets": [2101178]
+                },
+                {
+                    "Name": "Star Bingo Success SP Multiplier Turn Count",
+                    "Type": "Bingo",
+                    "DataType": "twoint",
+                    "Offsets": [2101230]
+                },
+                {
+                    "Name": "Shine Bingo Success SP Multiplier Scale",
+                    "Type": "Bingo",
+                    "DataType": "Float",
+                    "Offsets": [4009548]
+                },
+                {
+                    "Name": "Shine Bingo Success SP Multiplier Turn Count",
+                    "Type": "Bingo",
+                    "DataType": "twoint",
+                    "Offsets": [2101274]
+                },
+                {
+                    "Name": "Slot 1 Roulette Chance 1",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125315]
+                },
+                {
+                    "Name": "Slot 1 Roulette Chance 2",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125319]
+                },
+                {
+                    "Name": "Slot 1 Roulette Chance 3",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125323]
+                },
+                {
+                    "Name": "Slot 1 Roulette Chance 4",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125327]
+                },
+                {
+                    "Name": "Slot 1 Roulette Chance 5",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125331]
+                },
+                {
+                    "Name": "Slot 1 Roulette Chance 6",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125335]
+                },
+                {
+                    "Name": "Slot 1 Roulette Chance 7",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125339]
+                },
+                {
+                    "Name": "Slot 1 Roulette Chance 8",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125343]
+                },
+                {
+                    "Name": "Slot 2 Roulette Chance 1",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125347]
+                },
+                {
+                    "Name": "Slot 2 Roulette Chance 2",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125351]
+                },
+                {
+                    "Name": "Slot 2 Roulette Chance 3",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125355]
+                },
+                {
+                    "Name": "Slot 2 Roulette Chance 4",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125359]
+                },
+                {
+                    "Name": "Slot 2 Roulette Chance 5",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125363]
+                },
+                {
+                    "Name": "Slot 2 Roulette Chance 6",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125367]
+                },
+                {
+                    "Name": "Slot 2 Roulette Chance 7",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125371]
+                },
+                {
+                    "Name": "Slot 2 Roulette Chance 8",
+                    "Type": "Bingo",
+                    "DataType": "bingoSelectionBox",
+                    "Offsets": [3125375]
+                },
+                {
+                    "Name": "Mario Menu Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995448]
+                },
+                {
+                    "Name": "Mario Menu Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995452]
+                },
+                {
+                    "Name": "Mario Menu Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995456]
+                },
+                {
+                    "Name": "Party Menu Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995460]
+                },
+                {
+                    "Name": "Party Menu Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995464]
+                },
+                {
+                    "Name": "Party Menu Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995468]
+                },
+                {
+                    "Name": "Gear Menu Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995472]
+                },
+                {
+                    "Name": "Gear Menu Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995476]
+                },
+                {
+                    "Name": "Gear Menu Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995480]
+                },
+                {
+                    "Name": "Badges Menu Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995484]
+                },
+                {
+                    "Name": "Badges Menu Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995488]
+                },
+                {
+                    "Name": "Badges Menu Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995492]
+                },
+                {
+                    "Name": "Journal Menu Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995496]
+                },
+                {
+                    "Name": "Journal Menu Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995500]
+                },
+                {
+                    "Name": "Journal Menu Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995504]
+                },
+                {
+                    "Name": "Mailbox SP Normal Mail Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995768]
+                },
+                {
+                    "Name": "Mailbox SP Normal Mail Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995796]
+                },
+                {
+                    "Name": "Mailbox SP RDM Mail Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995764]
+                },
+                {
+                    "Name": "Mailbox SP RDM Mail Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995792]
+                },
+                {
+                    "Name": "Mailbox SP Trouble Mail Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995760]
+                },
+                {
+                    "Name": "Mailbox SP Trouble Mail Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995788]
+                },
+                {
+                    "Name": "Mailbox SP Peach Mail Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995756]
+                },
+                {
+                    "Name": "Mailbox SP Peach Mail Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3995784]
+                },
+                {
+                    "Name": "Fog Always Disabled",
+                    "Type": "Battle",
+                    "DataType": "Function",
+                    "Offsets": [124916, 144280, 157296],
+                    "Vanilla": ["41820038", "41820044", "41820044"],
+                    "Rewrites": ["48000038", "48000044", "48000044"]
+                },
+                {
+                    "Name": "Remove Run from Confuse",
+                    "Type": "Battle",
+                    "DataType": "Function",
+                    "Offsets": [1166014],
+                    "Vanilla": ["E7A4"],
+                    "Rewrites": ["E41C"]
+                },
+                {
+                    "Name": "Prevent Switching Position in Battle",
+                    "Type": "Battle",
+                    "DataType": "Function",
+                    "Offsets": [1176299],
+                    "Vanilla": ["01"],
+                    "Rewrites": ["00"]
+                },
+                {
+                    "Name": "Prevent Switching Partners in Battle",
+                    "Type": "Battle",
+                    "DataType": "Function",
+                    "Offsets": [1182023],
+                    "Vanilla": ["01"],
+                    "Rewrites": ["00"]
+                },
+                {
+                    "Name": "Spike/Fire Hazard Damage",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [1277162]
+                },
+                {
+                    "Name": "Water Hazard Damage",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [1279346]
+                },
+                {
+                    "Name": "Pit Hazard Damage",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [584982]
+                },
+                {
+                    "Name": "No Game Overs From Field Hazards",
+                    "Type": "General",
+                    "DataType": "Function",
+                    "Offsets": [855387, 855395],
+                    "Vanilla": ["00", "00"],
+                    "Rewrites": ["01", "01"]
+                },
+                {
+                    "Name": "Take No Damage From Field Hazards",
+                    "Type": "General",
+                    "DataType": "Function",
+                    "Offsets": [855360],
+                    "Vanilla": ["7C600734"],
+                    "Rewrites": ["38000000"]
+                },
+                {
+                    "Name": "Never Lose Coins When Running From Battle",
+                    "Type": "General",
+                    "DataType": "Function",
+                    "Offsets": [358913],
+                    "Vanilla": ["81"],
+                    "Rewrites": ["00"]
+                },
+                {
+                    "Name": "Plane Mode Anywhere",
+                    "Type": "General",
+                    "DataType": "Function",
+                    "Offsets": [587612, 632908, 632912, 632916, 632920],
+                    "Vanilla": ["418200A0", "807E01EC", "4BF76AC1", "80BE0294", "5460E7FE"],
+                    "Rewrites": ["60000000", "881E0252", "5400C9FE", "68000001", "80BE0294"]
+                },
+                {
+                    "Name": "Diamond Star Body Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851168]
+                },
+                {
+                    "Name": "Diamond Star Body Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851172]
+                },
+                {
+                    "Name": "Diamond Star Body Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851176]
+                },
+                {
+                    "Name": "Diamond Star Body Color 4",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851180]
+                },
+                {
+                    "Name": "Diamond Star Body Color 5",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851184]
+                },
+                {
+                    "Name": "Diamond Star Overlay Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851188]
+                },
+                {
+                    "Name": "Diamond Star Overlay Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851192]
+                },
+                {
+                    "Name": "Diamond Star Overlay Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851196]
+                },
+                {
+                    "Name": "Diamond Star Overlay Color 4",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851200]
+                },
+                {
+                    "Name": "Diamond Star Overlay Color 5",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851204]
+                },
+                {
+                    "Name": "Diamond Star Overlay Color 6",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851208]
+                },
+                {
+                    "Name": "Diamond Star Overlay Color 7",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851212]
+                },
+                {
+                    "Name": "Diamond Star Overlay Color 8",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851216]
+                },
+                {
+                    "Name": "Diamond Star Overlay Color 9",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851220]
+                },
+                {
+                    "Name": "Diamond Star Overlay Color 10",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851224]
+                },
+                {
+                    "Name": "Diamond Star Overlay Color 11",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851228]
+                },
+                {
+                    "Name": "Diamond Star Overlay Color 12",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3851232]
+                },
+                {
+                    "Name": "Emerald Star Body Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968000]
+                },
+                {
+                    "Name": "Emerald Star Body Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968004]
+                },
+                {
+                    "Name": "Emerald Star Body Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968008]
+                },
+                {
+                    "Name": "Emerald Star Body Color 4",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968012]
+                },
+                {
+                    "Name": "Emerald Star Body Color 5",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968016]
+                },
+                {
+                    "Name": "Emerald Star Body Color 6",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968020]
+                },
+                {
+                    "Name": "Gold Star Body Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968032]
+                },
+                {
+                    "Name": "Gold Star Body Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968036]
+                },
+                {
+                    "Name": "Gold Star Body Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968040]
+                },
+                {
+                    "Name": "Gold Star Body Color 4",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968044]
+                },
+                {
+                    "Name": "Gold Star Body Color 5",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968048]
+                },
+                {
+                    "Name": "Gold Star Body Color 6",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968052]
+                },
+                {
+                    "Name": "Ruby Star Body Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968064]
+                },
+                {
+                    "Name": "Ruby Star Body Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968068]
+                },
+                {
+                    "Name": "Ruby Star Body Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968072]
+                },
+                {
+                    "Name": "Ruby Star Body Color 4",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968076]
+                },
+                {
+                    "Name": "Ruby Star Body Color 5",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968080]
+                },
+                {
+                    "Name": "Ruby Star Body Color 6",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968084]
+                },
+                {
+                    "Name": "Sapphire Star Body Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968096]
+                },
+                {
+                    "Name": "Sapphire Star Body Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968100]
+                },
+                {
+                    "Name": "Sapphire Star Body Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968104]
+                },
+                {
+                    "Name": "Sapphire Star Body Color 4",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968108]
+                },
+                {
+                    "Name": "Sapphire Star Body Color 5",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968112]
+                },
+                {
+                    "Name": "Sapphire Star Body Color 6",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968116]
+                },
+                {
+                    "Name": "Garnet Star Body Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968128]
+                },
+                {
+                    "Name": "Garnet Star Body Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968132]
+                },
+                {
+                    "Name": "Garnet Star Body Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968136]
+                },
+                {
+                    "Name": "Garnet Star Body Color 4",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968140]
+                },
+                {
+                    "Name": "Garnet Star Body Color 5",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968144]
+                },
+                {
+                    "Name": "Garnet Star Body Color 6",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3968148]
+                },
+                {
+                    "Name": "Crystal Star Body Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852836]
+                },
+                {
+                    "Name": "Crystal Star Body Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852840]
+                },
+                {
+                    "Name": "Crystal Star Body Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852844]
+                },
+                {
+                    "Name": "Crystal Star Body Color 4",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852848]
+                },
+                {
+                    "Name": "Crystal Star Body Color 5",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852852]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 1",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852856]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 2",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852860]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 3",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852864]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 4",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852868]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 5",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852872]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 6",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852876]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 7",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852880]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 8",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852884]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 9",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852888]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 10",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852892]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 11",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852896]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 12",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852900]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 13",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852904]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 14",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852908]
+                },
+                {
+                    "Name": "Crystal Star Overlay Color 15",
+                    "Type": "Color",
+                    "DataType": "hexColor",
+                    "Offsets": [3852912]
+                }
+            ]
+        },
+        {
+            "Name": "bom.rel",
+            "Data": 
+            [
+                {
+                    "Name": "Gob Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [63296]
+                }
+            ]
+        },
+        {
+            "Name": "gon.rel",
+            "Data": 
+            [
+                {
+                    "Name": "Make Hooktail immune to Attack FXR Damage Drop",
+                    "Type": "Battle",
+                    "DataType": "Function",
+                    "Offsets": [108372],
+                    "Vanilla": ["01"],
+                    "Rewrites": ["00"]
+                }
+            ]
+        },
+        {
+            "Name": "gor.rel",
+            "Data": 
+            [
+                {
+                    "Name": "Bandit Lost Coins Division",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [295830]
+                },
+                {
+                    "Name": "Gus Pass Price",
+                    "Type": "Payment",
+                    "DataType": "fourintPN",
+                    "Offsets": [270476, 270632]
+                },
+                {
+                    "Name": "Ishnail Clue Price",
+                    "Type": "Payment",
+                    "DataType": "fourintPN",
+                    "Offsets": [269356, 269444]
+                },
+                {
+                    "Name": "Trouble Cancellation Price",
+                    "Type": "Payment",
+                    "DataType": "fourintPN",
+                    "Offsets": [419260, 419288]
+                },
+                {
+                    "Name": "Lumpy Donation Price",
+                    "Type": "Payment",
+                    "DataType": "fourintPN",
+                    "Offsets": [146144, 146352]
+                },
+                {
+                    "Name": "Lumpy 300 Reward",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [147090]
+                },
+                {
+                    "Name": "Lumpy 600 Reward",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [147110]
+                },
+                {
+                    "Name": "Lumpy 999 Reward",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [147130]
+                },
+                {
+                    "Name": "Lottery Ticket Price",
+                    "Type": "Payment",
+                    "DataType": "fourintPN",
+                    "Offsets": [362508, 362552, 362988, 363032]
+                },
+                {
+                    "Name": "Lottery New Ticket Price",
+                    "Type": "Payment",
+                    "DataType": "fourintPN",
+                    "Offsets": [363332, 363376]
+                },
+                {
+                    "Name": "Lottery Cheating Penalty Price",
+                    "Type": "Payment",
+                    "DataType": "fourintPN",
+                    "Offsets": [368056, 364620]
+                },
+                {
+                    "Name": "1 Pianta Price",
+                    "Type": "Payment",
+                    "DataType": "fourint",
+                    "Offsets": [337700, 337724, 337748, 337772, 337796, 337820, 337844, 337868, 337892]
+                },
+                {
+                    "Name": "1 Pianta Amount",
+                    "Type": "Payment",
+                    "DataType": "fourint",
+                    "Offsets": [337704, 337728, 337752, 337776, 337800, 337824, 337848, 337872, 337896]
+                },
+                {
+                    "Name": "5 Pianta Price",
+                    "Type": "Payment",
+                    "DataType": "fourint",
+                    "Offsets": [337708, 337732, 337756, 337780, 337804, 337828, 337852, 337876, 337900]
+                },
+                {
+                    "Name": "5 Pianta Amount",
+                    "Type": "Payment",
+                    "DataType": "fourint",
+                    "Offsets": [337712, 337736, 337760, 337784, 337808, 337832, 337856, 337880, 337904]
+                },
+                {
+                    "Name": "10 Pianta Price",
+                    "Type": "Payment",
+                    "DataType": "fourint",
+                    "Offsets": [337716, 337740, 337764, 337788, 337812, 337836, 337860, 337884, 337908]
+                },
+                {
+                    "Name": "10 Pianta Amount",
+                    "Type": "Payment",
+                    "DataType": "fourint",
+                    "Offsets": [337720, 337744, 337768, 337792, 337816, 337840, 337864, 337888, 337912]
+                },
+                {
+                    "Name": "Merlon Parter Upgrade Shine Cost",
+                    "Type": "General",
+                    "DataType": "twointWpatch",
+                    "Offsets": [261858, 261158, 261362],
+                    "PatchOffsets": [261190, 261222],
+                    "Vanilla": ["0001", "0001"],
+                    "Rewrites": ["0000", "0000"]
+                },
+                {
+                    "Name": "Garf Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [272752, 273076]
+                },
+                {
+                    "Name": "McGoomba Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [208972]
+                },
+                {
+                    "Name": "Arfur Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [278612]
+                },
+                {
+                    "Name": "Goomther Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [214680]
+                },
+                {
+                    "Name": "Bomberto Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [142700]
+                },
+                {
+                    "Name": "Lahla Trouble Pianta Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [340000]
+                }
+            ]
+        },
+        {
+            "Name": "jon.rel",
+            "Data": 
+            [
+                {
+                    "Name": "Charlieton Appear Odds",
+                    "Type": "General",
+                    "DataType": "oddsRev",
+                    "Offsets": [73380, 73364]
+                },
+                {
+                    "Name": "Mover Appear Odds",
+                    "Type": "General",
+                    "DataType": "odds",
+                    "Offsets": [72132, 72116]
+                },
+                {
+                    "Name": "Mover Move Down 2 Floors Price",
+                    "Type": "Payment",
+                    "DataType": "twoint",
+                    "Offsets": [71386]
+                },
+                {
+                    "Name": "Mover Move Down 2 Floors Floor Amount",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [71550]
+                },
+                {
+                    "Name": "Mover Move Down 5 Floors Price",
+                    "Type": "Payment",
+                    "DataType": "twoint",
+                    "Offsets": [71406]
+                },
+                {
+                    "Name": "Mover Move Down 5 Floors Floor Amount",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [71590]
+                },
+                {
+                    "Name": "Mover Move to Surface Price",
+                    "Type": "Payment",
+                    "DataType": "twoint",
+                    "Offsets": [71426]
+                }
+            ]
+        },
+        {
+            "Name": "mri.rel",
+            "Data": 
+            [
+                {
+                    "Name": "Puni's Increased Speed and Sight",
+                    "Type": "General",
+                    "DataType": "Function",
+                    "Offsets": [153312, 154048, 153500],
+                    "Vanilla": ["3F19999A", "40400000", "42A00000"],
+                    "Rewrites": ["3F59999A", "40800000", "43480000"]
+                },
+                {
+                    "Name": "Puni Elder Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [187344]
+                }
+            ]
+        },
+        {
+            "Name": "pik.rel",
+            "Data": 
+            [
+                {
+                    "Name": "Toodles Ring Coin Reward",
+                    "Type": "Rewards",
+                    "DataType": "fourint",
+                    "Offsets": [28572]
+                },
+                {
+                    "Name": "Goldbob Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [26556]
+                },
+                {
+                    "Name": "Bub Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [39396]
+                }
+            ]
+        },
+        {
+            "Name": "rsh.rel",
+            "Data": 
+            [
+                {
+                    "Name": "Toodles Ring Coin Reward",
+                    "Type": "Rewards",
+                    "DataType": "fourint",
+                    "Offsets": [106668]
+                },
+                {
+                    "Name": "Chef Shimi Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [136680]
+                }
+            ]
+        },
+        {
+            "Name": "tik.rel",
+            "Data": 
+            [
+                {
+                    "Name": "Merlee Cheap Path Turn Count",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [143462]
+                },
+                {
+                    "Name": "Merlee Normal Path Turn Count",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [143454]
+                },
+                {
+                    "Name": "Merlee Special Path Turn Count",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [143446]
+                },
+                {
+                    "Name": "Merlee Cheap Path Cost",
+                    "Type": "Payment",
+                    "DataType": "twoint",
+                    "Offsets": [143458]
+                },
+                {
+                    "Name": "Merlee Normal Path Cost",
+                    "Type": "Payment",
+                    "DataType": "twoint",
+                    "Offsets": [143450]
+                },
+                {
+                    "Name": "Merlee Special Path Cost",
+                    "Type": "Payment",
+                    "DataType": "twoint",
+                    "Offsets": [143442]
+                },
+                {
+                    "Name": "Chet Rippo Mario Cost",
+                    "Type": "Payment",
+                    "DataType": "twoint",
+                    "Offsets": [136054, 136302, 136438, 136330]
+                },
+                {
+                    "Name": "Chet Rippo Partner Cost",
+                    "Type": "Payment",
+                    "DataType": "twoint",
+                    "Offsets": [138610, 138906, 138934, 139042, 142558, 142586]
+                },
+                {
+                    "Name": "Merlee Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [147516]
+                }
+            ]
+        },
+        {
+            "Name": "tou.rel",
+            "Data": 
+            [
+                {
+                    "Name": "Major League Entry Bonus",
+                    "Type": "Rewards",
+                    "DataType": "twoint",
+                    "Offsets": [195874]
+                },
+                {
+                    "Name": "Jolene Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [189492]
+                }
+            ]
+        },
+        {
+            "Name": "usu.rel",
+            "Data": 
+            [
+                {
+                    "Name": "Mayor Dour Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [29432]
+                }
+            ]
+        },
+        {
+            "Name": "win.rel",
+            "Data": 
+            [
+                {
+                    "Name": "Doe T. Trouble Coin Reward",
+                    "Type": "Troubles",
+                    "DataType": "fourint",
+                    "Offsets": [38160]
+                }
+            ]
+        }
+    ]
+}
