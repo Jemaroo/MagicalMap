@@ -1,4 +1,4 @@
-0x00: Type (00: UnitData file, 01: BattleUnitKind struct, 02: BattleUnitKindPart struct, 03: BattleUnitDefense struct, 04: BattleUnitDefenseAttr struct, 05: StatusVulnerability struct, 06: BattleWeapon struct)
+0x00: Type (00: UnitData file, 01: BattleUnitKind struct, 02: BattleUnitKindPart struct, 03: BattleUnitDefense struct, 04: BattleUnitDefenseAttr struct, 05: StatusVulnerability struct, 06: BattleWeapon struct, 07: HealthUpgrades data)
 
 (if 00) 0x01+: (Looped) File Data
     0x00: Size
