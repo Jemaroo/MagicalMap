@@ -1,0 +1,386 @@
+Written by @silver_136. Feel free to reach out to me on discord with any information, corrections, changes, additions, etc. that you find.
+Thanks to @jemaroo for the battle tool, it made testing significantly easier. Also thanks for assisting in figuring out what some flags do.
+Thanks to @jdaster64 for various documentation that was referenced while writing this.
+Thanks to @cursed_gm, @hirothetraveler,and @reed for various assistance and ideas in figuring out what some flags do.
+
+---main.dol---
+This document will focus on all characters and attacks found in the main.dol. This document will be structured per character, meaning all info on one character will be done before going to the next. So if you want to find something for a specific character or specific attack/parameter use CRTL+F to find them.
+
+Attacks will be sorted by groups, since many attacks follow the same logic for damage parameters, this will be done to save space and for readability. Anything in between two -'s right above a set of damage parameters means said damage parameters apply to them. Certain attacks like Spin Jump, Spring Jump, Super Hammer, Ultra hammer, and upgraded partner attacks can not be used until their respective upgrade is obtained, meaning those damage parameters and attacks relating to them wont use damage parameters below the level they are unlocked.
+
+•Note - For all attacks except for "Flower Fuzzy FP Leech Attack" the "Base FP Damage Parameters 1-8" go unused. They can be used through scripting however. Since they aren't normally used they will not be included in any attack descriptions.
+
+•Note - By changing the Base Damage Function on an attack it is possible to change the way it checks for what damage to deal. Anything documented here is the default and normal behavior, for more information on Base Damage Functions and how it changes parameters see the document that handles the universal flags. Changing the base damage function will change how damage scales, EX. If you change a partners attack to scale based on Badge Stacked Power then it will no longer check partner rank when considering damage, but instead Hammer/Jump level depending on which function you choose.
+
+---Universal---
+For all characters the following items all behave the same. Kind Struct 1, Part Struct 1, Defense Struct 1, Defense Attribute Struct 1, and Status Vulnerability Struct 1.
+In order they are: Kind Struct 1, sets various base values. Part Struct 1, the main targetable part. Defense Struct 1, sets base defense values. Defense Attribute Struct 1, sets resistances/weaknesses/immunities to certain attributes. Status Vulnerability Struct 1, sets susceptibility chances to various statuses.
+
+---Mario---
+
+-=Part Structs=-
+•Part Struct 1 - Handles targeting and flags for Mario.
+•Part Struct 2 - A Mario Model, unknown use.
+•Part Struct 3 - A Mario Model, changes into a Super/Ultra hammer when projectile hammer moves like Fire Drive and Hammer Throw are used.
+
+-=Attacks=-
+•Jump - Basic Jump attack. Also used for Jump first strike.
+•Spin Jump 1 - The first hit of Spin Jump. Also used for Spin Jump first strike.
+•Spin Jump 2 - The second hit of Spin Jump. Also used for Spin Jump first strike. 
+•Spring Jump 1 - The first and second hit of Spring Jump. 
+•Spring Jump 2 - A failed Spring Jump that hits a ceiling.
+•First Strike Super Hammer - Using the hammer spin to first strike while you have Super Hammer. Same as "Super Hammer" attack in battle.
+•First Strike Ultra Hammer - Using the hammer spin to first strike while you have Ultra Hammer. Same as "Ultra Hammer" attack in battle.
+•Hammer - Basic Hammer Attack. Also used for Hammer first strike.
+•Super Hammer 1 - The contact hit of Super Hammer.
+•Super Hammer 2 - The knockback of Super Hammer. Does not happen on a failed Super Hammer 1 action command.
+•Ultra hammer 1 - The contact hit of Ultra Hammer.
+•Ultra Hammer 2 - The knockback of Ultra Hammer. Does not happen on a failed Ultra Hammer 1 action command.
+•Ultra Hammer 3 - An unused third hit of Ultra Hammer that happens when the enemy hit with Ultra Hammer 1 lands, only impacting that enemy. If you change "Base Damage Function" to "Get Hammer Power" the attack will deal damage if damage parameters are set.
+•Multibounce - The attack Multibounce.
+•Power Jump - The attack Power Jump.
+•Mega Jump - The attack Mega Jump.
+•Power Bounce - The attack Power Bounce.
+•Tornado Jump 1 - The landing hit of Tornado Jump.
+•Tornado Jump 2 - The tornado of Tornado Jump.
+•Shrink Stomp - The attack Shrink Stomp.
+•Sleepy Stomp - The attack Sleepy Stomp.
+•Soft Stomp - The attack Soft Stomp.
+•Power Smash - The attack Power Smash.
+•Mega Smash - The attack Mega Smash.
+•Quake Hammer - The attack Quake Hammer.
+•Mega Quake - The attack Mega Quake.
+•Hammer Throw - The attack Hammer Throw.
+•Piercing Blow - The attack Piercing Blow.
+•Head Rattle - The attack Head Rattle.
+•Fire Drive 1 - The attack fire Drive.
+•Fire Drive 2 - Seems to be a failed Fire Drive, modifying damage parameters and targeting options has no visible changes.
+•Ice Smash - The attack Ice Smash.
+
+-=Parameter Definitions=-
+-Jump- - Spin Jump 1- -Spin Jump 2- -Spring Jump 1- -First Strike Super Hammer- -First Strike Ultra Hammer- -Hammer- -Super Hammer 1- -Ultra Hammer 1- -Shrink Stomp- -Sleepy Stomp- -Piercing Blow- Head Rattle-
+•1 - Normal Boots/Hammer failed action command damage.
+•2 - Normal Boots/Hammer successful action command damage.
+•3 - Super Boots/Hammer failed action command damage.
+•4 - Super Boots/Hammer successful action command damage.
+•5 - Ultra Boots/Hammer failed action command damage.
+•6 - Ultra Boots/Hammer successful action command damage.
+•7 - Badge ID for badge stacking damage. Does not function by default. Changing the base damage function to "Get Badge Stacked Jump/Hammer Power" will make this function.
+•8 - Value for increase or decrease in damage from stacked badges. Changing the base damage function to "Get Badge Stacked Jump/Hammer Power" will make this function.
+
+-Multibounce- -Power Jump- -Mega Jump- -Power Bounce- -Tornado Jump 1- -Power Smash- -Mega Smash- -Quake Hammer- -Mega Quake- -Hammer Throw-
+•1 - Normal Boots/Hammer failed action command damage.
+•2 - Normal Boots/Hammer successful action command damage.
+•3 - Super Boots/Hammer failed action command damage.
+•4 - Super Boots/Hammer successful action command damage.
+•5 - Ultra Boots/Hammer failed action command damage.
+•6 - Ultra Boots/Hammer successful action command damage.
+•7 - Badge ID for badge stacking damage. This functions and can be changed to a different ID, thus making a badge stack with another badge that isn't itself.
+•8 - Value for increase or decrease in damage from stacked badges. This functions, can be set to positive or negative.
+•Note - For values 7 and 8. Value 7 can be changed to any badge ID, but it must be a badge, so you can't change it to something like a coin and gain extra damage. Value 8 is how much extra damage every version of that badge equipped adds. For Example. If you set Power Jump Parameter 6 to be 6 damage ( meaning a successful Power Jump with Ultra Boots does 6 damage ), then Power Jump will actually do 6 plus whatever is in parameter 8, since you must have the badge equipped to use it. So using the same logic as before, A parameter 6 Power Jump with 1 Power Jump equipped, with a damage parameter 8 value of 2 would then equal a Power Jump that does 8 damage. Changing parameter 7 to a different ID and equipping one or more of those badges has the same result, where each copy of parameter 7 will add an extra parameter 8 worth of damage to the attack.
+•Spring Jump 2 - Can never do damage so damage parameters don't matter.
+•Ultra Hammer 3 - Statuses do work when enabled on this attack. Adding a damage parameter does not, but it may be possible in the attack script. Does not happen on a failed Ultra Hammer 1 action command.
+
+-Super Hammer 2- -Ultra Hammer 2-
+•1 - Super/Ultra Hammer knockback damage.
+
+-Ultra Hammer 3-
+•6 - Sets damage on landing hit of Ultra Hammer.
+
+-Tornado Jump 2-
+•1 - The base damage of the tornado attack.
+•2 - The amount of damage each extra copy of Tornado Jump adds to the tornado.
+
+-Fire Drive 1-
+•1 - Normal Hammer failed action command damage. Does nothing since a failed Fire Drive can not hit the target.
+•2 - Normal Hammer successful action command damage.
+•3 - Super Hammer failed action command damage. Does nothing since a failed Fire Drive can not hit the target.
+•4 - Super Hammer successful action command damage.
+•5 - Ultra Hammer failed action command damage. Does nothing since a failed Fire Drive can not hit the target.
+•6 - Ultra Hammer successful action command damage.
+•7 - Badge ID for badge stacking damage. This functions and can be changed to a different id, thus making a badge stack with another badge that isn't itself.
+•8 - Value for increase or decrease in damage from stacked badges. This functions, can be set to positive or negative.
+
+--Star Powers--
+All Star Powers seem to ignore damage parameters 1-8. All Star Powers except Earth Tremor ignore Element, Damage Pattern, and Statuses. SP Cost does work on all the attacks.
+
+-----Mario Attack Notes-----
+This section is for misc. notes about various attacks, such as certain interesting behaviors or interactions with other flags.
+•Spin Jump 1&2 - If a status effect is set on Spin Jump 1 then it will apply only if you get the first hit of Spin Jump, meaning you must fail to see the status. If a status effect is set on Spin Jump 2 then it will apply only if you get the second hit of Spin Jump, meaning you must succeed to see the status. Having a status on both Spin Jump 1 and Spin Jump 2 will not let you get two statuses with the attack.
+•All Status Badges - Normally when equipping a second copy of a status badge the attack will inflict extra turns of its respective status. If you add extra statuses or remove altogether the vanilla status none of the new statuses will stack with new copies. This is most likely handled in the attack scripts.
+
+---Goombella---
+
+-=Attacks=-
+•Headbonk - The attack Headbonk.
+•Tattle - The move Tattle.
+•Multibonk - The attack Multibonk.
+•Rally wink - The move Rally Wink.
+
+-=Parameter Definitions=-
+-Headbonk- -Multibonk-
+•1 - Base Rank Partner failed action command damage.
+•2 - Base Rank Partner successful action command damage.
+•3 - Super Rank Partner failed action command damage.
+•4 - Super Rank Partner successful action command damage.
+•5 - Ultra Rank Partner failed action command damage.
+•6 - Ultra Rank Partner successful action command damage.
+
+-Tattle- -Rally Wink-
+•X - None function by default.
+
+-----Goombella Attack Notes-----
+•Rally Wink - Disabling or changing the turn count on the fast status on Rally Wink does nothing. Other statuses also do nothing.
+
+---Koops---
+
+-=Defense=-
+•Defense Struct 2 - Sets Koops' defenses when knocked down.
+
+-=Attacks=-
+•Shell Toss First Strike - The first strike of Shell Toss
+•Shell Toss - The attack Shell Toss.
+•Power Shell - The attack Power Shell.
+•Shell Shield - The move Shell Shield.
+•Shell Slam - The attack Shell Slam.
+
+-=Parameter Definitions=-
+-Shell Toss First Strike-
+•1 - Base Rank Partner failed action command damage.
+•2 - Base Rank Partner successful action command damage. Does nothing since the first strike is always a failed action command.
+•3 - Super Rank Partner failed action command damage.
+•4 - Super Rank Partner successful action command damage. Does nothing since the first strike is always a failed action command.
+•5 - Ultra Rank Partner failed action command damage.
+•6 - Ultra Rank Partner successful action command damage. Does nothing since the first strike is always a failed action command.
+
+-Shell Toss- -Power Shell-
+•1 - Base Rank Partner failed action command damage.
+•2 - Base Rank Partner successful action command damage.
+•3 - Super Rank Partner failed action command damage.
+•4 - Super Rank Partner successful action command damage.
+•5 - Ultra Rank Partner failed action command damage.
+•6 - Ultra Rank Partner successful action command damage.
+
+-Shell Shield-
+•X - None function by default.
+
+-Shell Slam-
+•1 - Behaves differently depending on the number set. 0 - Disables the damage scaling from the action command. 1 - Sets the damage to be equivalent to the % of the bar filled, 0-99. 2 - Vanilla behavior, attack scales with action command success.
+•2 - Sets base damage Shell Slam does. Will always add to the damage that parameter 1 does.
+
+-----Koops Attack Notes-----
+•Shell Slam has a weird Damage Parameter 1, different values seems to change its behavior instead of just modifying damage.
+
+---Flurrie---
+
+-=Attacks=-
+•Body Slam - The attack Body Slam.
+•Gale Force - The move Gale Force.
+•Lip Lock - The attack Lip Lock.
+•Dodgy Fog - The move Dodgy Fog.
+
+-=Parameter Definitions=-
+-Body Slam-
+•1 - Base Rank Partner failed action command damage. Does nothing since a failed Body Slam can not hit the target.
+•2 - Base Rank Partner successful action command damage.
+•3 - Super Rank Partner failed action command damage. Does nothing since a failed Body Slam can not hit the target.
+•4 - Super Rank Partner successful action command damage.
+•5 - Ultra Rank Partner failed action command damage. Does nothing since a failed Body Slam can not hit the target.
+•6 - Ultra Rank Partner successful action command damage.
+
+-Gale Force- -Dodgy Fog-
+•X - None function by default.
+
+-Lip Lock-
+•1 - Seems to change behavior of Lip Lock. Any value other than 0 stops the move from scaling with action command success level.
+•2 - Sets base damage of the move. +1 for each successful action command level unless parameter 1 =/= 0.
+
+-----Flurrie Attack Notes-----
+•Dodgy Fog can have other statuses put on it besides Dodgy and they will function.
+
+---Yoshi---
+
+-=Part Structs=-
+•2 - Mini-Egg Egg 1.
+•3 - Mini-Egg Egg 2.
+•4 - Mini-Egg Egg 3.
+•5 - Mini-Egg Egg 4.
+•6 - Mini-Egg Egg, Unused.
+•7 - Mini-Egg Egg, Unused.
+
+-=Attacks=-
+•Ground Pound - The attack Ground Pound.
+•Gulp 1 - The Gulp damage when Yoshi spits the enemy out.
+•Gulp 2 - The Gulp damage on an enemy that doesn't have knockback, except its never used.
+•Gulp 3 - The damage on a failed Gulp.
+•Gulp 4 - The unused Gulp behavior when Yoshi swallows a fire enemy.
+•Gulp 5 - The knockback damage Gulp does when another enemy is hit.
+•Mini Egg - The attack Mini Egg.
+•Stampede - The attack Stampede.
+
+-=Parameter Definitions=-
+-Ground Pound- -Stampede-
+•1 - Base Rank Partner failed action command damage.
+•2 - Base Rank Partner successful action command damage.
+•3 - Super Rank Partner failed action command damage.
+•4 - Super Rank Partner successful action command damage.
+•5 - Ultra Rank Partner failed action command damage.
+•6 - Ultra Rank Partner successful action command damage.
+
+-Mini Egg-
+•1 - Base Rank Partner failed action command damage. Does nothing since a failed action command can not hit the target.
+•2 - Base Rank Partner successful action command damage.
+•3 - Super Rank Partner failed action command damage. Does nothing since a failed action command can not hit the target.
+•4 - Super Rank Partner successful action command damage.
+•5 - Ultra Rank Partner failed action command damage. Does nothing since a failed action command can not hit the target.
+•6 - Ultra Rank Partner successful action command damage.
+
+-Gulp 1- -Gulp 5-
+•1 - Base Rank Partner failed action command damage. Does nothing since a failed action command calls Gulp 3 instead.
+•2 - Base Rank Partner successful action command damage.
+•3 - Super Rank Partner failed action command damage. Does nothing since a failed action command calls Gulp 3 instead.
+•4 - Super Rank Partner successful action command damage.
+•5 - Ultra Rank Partner failed action command damage. Does nothing since a failed action command calls Gulp 3 instead.
+•6 - Ultra Rank Partner successful action command damage.
+
+-Gulp 2- -Gulp 4-
+•X - Unused, none function by default.
+
+-Gulp 3-
+•1 - The damage a failed Gulp will do when the tongue hits the enemy.
+
+-----Yoshi Attack Notes-----
+•Gulp 3 - This attack can actually deal damage with parameters set.
+
+---Vivian---
+
+-=Attacks=-
+•Shade Fist - The attack Shade Fist. 
+•Veil - The move Veil.
+•Fiery Jinx - The attack Fiery Jinx.
+•Infatuate - The move Infatuate.
+
+-=Parameter Definitions=-
+-Shade Fist- 
+•1 - Base Rank Partner failed action command damage.
+•2 - Base Rank Partner successful action command damage.
+•3 - Super Rank Partner failed action command damage.
+•4 - Super Rank Partner successful action command damage.
+•5 - Ultra Rank Partner failed action command damage.
+•6 - Ultra Rank Partner successful action command damage.
+
+-Veil- -Infatuate-
+•X - Does nothing since these attacks don't do damage.
+
+-Fiery Jinx-
+•1 - Seems to change behavior of Fiery Jinx. Any value other than 0 stops the move from scaling with action command success level.
+•2 - Sets base damage of the move. +1 for each successful action command level unless parameter 1 =/= 0.
+
+-----Vivian Attack Notes-----
+•A failed action command on Shade Fist will not inflict the status.
+•Fiery Jinx doesn't seem to have a way to disable the built in base 5 damage without also disabling the attacks scaling with action command success.
+
+---Bobbery---
+
+-=Attacks=-
+•Bomb First Strike - The first strike of Bomb.
+•Bomb - The attack Bomb.
+•Bomb Squad - The attack Squad Bomb.
+•Hold Fast - The move Hold Fast.
+•Bob-ombast - The attack Bob-ombast.
+
+-=Parameter Definitions=-
+-Bomb First Strike-
+•1 - Base Rank Partner failed action command damage.
+•2 - Base Rank Partner successful action command damage. Does nothing since the first strike is always a failed action command.
+•3 - Super Rank Partner failed action command damage.
+•4 - Super Rank Partner successful action command damage. Does nothing since the first strike is always a failed action command.
+•5 - Ultra Rank Partner failed action command damage.
+•6 - Ultra Rank Partner successful action command damage. Does nothing since the first strike is always a failed action command.
+
+-Bomb-
+•1 - Base Rank Partner failed action command damage. Does nothing since a failed Bomb can not hit the target.
+•2 - Base Rank Partner successful action command damage.
+•3 - Super Rank Partner failed action command damage. Does nothing since a failed Bomb can not hit the target.
+•4 - Super Rank Partner successful action command damage.
+•5 - Ultra Rank Partner failed action command damage. Does nothing since a failed Bomb can not hit the target.
+•6 - Ultra Rank Partner successful action command damage.
+
+-Bomb Squad-
+•X - Does nothing since Bomb Squad is its own entity in the main.dol. Its damage is handled there instead.
+
+-Hold Fast-
+•X - Does nothing since Hold Fast doesn't do damage.
+
+-Bob_ombast-
+•1 - Seems to change behavior of Bob-ombast. 0 - Disables the damage scaling from the action command. 1 - Sets the damage to be equivalent to the % of the bar filled, 0-99. 2 - Vanilla behavior, attack scales with action command success. 
+•2 - Sets base damage of the move. +1 for each successful action command level unless parameter 1 =/= 2.
+
+---Ms. Mowz---
+
+-=Part Structs=-
+•2 - An extra copy of Ms. Mowz from her Tease move.
+•3 - An extra copy of Ms. Mowz from her Tease move.
+•4 - An extra copy of Ms. Mowz from her Tease move.
+
+-=Attacks=-
+•Love Slap 1 - The second slap visually. Does no damage. If you change the base damage function it can do damage.
+•Love Slap 2 - The first and third slap visually. Does no damage. If you change the base damage function it can do damage.
+•Love Slap 3 - Ultra Rank Love Slap. Also seems to handle base Love Slap.
+•Love Slap 4 - Super Rank Love Slap.
+•Tease - The move Tease.
+•Kiss Thief - The move Kiss Thief.
+•Smooch - The move Smooch.
+
+-=Parameter Definitions=-
+-Love Slap 1- -Love Slap 2-
+•X - Changing any values in this attack seems to change nothing about damage.
+
+-Love Slap 3- -Love Slap 4-
+•1 - Handles whether or not the move scales in damage based on action command success.
+•2 - Seems to handle base damage.
+
+- Kiss Thief - -Smooch-
+•X - Does nothing since these attacks don't do damage.
+
+-----Mowz Attack Notes-----
+Love Slap seems to be handled differently depending on the rank Mowz is at. The information here is Ultra Rank Mowz. Before finalizing any values in her attacks make sure to check each rank and each action command success level first.
+
+---Bomb Squad---
+
+-=Attacks=-
+-Bomb Squad Explosion-
+•1 - Sets base damage of a Bomb Squad explosion.
+
+-----Bomb Squad Notes-----
+•Bomb Squad can be targeted if the flag "Cannot Target System Units" is disabled on a move. Bomb Squad bombs do have HP and if dropped to 0 blow up early. Also note that setting their damage pattern to "Super Hammer Knocked Back" will make the Bombs move each other around when blowing up.
+
+---Shell Shield---
+
+-=Part Structs=-
+•2 - Seems to be a copy of Shell Shield, except this version never cracks when damaged. It still breaks at 0 HP.
+
+-----Shell Shield Notes-----
+Increasing Shell Shields max HP in the Kind Struct won't make it spawn with more health. However it will increase the health bar size. If you disable "never targetable" on Shell Shield Part Struct 2 and then disable Only Target Preferred Parts (TCF 0x100000) on the item you want to target Shell Shield you will be able to heal Shell Shield with said item.
+
+---unit_obj_tree & unit_obj_switch---
+-Note - These don't seem to actually exist, so changes to any flags don't have any visible effects.
+
+---unit_system---
+-Note - Since these are battle effects and items I will only note things that are relevant. I won't note damage parameters for each since they don't always matter.
+
+•Lucky Start - The effect of Lucky Start at the beginning of battle. Changing the statuses the badge gives does work.
+•Charge - The Charge tactic. Changing the charge value does work. Other statuses also work.
+•Charge P - The Charge P tactic. Changing the charge value does work. Other statuses also work.
+•Super Charge - The Super Charge tactic. Changing the charge value does work. Other statuses also work.
+•Super Charge P - The Super Charge P tactic. Changing the charge value does work. Other statuses also work.
+•Double Dip - The Double Dip tactic. Changing the FP value will impact Double Dip and Double Dip P.
+•Triple Dip - The Triple Dip tactic.
+•Mario Defend - Mario's Defend Tactic. Changing FP cost does work.
+•Partner Defend - Partner's Defend Tactic. Changing FP cost does work.
+•defaultWeapon-Dummy_NotItem$743 - The no item text that appears when selecting the item menu with no items. Changing values does nothing.
+•ItemWeaponData-CookingItem - Data used by Cooking Items. Changing values does nothing.
+•Healing Items - All healing items that don't deal damage. Changing values does nothing.
+•Status Items - Items that inflict a status on the user. Other statuses can be applied if they are of a similar type. EX. Slow Shroom can have FP Regen added, but not fast.
+•Offensive Items - Items that deal damage. Changing Base Damage Parameter 1 will change the damage dealt.
+•Audience Items - Various harmful items that the audience throws. Base Damage parameter 1 will change the damage dealt.

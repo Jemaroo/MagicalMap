@@ -1,0 +1,85 @@
+Written by @silver_136. Feel free to reach out to me on discord with any information, corrections, changes, additions, etc. that you find.
+Thanks to @jemaroo for the battle tool, it made testing significantly easier. Also thanks for assisting in figuring out what some flags do.
+Thanks to @jdaster64 for various documentation that was referenced while writing this.
+Thanks to @cursed_gm, @hirothetraveler,and @reed for various assistance and ideas in figuring out what some flags do.
+
+---Item Data Tool---
+This document is going to focus on everything currently in the Item Data Tool.
+
+-=main.dol=-
+This section is focused on everything found in the main.dol.
+
+-Items-
+This section handles various attributes for every item in the game.
+
+•Buy Price - How much it costs to buy an item at a shop. This parameter is overwritten by the shop specific Buy Price. This parameter will change Charlieton's shop price.
+•Discount Price - How much it costs to buy an item when its on the badge shop's discount shelf.
+•Sell Price - How much you can sell an item at a shop for. If an item appears in a shop's Sell Item Table then that price overrides the default Sell Price. That means these prices will only effect items found in Charlieton's shops be default. This value is also the value used when calculating the amount that an item used with Refund equipped will give.
+•Star Piece Price - How many Star Pieces it will cost to buy an item in Dazzle's Shop.
+•Pianta Price - How many Pianta Tokens it will cost to buy an item at the Pianta Parlor. Cannot be changed directly, is always set to 2/3rds of the items buy price.
+•BP Cost - How much BP is used when a badge is equipped. Has no effect on anything that isn't a badge.
+•HP Restored - How much HP an item restores. Only affects regular items.
+•FP Restored - How much FP an item restores. Only affects regular items.
+•SP Restored - How much SP an item restores. Only affects regular items. Only restores SP outside of battle.
+•Sort Order - The order items are sorted in the various menus. It's best to not change this.
+•Can Be Used in Shops - ???
+•Can Be Used in Battle - Determines if an item can be used in battle. Only affects regular items.
+•Can Be Used in the Field - Determines if an item can be used on the field. Only affects regular items.
+
+-Item Drop Tables-
+This section handles what items an enemy can hold and drop. I will also note how item drops work so that these numbers can be further understood. Thanks to JDaster's documentation on this.
+Unlike most other documents where I did most of my own testing, I am sourcing my information directly from https://supermariofiles.wordpress.com/2016/04/08/paper-mario-ttyd-to-the-victors-go-the-spoils/
+
+•Slot # Item - Determines what item is dropped from this slot. Can be set to some key items and they will work. Note that some items do not appear visually in battle.
+•Slot # Hold Weight - Determines the chance of the item in the correlating slot # to be held by the enemy.
+•Slot # Drop Weight - Determines the chance of the item in the correlating slot # to be dropped by the enemy.
+
+-Item Drops Logic-
+•Item Hold Chances - The chance of an enemy holding an item goes as follows. Individual Item Hold Weight / Sum of all Hold Weights. Note that "Nothing" has a 200 Hold Weight by default on all enemies.
+
+•Item Drop Types
+^Random Drop - Default chance of 25%. If chosen pulls a random item from the pool of possible dropped items of the front enemy in a battle. If this is chosen the item drop chance is Individual Item Drop Weight / Sum of all Drop Weights. Note that "Nothing" has a 300 Drop Weight by default on all enemies.
+^Held Drop - Default chance of 25%. If chosen drops one of the held items of any enemy in the battle with an equal chance regardless of placement. If there are no held items then no drop happens.
+^None - Default chance of 50%. If chosen then an item does not drop.
+Note - Notice how the ratio of drop chances is 1:1:2, or 25,25,50. In the Pit this is different, instead using a 1:1:3 ratio, or a 20,20,60 probability.
+Note - The "Held Drop", "None", and "Nothing" chances are why its possible to get no item drop even if all drops in the table are given a probability.
+Note - Item Hog can be thought of as adding a +1 to the ratios of the Random Drop chance and Held Drop chance. For example, 1 item hog chances the ratio to 2:2:2, or 33.3,33.3,33.3. A second item hog changes it to 3:3:2, or 37.5,37.5,25. This is why as more Item Hogs are equipped the increase in probability diminishes rapidly.
+Note - Item Hog has its own 40% chance to drop an item if the previous item drop chances fail to drop an item. Regardless of whether an item drop failed from the Random Drop chances, the Held Drop chances, or the None chance, if an item would not have been dropped then Item Hog will roll its 40% chance to drop an item from its own pool.
+
+-Item Tables-
+This section handles various tables for available items. Note that some shops seem to require a new save to see the changed items.
+
+•Item Hog Table - Determines what items can be dropped when an Item Hog drop is called. The chance for each item is 1/X where X is the number of used slots. Default is 1/10 per item. Goes up to 25 possible drops. Note that Item Hog normally has a 40% chance to drop an item when an enemy otherwise wouldn't drop an item. This is because only 10/25 slots are used in Item Hog. 10/25 = 40%. This means that if you fill every slot in the Item Hog Table then every battle that can drop an item will, making the chance of an item dropping 100%.
+•Mystery Table - The items that can be used when a Mystery is used. Currently changing these doesn't function, but a future update to the tool plans to fix that.
+•Dazzle Table - Determines what badges Dazzle sells. Can only be set to badges, any other items will not appear in his shop. 
+•Charlieton Rogueport Table - Determines what items Charlieton can sell in rogueport. Most items seem to function and appear in the shop.
+•Prologue Badge Shop Table - Determines what badges are sold by the Badge Shop in prologue. Anything that isn't a badge will not appear in the shop.
+•Post-1 Badge Shop Table - Determines what badges appear in the Badge Shop after chapter 1.
+•Post-2 Badge Shop Table - Determines what badges appear in the Badge Shop after chapter 2.
+•Post-3 Badge Shop Table - Determines what badges appear in the Badge Shop after chapter 3.
+•Post-4 Badge Shop Table - Determines what badges appear in the Badge Shop after chapter 4.
+•Post-5 Badge Shop Table - Determines what badges appear in the Badge Shop after chapter 5.
+•Post-6 Badge Shop Table - Determines what badges appear in the Badge Shop after chapter 6.
+•Charlieton Pit Table - Determines what items appear in Charlieton's shop in the Pit. Most items seem to function and appear in the shop.
+•Pianta Parlor Table - Determines what items appear in the Pianta Parlor by default. Most items seem to function and appear in the shop.
+•Pianta Parlor Special Card Table - Determines what items appear in the Pianta Parlor once the player has the Special Card.
+•Pianta Parlor Silver Card Table - Determines what items appear in the Pianta Parlor once the player has the Silver Card.
+•Pianta Parlor Gold Card Table - Determines what items appear in the Pianta Parlor once the player has the Gold Card.
+•Pianta Parlor Platinum Card Table - Determines what items appear in the Pianta Parlor once the player has the Platinum Card.
+•Shop Point Rewards Table - Determines what items are awarded when reaching certain point thresholds.
+^Slot # Point Requirement - Determines how many points are required to unlock that slot # item.
+^Slot # Item - Determines what is awarded when the player reaches enough points to unlock that reward slot #.
+•Entity Audience Throw Table - Determines an individual audience member types throw pools and weights.
+^Slot # Item - Determines what item is thrown from this slot.
+^Slot # Throw Weight - Determines the chance of the item in the correlating slot # being thrown by the audience member.
+
+---Shops in other .rels---
+There are various shops found in other .rels that have their own tables. Each shop won't be listed independently but general information will be listed.
+
+•(Shop Name) Table - Handles what items are sold in the shop and their prices to be purchased.
+^Slot # Item - Determines what item is in the correlating slot # in the shop.
+^Slot # Sell Price - Determines how much it costs for the player to purchase the item in the correlating slot #.
+•(Shop Name) Sell Item Table - Determines how much certain items can be sold back to the shop for.
+^Slot # Item - Determines what item has a custom sell price to a shop.
+^Slot # Sell Price - Determines how much the player can sell the item in the correlating slot # to the shop for.
+•Toad Bros. Bazaar Tables 1-7 - The Toad Bros. Bazaar has different tables due to the contact lens and the various Super Luigi Books sold throughout the game. Once one of those items is bought the shop will either progress to the next Table if the player is at an appropriate point in the story, or revert to Table 1 if no unique items are left or the player hasn't made enough progress yet.
