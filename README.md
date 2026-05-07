@@ -5,11 +5,11 @@ Magical Map contains a variety of modding tools that allow you to modify TTYD
 
 ## Additional Mentions
 
-Huge thanks to **Jdaster64** for [documentation](https://github.com/jdaster64/ttyd-utils/blob/master/docs/ttyd_structures_pseudocode.txt) on TTYD's structures their [sheet](https://docs.google.com/spreadsheets/d/15hTm80MaefXxEuWorJOSBD3e6lvw2CCAQTtKUVRhbf4/edit?gid=0#gid=0) on the Switch remake's registry values which helped obtain some of the flag names
+Huge thanks to **Jdaster64** for [documentation](https://github.com/jdaster64/ttyd-utils/blob/master/docs/ttyd_structures_pseudocode.txt) on TTYD's structures their [sheet](https://docs.google.com/spreadsheets/d/15hTm80MaefXxEuWorJOSBD3e6lvw2CCAQTtKUVRhbf4/edit?gid=0#gid=0) on the Switch remake's registry values which helped obtain some of the flag names!
 
-Huge thanks to **NWPlayer123** for their [decomped item tables](https://github.com/doldecomp/ttyd/blob/f3ce61550f927cfd08b1e97ff1079f9f476f4d9f/include/evt/evt_badgeshop.h)
+Huge thanks to **NWPlayer123** for their [decomped item tables](https://github.com/doldecomp/ttyd/blob/f3ce61550f927cfd08b1e97ff1079f9f476f4d9f/include/evt/evt_badgeshop.h)!
 
-Huge thanks to **Silver** for their work on writing the tooltips and research on [various flags and values](https://www.youtube.com/@SilverGames136/videos) with the battle tool!
+Huge thanks to **Silver** for their work on writing the tooltips and research on [various flags and values](https://www.youtube.com/@SilverGames136/videos)!
 
 Shoutouts to **hirothetraveler**, **Reed**, **Diagamma**, **cursedGM**, and others for their suggestions and feedback!
 
