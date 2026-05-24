@@ -1,5 +1,7 @@
 # MagicalMap
-Magical Map contains a variety of modding tools that allow you to modify TTYD
+Magical Map contains a variety of modding tools that allow you to modify TTYD.
+
+**Note:** This tool is built around the US version of TTYD, support for JP and PAL is untested.
 
 <br/>
 
