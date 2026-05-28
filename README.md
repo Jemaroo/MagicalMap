@@ -1,4 +1,4 @@
-# MagicalMap ![MM](https://github.com/Jemaroo/MagicalMap/edit/main/TTYDMagicalMap.ico "MM")
+# ![icon](https://github.com/Jemaroo/MagicalMap/blob/main/src/icons/magicalMap1.png "icon") MagicalMap
 Magical Map contains a variety of modding tools that allow you to modify TTYD.
 
 **Note:** This tool is built around the US version of TTYD, support for JP and PAL is untested.
