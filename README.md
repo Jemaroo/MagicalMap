@@ -49,3 +49,36 @@ Shoutouts to **hirothetraveler**, **Reed**, **Diagamma**, **cursedGM**, and othe
 - Audience SP Multipliers
 - Merlee Effect Probability
 - Tooltips
+
+<br/>
+
+## Building
+### Required Libraries
+- [jdk-25.0.2](https://www.oracle.com/java/technologies/downloads/#jdk25-windows)
+- [javafx-sdk-24.0.1](https://gluonhq.com/products/javafx/)
+- [UpdateCheckerJava-2.5.1](https://github.com/TechnicJelle/UpdateCheckerJava/releases/v2.5.1)
+- [gson-2.10.1](https://github.com/google/gson/releases/tag/gson-parent-2.10.1)
+- [commons-collections4-4.4](https://repo1.maven.org/maven2/org/apache/commons/commons-collections4/4.4/)
+- [commons-compress-1.21](https://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.21/)
+- [commons-io-2.11.0](https://repo1.maven.org/maven2/commons-io/commons-io/2.11.0/)
+- [jakarta.xml.bind-api-3.0.1](https://repo1.maven.org/maven2/jakarta/xml/bind/jakarta.xml.bind-api/3.0.1/)
+- [log4j-api-2.18.0](https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.18.0/)
+- [log4j-core-2.20.0](https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.20.0/)
+- [poi-5.2.3](https://repo1.maven.org/maven2/org/apache/poi/poi/5.2.3/)
+- [poi-excelant-5.2.3](https://repo1.maven.org/maven2/org/apache/poi/poi-excelant/5.2.3/)
+- [poi-ooxml-5.2.3](https://repo1.maven.org/maven2/org/apache/poi/poi-ooxml/5.2.3/)
+- [poi-ooxml-full-5.2.3](https://repo1.maven.org/maven2/org/apache/poi/poi-ooxml-full/5.2.3/)
+- [poi-scratchpad-5.2.3](https://repo1.maven.org/maven2/org/apache/poi/poi-scratchpad/5.2.3/)
+- [slf4j-api-1.7.36](https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/)
+- [SparseBitSet-1.2](https://repo1.maven.org/maven2/com/zaxxer/SparseBitSet/1.2/)
+- [xmlbeans-5.1.1](https://repo1.maven.org/maven2/org/apache/xmlbeans/xmlbeans/5.1.1/)
+
+### Packing
+Compile the .jar file, then Command Line:
+```
+jlink --module-path "PATH_TO_JMODS_FOLDER;PATH_TO_JAVAFX_LIB_FOLDER" --add-modules java.base,javafx.controls,javafx.fxml --strip-debug --no-man-pages --no-header-files --compress=2 --output runtime
+```
+Add the dll folder of the javaFX dll's to the runtime folder, then Command Line:
+```
+jpackage --input . --name MagicalMap --main-jar "PATH_TO_JAR" --runtime-image runtime --app-content "runtime/dll" --java-options "--enable-native-access=ALL-UNNAMED" --java-options "--enable-preview" --java-options "-Dprism.order=sw" --java-options "-Dprism.verbose=true" --java-options "-Djava.library.path=runtime/dll" --icon "PATH_TO_.ICO_ICON" --type app-image --verbose
+```
