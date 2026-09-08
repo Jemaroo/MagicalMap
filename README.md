@@ -72,6 +72,7 @@ Shoutouts to **hirothetraveler**, **Reed**, **Diagamma**, **cursed**, and others
 - [slf4j-api-1.7.36](https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/)
 - [SparseBitSet-1.2](https://repo1.maven.org/maven2/com/zaxxer/SparseBitSet/1.2/)
 - [xmlbeans-5.1.1](https://repo1.maven.org/maven2/org/apache/xmlbeans/xmlbeans/5.1.1/)
+- [SegmentedRangeBar-1.0.0-FXextension](https://github.com/Jemaroo/MagicalMap/blob/main/lib/SegmentedRangeBar-1.0.0-FXextension.jar)
 
 ### Packing
 Compile the .jar file, then Command Line:
