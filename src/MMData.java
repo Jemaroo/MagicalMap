@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
+import FXextension.SegmentedRangeBar;
+
 /**
  * @Author Jemaroo
  * @Function Storage object for handling Misc data
@@ -13,6 +15,10 @@ public class MMData
     ArrayList<Object> miscData = new ArrayList<Object>();
 }
 
+/**
+ * @Author Jemaroo
+ * @Function Storage objects for handling all Misc data types
+ */
 class Misc
 {
     String name = "";
@@ -52,4 +58,7 @@ class Misc
 
     //bingoSelectionBox
     public static class bingoSelectionBox extends Misc {int value = 0; ComboBox<String> comboBox = new ComboBox<String>();}
+
+    //probBar
+    public static class probBar extends Misc {SegmentedRangeBar rangeBar = new SegmentedRangeBar();}
 }
