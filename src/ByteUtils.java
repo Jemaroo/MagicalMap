@@ -38,7 +38,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Byte.html#toUnsignedInt(byte)
      * @Function Will convert 1 byte to a single int
      */
     public static int bytesToInt(byte b1) 
@@ -47,7 +48,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://docs.oracle.com/javase/specs/jls/se21/html/jls-15.html#jls-15.19
      * @Function Will convert 2 bytes to a single int
      */
     public static int bytesToInt(byte b1, byte b2) 
@@ -56,7 +58,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Short.html
      * @Function Will convert 2 bytes to a signed int
      */
     public static int bytesToSignedInt(byte b1, byte b2)
@@ -66,7 +69,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://docs.oracle.com/javase/specs/jls/se21/html/jls-15.html#jls-15.19
      * @Function Will convert 4 bytes to a single int
      */
     public static int bytesToInt(byte b1, byte b2, byte b3, byte b4) 
@@ -75,7 +79,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://docs.oracle.com/javase/specs/jls/se21/html/jls-15.html#jls-15.19
      * @Function Will convert 4 bytes to a single long (unsigned 32-bit value, big-endian)
      */
     public static long bytesToLong(byte b1, byte b2, byte b3, byte b4) 
@@ -84,7 +89,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://docs.oracle.com/javase/specs/jls/se21/html/jls-5.html#jls-5.1.2
      * @Function Will convert 4 bytes to a single long (signed 32-bit value, big-endian)
      */
     public static long bytesToSignedLong(byte b1, byte b2, byte b3, byte b4) 
@@ -93,7 +99,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html#intBitsToFloat(int)
      * @Function Will convert a 4 byte float to a single long (signed 32-bit value, big-endian)
      */
     public static float bytesFloatToFloat(byte b1, byte b2, byte b3, byte b4)
@@ -104,7 +111,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://openjfx.io/javadoc/21/javafx.graphics/javafx/scene/paint/Color.html#rgb(int,int,int,double)
      * @Function Will convert a 4 byte hex color to a javaFX color
      */
     public static Color colorFromBytes(byte b1, byte b2, byte b3, byte b4)
@@ -118,7 +126,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://docs.oracle.com/javase/specs/jls/se21/html/jls-5.html#jls-5.1.3
      * @Function Will convert a single int into 1 byte
      */
     public static byte intTo1Byte(int value) 
@@ -128,7 +137,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://docs.oracle.com/javase/specs/jls/se21/html/jls-15.html#jls-15.19
      * @Function Will convert a single int into 2 bytes
      */
     public static byte[] intTo2Bytes(int value) 
@@ -140,7 +150,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://docs.oracle.com/javase/specs/jls/se21/html/jls-15.html#jls-15.19
      * @Function Will convert a single int into 4 bytes
      */
     public static byte[] intTo4Bytes(int value) 
@@ -154,7 +165,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://docs.oracle.com/javase/specs/jls/se21/html/jls-15.html#jls-15.19
      * @Function Will convert the lower 32 bits of a long into 4 bytes (big-endian)
      */
     public static byte[] longTo4Bytes(long value)
@@ -168,7 +180,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html#floatToIntBits(float)
      * @Function Will convert a float value to a 4 byte float (big-endian)
      */
     public static byte[] floatToBytesFloat(float value)
@@ -185,7 +198,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html#parseInt(java.lang.String,int)
      * @Function Will convert a String to bytes to an array of bytes
      */
     public static byte[] hexStringToBytes(String hex)
@@ -201,7 +215,8 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Oracle - Adapted by Jemaroo
+     * @Source https://openjfx.io/javadoc/21/javafx.graphics/javafx/scene/paint/Color.html
      * @Function Will convert a JavaFX color to a 4 byte hex color
      */
     public static byte[] colorToBytes(Color color)
@@ -215,7 +230,7 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Jemaroo
      * @Function Will check if a flag is enabled in TargetClassFlags
      */
     public static boolean bitFieldFlagCheck(int bitfield, BattleWeapon.TargetClassFlags flag) 
@@ -287,7 +302,7 @@ public class ByteUtils
     }
 
     /**
-     * @Author ChatGPT
+     * @Author Jemaroo
      * @Function Will take the current TargetClassFlags and convert them into a bitfield
      */
     public static byte[] buildTCFBitfield(BattleWeapon unitWeapon) 
