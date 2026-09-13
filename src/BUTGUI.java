@@ -71,6 +71,8 @@ public class BUTGUI extends Application
     private static final String presetButtonStyle = "-fx-font-size: 12px; -fx-font-weight: bold;";
     private static final String RED_STYLE = "-fx-text-fill: red; -fx-font-weight: bold;";
     private static final String BLACK_STYLE = "-fx-text-fill: black; -fx-font-weight: normal;";
+    private static final String WHITE_STYLE = "-fx-text-fill: white; -fx-font-weight: normal;";
+    boolean darkModeActive;
 
     HashMap<String, Image> images = new HashMap<String, Image>();
     Map<String, Integer> filePriority = new HashMap<String, Integer>();
@@ -138,6 +140,7 @@ public class BUTGUI extends Application
 
             if(((String)root.get("BUTLastFolder")).equals("true")) startPath = (String)root.get("startPath");
             if(((String)root.get("BUTRedFields")).equals("true")) setRed0TextFieldFormats(true);
+            if(((String)root.get("BUTDarkMode")).equals("true")) setDarkStyle(emptyScene, true);
         }
         catch (FileNotFoundException e){System.out.println("There was an Error Finding the JSON File");}
         catch (IOException e){System.out.println("There was an Error Reading the JSON File");}
@@ -211,7 +214,7 @@ public class BUTGUI extends Application
                         fileChooser.getExtensionFilters().addAll(relFilter);
                     }
                     fileChooser.setTitle("Save As");
-                    fileChooser.setInitialDirectory(givenFile);
+                    fileChooser.setInitialDirectory(fileSelector.getSelectionModel().getSelectedItem().getParentFile());
 
                     File dest = fileChooser.showSaveDialog(window);
                     if (dest != null) 
@@ -237,6 +240,7 @@ public class BUTGUI extends Application
                             successPane.setAlignment(Pos.CENTER);
 
                             Scene successScene = new Scene(successPane, 150, 50);
+                            if(darkModeActive) setDarkStyle(successScene, true);
 
                             successBox.setScene(successScene);
                             successBox.initModality(Modality.APPLICATION_MODAL);
@@ -281,6 +285,7 @@ public class BUTGUI extends Application
                     presetPane.setAlignment(Pos.CENTER);
 
                     Scene presetScene = new Scene(presetPane, 250, 150);
+                    if(darkModeActive) setDarkStyle(presetScene, true);
 
                     presetBox.setScene(presetScene);
                     presetBox.initModality(Modality.APPLICATION_MODAL);
@@ -335,6 +340,7 @@ public class BUTGUI extends Application
                             successPane.setAlignment(Pos.CENTER);
 
                             Scene successScene = new Scene(successPane, 150, 50);
+                            if(darkModeActive) setDarkStyle(successScene, true);
 
                             successBox.setScene(successScene);
                             successBox.initModality(Modality.APPLICATION_MODAL);
@@ -502,6 +508,7 @@ public class BUTGUI extends Application
                             successPane.setAlignment(Pos.CENTER);
 
                             Scene successScene = new Scene(successPane, 150, 50);
+                            if(darkModeActive) setDarkStyle(successScene, true);
 
                             successBox.setScene(successScene);
                             successBox.initModality(Modality.APPLICATION_MODAL);
@@ -544,6 +551,7 @@ public class BUTGUI extends Application
 
                 CheckBox lastFolderBox = new CheckBox();
                 CheckBox redFieldBox = new CheckBox();
+                CheckBox darkModeBox = new CheckBox();
                 Button saveOptionsButton = new Button("Save Options");
 
                 try
@@ -554,6 +562,7 @@ public class BUTGUI extends Application
 
                     if(((String)root.get("BUTLastFolder")).equals("true")) lastFolderBox.setSelected(true); else lastFolderBox.setSelected(false);
                     if(((String)root.get("BUTRedFields")).equals("true")) redFieldBox.setSelected(true); else redFieldBox.setSelected(false);
+                    if(((String)root.get("BUTDarkMode")).equals("true")) darkModeBox.setSelected(true); else darkModeBox.setSelected(false);
                 }
                 catch (FileNotFoundException e){System.out.println("There was an Error Finding the JSON File");}
                 catch (IOException e){System.out.println("There was an Error Reading the JSON File");}
@@ -571,6 +580,9 @@ public class BUTGUI extends Application
                 optionsForm.add(unitImageViewCreator(images.get("cog")), 0, 1);
                 optionsForm.add(new Label("Highlight 0's Red"), 1, 1);
                 optionsForm.add(redFieldBox, 2, 1);
+                optionsForm.add(unitImageViewCreator(images.get("cog")), 0, 2);
+                optionsForm.add(new Label("Dark Mode"), 1, 2);
+                optionsForm.add(darkModeBox, 2, 2);
 
                 VBox optionsVBox = new VBox();
                 optionsVBox.setAlignment(Pos.CENTER);
@@ -582,6 +594,7 @@ public class BUTGUI extends Application
                 optionsPane.setAlignment(Pos.CENTER);
 
                 Scene optionsScene = new Scene(optionsPane, 250, 200);
+                if(darkModeActive) setDarkStyle(optionsScene, true);
 
                 optionsBox.setScene(optionsScene);
                 optionsBox.initModality(Modality.APPLICATION_MODAL);
@@ -603,6 +616,9 @@ public class BUTGUI extends Application
                             if(redFieldBox.isSelected()) root.put("BUTRedFields", "true");
                             else root.put("BUTRedFields", "false");
 
+                            if(darkModeBox.isSelected()) root.put("BUTDarkMode", "true");
+                            else root.put("BUTDarkMode", "false");
+
                             Gson gson = new GsonBuilder().setPrettyPrinting().create();
                             Object asJson = gson.fromJson(root.toJSONString(), Object.class);
                             try (FileWriter writer = new FileWriter(jsonFile)) 
@@ -613,6 +629,9 @@ public class BUTGUI extends Application
                         catch (FileNotFoundException e){System.out.println("There was an Error Finding the JSON File");}
                         catch (IOException e){System.out.println("There was an Error Reading the JSON File");}
                         catch (ParseException e){System.out.println("There was an Error Parsing the JSON File");}
+
+                        if(darkModeBox.isSelected()) {setDarkStyle(emptyScene, true); darkModeActive = true;}
+                        else {setDarkStyle(emptyScene, false); darkModeActive = false;}
 
                         if(redFieldBox.isSelected()) setRed0TextFieldFormats(true);
                         else setRed0TextFieldFormats(false);
@@ -630,28 +649,43 @@ public class BUTGUI extends Application
                 Stage alertBox = new Stage();
                 alertBox.setTitle("About");
                 alertBox.getIcons().add(images.get("unit"));
+                alertBox.initModality(Modality.APPLICATION_MODAL);
+                alertBox.setResizable(false);
 
-                VBox alertMenu = new VBox();
+                ImageView logo = new ImageView(images.get("magicalMapLogo"));
+                logo.setFitWidth(100);
+                logo.setFitHeight(100);
+
+                Label versionLabel = new Label("Magical Map Version: " + GUI.version);
+                versionLabel.setMaxWidth(Double.MAX_VALUE);
+                versionLabel.setAlignment(Pos.CENTER);
+                versionLabel.setTextAlignment(TextAlignment.CENTER);
+
+                Label creditLabel = new Label("Battle Unit Tool Written by Jemaroo");
+                creditLabel.setAlignment(Pos.CENTER);
+                creditLabel.setTextAlignment(TextAlignment.CENTER);
+
+                VBox informationBox = new VBox(6, versionLabel, creditLabel);
+                informationBox.setAlignment(Pos.CENTER);
+
+                HBox headerBox = new HBox(15, logo, informationBox);
+                headerBox.setAlignment(Pos.CENTER);
+
+                Label descriptionLabel = new Label("Battle Unit Tool allows you to open up the game's main dol or any rel file containing battle data and edit enemy and party unit fields.");
+                descriptionLabel.setWrapText(true);
+                descriptionLabel.setMaxWidth(300);
+                descriptionLabel.setAlignment(Pos.CENTER);
+                descriptionLabel.setTextAlignment(TextAlignment.CENTER);
+
+                VBox alertMenu = new VBox(15, headerBox, descriptionLabel);
                 alertMenu.setAlignment(Pos.CENTER);
-                Text versionText = new Text("Magical Map Version: " + GUI.version);
-                versionText.setWrappingWidth(290);
-                versionText.setTextAlignment(TextAlignment.CENTER);
-                Text creditText = new Text("Battle Unit Tool Written by Jemaroo");
-                creditText.setWrappingWidth(290);
-                creditText.setTextAlignment(TextAlignment.CENTER);
-                Text description = new Text("Battle Unit Tool allows you to open up the game's main dol or any rel file containing battle data and edit enemy and party unit fields.");
-                description.setWrappingWidth(290);
-                description.setTextAlignment(TextAlignment.CENTER);
-                alertMenu.getChildren().addAll(new Label(""), versionText, creditText, new Label(""), description);
+                alertMenu.setPadding(new Insets(15, 20, 15, 20));
 
-                StackPane alertPane = new StackPane();
-                alertPane.getChildren().add(alertMenu);
-                alertPane.setAlignment(Pos.CENTER);
+                Scene alertScene = new Scene(alertMenu);
 
-                Scene alertScene = new Scene(alertPane, 350, 150);
+                if(darkModeActive) setDarkStyle(alertScene, true);
 
                 alertBox.setScene(alertScene);
-                alertBox.initModality(Modality.APPLICATION_MODAL);
                 alertBox.show();
             }
         });
@@ -728,6 +762,7 @@ public class BUTGUI extends Application
 
         fileSelector.setOnAction(e -> 
         {
+            if(fileSelector.getSelectionModel().getSelectedItem() == null) return;
             centerMenu.getChildren().clear();
 
             units = BUTMain.getTableData(fileSelector.getSelectionModel().getSelectedItem());
@@ -3196,6 +3231,7 @@ public class BUTGUI extends Application
         successPane.setAlignment(Pos.CENTER);
 
         Scene successScene = new Scene(successPane, 220, 50);
+        if(darkModeActive) setDarkStyle(successScene, true);
 
         errorBox.setScene(successScene);
         errorBox.initModality(Modality.APPLICATION_MODAL);
@@ -3224,6 +3260,7 @@ public class BUTGUI extends Application
         successPane.setAlignment(Pos.CENTER);
 
         Scene successScene = new Scene(successPane, 150, 50);
+        if(darkModeActive) setDarkStyle(successScene, true);
 
         successBox.setScene(successScene);
         successBox.initModality(Modality.APPLICATION_MODAL);
@@ -3252,6 +3289,7 @@ public class BUTGUI extends Application
         successPane.setAlignment(Pos.CENTER);
 
         Scene successScene = new Scene(successPane, 220, 50);
+        if(darkModeActive) setDarkStyle(successScene, true);
 
         errorBox.setScene(successScene);
         errorBox.initModality(Modality.APPLICATION_MODAL);
@@ -3622,7 +3660,8 @@ public class BUTGUI extends Application
                 } 
                 else 
                 {
-                    field.setStyle("-fx-text-fill: black;");
+                    if(darkModeActive) field.setStyle(WHITE_STYLE);
+                    else field.setStyle(BLACK_STYLE);
                 }
             });
         }
@@ -4672,7 +4711,11 @@ public class BUTGUI extends Application
         for(int i = 0; i < listeners.length; i++)
         {
             int temp = i;
-            listeners[temp] = (obs, oldText, newText) -> { if ("0".equals(newText)) {textFields[temp].setStyle(RED_STYLE);} else {textFields[temp].setStyle(BLACK_STYLE);}};
+            listeners[temp] = (obs, oldText, newText) -> 
+            { 
+                if ("0".equals(newText)) {textFields[temp].setStyle(RED_STYLE);} 
+                else {if(darkModeActive) textFields[temp].setStyle(WHITE_STYLE); else textFields[temp].setStyle(BLACK_STYLE);}
+            };
         }
     }
 
@@ -4737,7 +4780,8 @@ public class BUTGUI extends Application
 
             for(TextField tF : textFields)
             {
-                tF.setStyle(BLACK_STYLE);
+                if(darkModeActive) tF.setStyle(WHITE_STYLE);
+                else tF.setStyle(BLACK_STYLE);
             }
         }
     }
@@ -4748,7 +4792,20 @@ public class BUTGUI extends Application
      */
     private void applyRBStyle(TextField field) 
     {
-        field.setStyle("0".equals(field.getText()) ? RED_STYLE : BLACK_STYLE);
+        if(darkModeActive) field.setStyle("0".equals(field.getText()) ? RED_STYLE : WHITE_STYLE);
+        else field.setStyle("0".equals(field.getText()) ? RED_STYLE : BLACK_STYLE);
+    }
+
+    /**
+     * @Author Jemaroo
+     * @Function Sets the text style to red or black depending on value
+     */
+    private void setDarkStyle(Scene scene, boolean yesno) 
+    {
+        darkModeActive = yesno;
+        scene.getStylesheets().clear();
+        String css = yesno ? "/css/dark.css" : "/css/light.css";
+        scene.getStylesheets().add(getClass().getResource(css).toExternalForm());
     }
 
     public static void main(String[] args) 
