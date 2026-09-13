@@ -2810,6 +2810,11 @@
                             "Type": "evt_mobj_recovery_blk",
                             "Size": 1,
                             "Offsets": [52672]
+                        },
+                        {
+                            "Type": "evt_mobj_lv_blk",
+                            "Size": 3,
+                            "Offsets": [52476, 52512, 52548]
                         }
                     ]
                 },
@@ -4252,6 +4257,11 @@
                             "Type": "evt_mobj_itembox",
                             "Size": 1,
                             "Offsets": [152756]
+                        },
+                        {
+                            "Type": "evt_mobj_lv_blk",
+                            "Size": 4,
+                            "Offsets": [152576, 152612, 152648, 152684]
                         }
                     ]
                 },
@@ -4340,6 +4350,11 @@
                             "Type": "evt_mobj_itembox",
                             "Size": 1,
                             "Offsets": [157444]
+                        },
+                        {
+                            "Type": "evt_mobj_lv_blk",
+                            "Size": 4,
+                            "Offsets": [157264, 157300, 157336, 157372]
                         }
                     ]
                 },
@@ -4496,6 +4511,11 @@
                             "Type": "evt_mobj_itembox",
                             "Size": 1,
                             "Offsets": [182164]
+                        },
+                        {
+                            "Type": "evt_mobj_lv_blk",
+                            "Size": 1,
+                            "Offsets": [181784]
                         }
                     ]
                 },
@@ -6049,6 +6069,11 @@
                             "Type": "evt_mobj_itembox",
                             "Size": 1,
                             "Offsets": [101172]
+                        },
+                        {
+                            "Type": "evt_mobj_lv_blk",
+                            "Size": 1,
+                            "Offsets": [101100]
                         }
                     ]
                 },
@@ -6131,6 +6156,11 @@
                             "Type": "evt_mobj_save_blk",
                             "Size": 1,
                             "Offsets": [132040]
+                        },
+                        {
+                            "Type": "evt_mobj_lv_blk",
+                            "Size": 1,
+                            "Offsets": [132072]
                         }
                     ]
                 },
@@ -6159,6 +6189,11 @@
                             "Type": "evt_mobj_badgeblk",
                             "Size": 2,
                             "Offsets": [178864, 178904]
+                        },
+                        {
+                            "Type": "evt_mobj_lv_blk",
+                            "Size": 2,
+                            "Offsets": [178792, 178828]
                         }
                     ]
                 },
@@ -6170,6 +6205,11 @@
                             "Type": "evt_mobj_powerupblk",
                             "Size": 1,
                             "Offsets": [180756]
+                        },
+                        {
+                            "Type": "evt_mobj_lv_blk",
+                            "Size": 1,
+                            "Offsets": [180484]
                         }
                     ]
                 },
@@ -6192,6 +6232,11 @@
                             "Type": "evt_mobj_itembox",
                             "Size": 1,
                             "Offsets": [182540]
+                        },
+                        {
+                            "Type": "evt_mobj_lv_blk",
+                            "Size": 1,
+                            "Offsets": [182468]
                         }
                     ]
                 },
@@ -6482,6 +6527,11 @@
                             "Type": "evt_mobj_powerupblk",
                             "Size": 1,
                             "Offsets": [208764]
+                        },
+                        {
+                            "Type": "evt_mobj_lv_blk",
+                            "Size": 11,
+                            "Offsets": [207720, 207756, 207864, 207900, 207936, 207972, 208008, 208044, 208080, 208116, 208624]
                         }
                     ]
                 },
@@ -6537,6 +6587,11 @@
                                     "Offsets": [253092, 250960]
                                 }
                             ]
+                        },
+                        {
+                            "Type": "evt_mobj_lv_blk",
+                            "Size": 1,
+                            "Offsets": [252624]
                         }
                     ]
                 },
@@ -6554,6 +6609,11 @@
                                     "Offsets": [259024]
                                 }
                             ]
+                        },
+                        {
+                            "Type": "evt_mobj_lv_blk",
+                            "Size": 1,
+                            "Offsets": [259076]
                         }
                     ]
                 }
