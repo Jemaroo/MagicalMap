@@ -152,7 +152,7 @@
     "BattleWeapon":
     [
         {
-            "accuracy": "Probability the attack will hit\nCan be set above 100% to reduce effects of dizzy/dodgy",
+            "accuracy": "Probability the attack will hit\nCan be set above 100% to reduce effects of dizzy",
             "fp_cost": "The amount of FP needed to use an attack\nThis does nothing when set on an enemy",
             "sp_cost": "The amount of SP Orbs an attack costs to use\nThis does work when set on an enemy attack, it will drain Mario's SP",
             "superguard_state": "Sets how a superguard will impact the target\nUnsuperguardable - This attack can not be superguarded\nSuperguardable with Recoil - This attack can be superguarded and the enemy will take 1 damage\nSuperguardable without Recoil - This attack can be superguarded but the enemy will not take damage",
@@ -257,7 +257,7 @@
             "sleep_time": "Duration of inflicted Sleep",
             "stop_chance": "Chance of inflicting Stop",
             "stop_time": "Duration of inflicted Stop",
-            "dizzy_chance": "Chance of inflicting Chance",
+            "dizzy_chance": "Chance of inflicting Dizzy",
             "dizzy_time": "Duration of inflicted Dizzy",
             "poison_chance": "Chance of inflicting Poison",
             "poison_time": "Duration of inflicted Poison",
