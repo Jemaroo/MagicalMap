@@ -1,0 +1,16 @@
+.root {
+    -fx-base: #f4f4f4;
+    -fx-background: #f4f4f4;
+    -fx-control-inner-background: white;
+    -fx-accent: #3c7dd9;
+    -fx-focus-color: #3c7dd9;
+    -fx-faint-focus-color: transparent;
+}
+
+.label {
+    -fx-text-fill: black;
+}
+
+.text-area .content {
+    -fx-background-color: white;
+}
