@@ -126,6 +126,10 @@ public class IDTMain
                     locator = item.SPRestored_offset + Math.toIntExact((Long)itemOffsetArray.get(i));
                     item.SPRestored = ByteUtils.bytesToInt(givenFiledata[locator]);
 
+                    //weapon Pointer
+                    locator = item.weapon_offset + Math.toIntExact((Long)itemOffsetArray.get(i));
+                    item.weapon = ByteUtils.bytesToLong(givenFiledata[locator], givenFiledata[locator + 1], givenFiledata[locator + 2], givenFiledata[locator + 3]);
+
                     //Badge Properties Check
                     item = checkProperties(item, fileObj, givenFiledata);
 
@@ -662,6 +666,35 @@ public class IDTMain
                             
                                 break;
                             }
+                            case "evt_mobj_lv_blk":
+                            {
+                                //System.out.println("evt_mobj_lv_blk");
+
+                                JSONArray offsets = (JSONArray)(((JSONObject)(mapObjects.get(j))).get("Offsets"));
+
+                                for(int k = 0; k < Math.toIntExact((Long)((JSONObject)(mapObjects.get(j))).get("Size")); k++)
+                                {
+                                    FieldLocationData.evt_mobj_lv_blk tempField = new FieldLocationData.evt_mobj_lv_blk();
+                                    tempField.map = (String)((JSONObject)(fieldDataArray.get(i))).get("Map");
+
+                                    locator = Math.toIntExact((Long)offsets.get(k));
+                                    
+                                    locator += 12;
+                                    tempField.xCoord = ByteUtils.bytesToSignedLong(givenFiledata[locator], givenFiledata[locator + 1], givenFiledata[locator + 2], givenFiledata[locator + 3]);
+
+                                    locator += 4;
+                                    tempField.yCoord = ByteUtils.bytesToSignedLong(givenFiledata[locator], givenFiledata[locator + 1], givenFiledata[locator + 2], givenFiledata[locator + 3]);
+
+                                    locator += 4;
+                                    tempField.zCoord = ByteUtils.bytesToSignedLong(givenFiledata[locator], givenFiledata[locator + 1], givenFiledata[locator + 2], givenFiledata[locator + 3]);
+
+                                    //System.out.println("Map: " + tempField.map + " X: " + tempField.xCoord + " Y: " + tempField.yCoord + " Z: " + tempField.zCoord);
+
+                                    fileData.field.add(tempField);
+                                }
+                            
+                                break;
+                            }
                         }
                     }
                 }
@@ -782,6 +815,14 @@ public class IDTMain
                     //SP Restored
                     locator = fileData.items.get(i).SPRestored_offset + Math.toIntExact((Long)itemOffsetArray.get(i));
                     givenFiledata[locator] = ByteUtils.intTo1Byte(fileData.items.get(i).SPRestored);
+
+                    //weapon Pointer
+                    locator = fileData.items.get(i).weapon_offset + Math.toIntExact((Long)itemOffsetArray.get(i));
+                    byte[] tempWP = ByteUtils.longTo4Bytes(fileData.items.get(i).weapon);
+                    for(int k = 0; k < 4 ; k++)
+                    {
+                        givenFiledata[locator + k] = tempWP[k];
+                    }
 
                     //Badge Properties
                     JSONArray propertiesArray = (JSONArray)fileObj.get("Properties");
@@ -996,7 +1037,6 @@ public class IDTMain
                     }
                     else if (((String)((JSONObject)(shopTablesArray.get(i))).get("Type")).equals("Coins"))
                     {
-                        //TODO
                         locator = Math.toIntExact((Long)((JSONObject)(shopTablesArray.get(i))).get("Offset"));
                         byte[] tempID = ByteUtils.intTo4Bytes(fileData.shops.get(i).ids.get(0));
                         for(int j = 0; j < 4 ; j++)
@@ -1462,6 +1502,40 @@ public class IDTMain
 
                                     locator += 4;
                                     byte[] tempZ = ByteUtils.longTo4Bytes(((FieldLocationData.evt_mobj_save_blk)(fileData.field.get(fieldTracker))).zCoord);
+                                    for(int l = 0; l < 4 ; l++)
+                                    {
+                                        givenFiledata[locator + l] = tempZ[l];
+                                    }
+
+                                    fieldTracker++;
+                                }
+
+                                break;
+                            }
+                            case "evt_mobj_lv_blk":
+                            {
+                                JSONArray offsets = (JSONArray)(((JSONObject)(mapObjects.get(j))).get("Offsets"));
+                                
+                                for(int k = 0; k < Math.toIntExact((Long)((JSONObject)(mapObjects.get(j))).get("Size")); k++)
+                                {
+                                    locator = Math.toIntExact((Long)offsets.get(k));
+                                    
+                                    locator += 12;
+                                    byte[] tempX = ByteUtils.longTo4Bytes(((FieldLocationData.evt_mobj_lv_blk)(fileData.field.get(fieldTracker))).xCoord);
+                                    for(int l = 0; l < 4 ; l++)
+                                    {
+                                        givenFiledata[locator + l] = tempX[l];
+                                    }
+
+                                    locator += 4;
+                                    byte[] tempY = ByteUtils.longTo4Bytes(((FieldLocationData.evt_mobj_lv_blk)(fileData.field.get(fieldTracker))).yCoord);
+                                    for(int l = 0; l < 4 ; l++)
+                                    {
+                                        givenFiledata[locator + l] = tempY[l];
+                                    }
+
+                                    locator += 4;
+                                    byte[] tempZ = ByteUtils.longTo4Bytes(((FieldLocationData.evt_mobj_lv_blk)(fileData.field.get(fieldTracker))).zCoord);
                                     for(int l = 0; l < 4 ; l++)
                                     {
                                         givenFiledata[locator + l] = tempZ[l];
