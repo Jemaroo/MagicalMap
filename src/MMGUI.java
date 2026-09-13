@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -55,6 +56,8 @@ public class MMGUI extends Application
 
     HashMap<String, Image> images = new HashMap<String, Image>();
     Map<String, Integer> filePriority = new HashMap<String, Integer>();
+
+    boolean darkModeActive = false;
 
     public static BooleanProperty mowzFlag = new SimpleBooleanProperty(true);
 
@@ -108,6 +111,7 @@ public class MMGUI extends Application
             JSONObject root = (JSONObject)parser.parse(new FileReader(jsonFile));
 
             if(((String)root.get("MMLastFolder")).equals("true")) startPath = (String)root.get("startPath");
+            if(((String)root.get("MMDarkMode")).equals("true")) setDarkStyle(emptyScene, true);
         }
         catch (FileNotFoundException e){System.out.println("There was an Error Finding the JSON File");}
         catch (IOException e){System.out.println("There was an Error Reading the JSON File");}
@@ -183,7 +187,7 @@ public class MMGUI extends Application
                         fileChooser.getExtensionFilters().addAll(relFilter);
                     }
                     fileChooser.setTitle("Save As");
-                    fileChooser.setInitialDirectory(givenFile);
+                    fileChooser.setInitialDirectory(fileSelector.getSelectionModel().getSelectedItem().getParentFile());
 
                     File dest = fileChooser.showSaveDialog(window);
                     if (dest != null) 
@@ -209,6 +213,7 @@ public class MMGUI extends Application
                             successPane.setAlignment(Pos.CENTER);
 
                             Scene successScene = new Scene(successPane, 150, 50);
+                            if(darkModeActive) setDarkStyle(successScene, true);
 
                             successBox.setScene(successScene);
                             successBox.initModality(Modality.APPLICATION_MODAL);
@@ -244,6 +249,7 @@ public class MMGUI extends Application
                 optionsBox.getIcons().add(images.get("cog"));
 
                 CheckBox lastFolderBox = new CheckBox();
+                CheckBox darkModeBox = new CheckBox();
                 Button saveOptionsButton = new Button("Save Options");
 
                 try
@@ -253,6 +259,7 @@ public class MMGUI extends Application
                     JSONObject root = (JSONObject)parser.parse(new FileReader(jsonFile));
 
                     if(((String)root.get("MMLastFolder")).equals("true")) lastFolderBox.setSelected(true); else lastFolderBox.setSelected(false);
+                    if(((String)root.get("MMDarkMode")).equals("true")) darkModeBox.setSelected(true); else darkModeBox.setSelected(false);
                 }
                 catch (FileNotFoundException e){System.out.println("There was an Error Finding the JSON File");}
                 catch (IOException e){System.out.println("There was an Error Reading the JSON File");}
@@ -268,6 +275,10 @@ public class MMGUI extends Application
                 optionsForm.add(new Label("Remember Last Opened Folder"), 1, 0);
                 optionsForm.add(lastFolderBox, 2, 0);
 
+                optionsForm.add(unitImageViewCreator(images.get("cog")), 0, 1);
+                optionsForm.add(new Label("Dark Mode"), 1, 1);
+                optionsForm.add(darkModeBox, 2, 1);
+
                 VBox optionsVBox = new VBox();
                 optionsVBox.setAlignment(Pos.CENTER);
                 optionsVBox.setSpacing(10);
@@ -278,6 +289,7 @@ public class MMGUI extends Application
                 optionsPane.setAlignment(Pos.CENTER);
 
                 Scene optionsScene = new Scene(optionsPane, 250, 200);
+                if(darkModeActive) setDarkStyle(optionsScene, true);
 
                 optionsBox.setScene(optionsScene);
                 optionsBox.initModality(Modality.APPLICATION_MODAL);
@@ -296,6 +308,9 @@ public class MMGUI extends Application
                             if(lastFolderBox.isSelected()) root.put("MMLastFolder", "true");
                             else root.put("MMLastFolder", "false");
 
+                            if(darkModeBox.isSelected()) root.put("MMDarkMode", "true");
+                            else root.put("MMDarkMode", "false");
+
                             Gson gson = new GsonBuilder().setPrettyPrinting().create();
                             Object asJson = gson.fromJson(root.toJSONString(), Object.class);
                             try (FileWriter writer = new FileWriter(jsonFile)) 
@@ -306,6 +321,9 @@ public class MMGUI extends Application
                         catch (FileNotFoundException e){System.out.println("There was an Error Finding the JSON File");}
                         catch (IOException e){System.out.println("There was an Error Reading the JSON File");}
                         catch (ParseException e){System.out.println("There was an Error Parsing the JSON File");}
+
+                        if(darkModeBox.isSelected()) {setDarkStyle(emptyScene, true); darkModeActive = true;}
+                        else {setDarkStyle(emptyScene, false); darkModeActive = false;}
 
                         optionsBox.close();
                     }
@@ -320,28 +338,43 @@ public class MMGUI extends Application
                 Stage alertBox = new Stage();
                 alertBox.setTitle("About");
                 alertBox.getIcons().add(images.get("cog"));
+                alertBox.initModality(Modality.APPLICATION_MODAL);
+                alertBox.setResizable(false);
 
-                VBox alertMenu = new VBox();
+                ImageView logo = new ImageView(images.get("magicalMapLogo"));
+                logo.setFitWidth(100);
+                logo.setFitHeight(100);
+
+                Label versionLabel = new Label("Magical Map Version: " + GUI.version);
+                versionLabel.setMaxWidth(Double.MAX_VALUE);
+                versionLabel.setAlignment(Pos.CENTER);
+                versionLabel.setTextAlignment(TextAlignment.CENTER);
+
+                Label creditLabel = new Label("Miscellaneous Edits Written by Jemaroo");
+                creditLabel.setAlignment(Pos.CENTER);
+                creditLabel.setTextAlignment(TextAlignment.CENTER);
+
+                VBox informationBox = new VBox(6, versionLabel, creditLabel);
+                informationBox.setAlignment(Pos.CENTER);
+
+                HBox headerBox = new HBox(15, logo, informationBox);
+                headerBox.setAlignment(Pos.CENTER);
+
+                Label descriptionLabel = new Label("Miscellaneous Edits allows changing some various features of the game that don't fit into any other tool.");
+                descriptionLabel.setWrapText(true);
+                descriptionLabel.setMaxWidth(300);
+                descriptionLabel.setAlignment(Pos.CENTER);
+                descriptionLabel.setTextAlignment(TextAlignment.CENTER);
+
+                VBox alertMenu = new VBox(15, headerBox, descriptionLabel);
                 alertMenu.setAlignment(Pos.CENTER);
-                Text versionText = new Text("Magical Map Version: " + GUI.version);
-                versionText.setWrappingWidth(290);
-                versionText.setTextAlignment(TextAlignment.CENTER);
-                Text creditText = new Text("Miscellaneous Edits Written by Jemaroo");
-                creditText.setWrappingWidth(290);
-                creditText.setTextAlignment(TextAlignment.CENTER);
-                Text description = new Text("Miscellaneous Edits allows changing some various features of the game that don't fit into any other tool.");
-                description.setWrappingWidth(290);
-                description.setTextAlignment(TextAlignment.CENTER);
-                alertMenu.getChildren().addAll(new Label(""), versionText, creditText, new Label(""), description);
+                alertMenu.setPadding(new Insets(15, 20, 15, 20));
 
-                StackPane alertPane = new StackPane();
-                alertPane.getChildren().add(alertMenu);
-                alertPane.setAlignment(Pos.CENTER);
+                Scene alertScene = new Scene(alertMenu);
 
-                Scene alertScene = new Scene(alertPane, 350, 150);
+                if(darkModeActive) setDarkStyle(alertScene, true);
 
                 alertBox.setScene(alertScene);
-                alertBox.initModality(Modality.APPLICATION_MODAL);
                 alertBox.show();
             }
         });
@@ -418,6 +451,8 @@ public class MMGUI extends Application
 
         fileSelector.setOnAction(e -> 
         {
+            if(fileSelector.getSelectionModel().getSelectedItem() == null) return;
+
             fileData = MMMain.getMiscData(fileSelector.getSelectionModel().getSelectedItem());
             isFileOpened = true;
             test.testMiscData(fileData);
@@ -477,9 +512,19 @@ public class MMGUI extends Application
                     }
                     else if(mm.miscData.get(i) instanceof Misc.hexColor)
                     {
-                        tabForm.add(determineMiscIcon((Misc.hexColor)mm.miscData.get(i)), 0, i);
-                        tabForm.add(new Label(((Misc.hexColor)mm.miscData.get(i)).name + ":"), 1, i);
-                        tabForm.add(((Misc.hexColor)mm.miscData.get(i)).colorPicker, 2, i);
+                        Misc.hexColor hexColor = (Misc.hexColor)mm.miscData.get(i);
+                        hexColor.colorPicker.setOnAction(event ->
+                        {
+                            Platform.runLater(() ->
+                            {
+                                window.toFront();
+                                window.requestFocus();
+                            });
+                        });
+
+                        tabForm.add(determineMiscIcon(hexColor), 0, i);
+                        tabForm.add(new Label(hexColor.name + ":"), 1, i);
+                        tabForm.add(hexColor.colorPicker, 2, i);
                     }
                     else if(mm.miscData.get(i) instanceof Misc.odds)
                     {
@@ -506,6 +551,16 @@ public class MMGUI extends Application
                         setBingoSelectionBox(((Misc.bingoSelectionBox)(mm.miscData.get(i))).comboBox);
                         tabForm.add(((Misc.bingoSelectionBox)mm.miscData.get(i)).comboBox, 2, i);
                     }
+                    else if(mm.miscData.get(i) instanceof Misc.probBar)
+                    {
+                        Misc.probBar probBar = (Misc.probBar)mm.miscData.get(i);
+                        probBar.rangeBar.setMaxWidth(Double.MAX_VALUE);
+                        GridPane.setHgrow(probBar.rangeBar, Priority.ALWAYS);
+
+                        tabForm.add(determineMiscIcon((Misc.probBar)mm.miscData.get(i)), 0, i);
+                        tabForm.add(new Label(probBar.name + ":"), 1, i);
+                        tabForm.add(probBar.rangeBar, 2, i);
+                    }
                     else
                     {
                         tabForm.add(fieldImageViewCreator(images.get("unknown")), 0, i);
@@ -519,6 +574,7 @@ public class MMGUI extends Application
                 tabForm.setPadding(new Insets(10));
 
                 ScrollPane scrollTab = new ScrollPane();
+                scrollTab.setFitToWidth(true);
                 scrollTab.setContent(tabForm);
                 temp.setContent(scrollTab);
                 tabs.add(temp);
@@ -800,12 +856,43 @@ public class MMGUI extends Application
             case "Volatile Explosive Contact Damage": return fieldImageViewCreator(images.get("chargeAction"));
             case "Electrified Contact Damage": return fieldImageViewCreator(images.get("electricStatus"));
             case "Freeze Thaw Damage": return fieldImageViewCreator(images.get("freezeStatus"));
-            case "B-List Star Level Requirement": return fieldImageViewCreator(images.get("rankMedalCustom"));
-            case "A-List Star Level Requirement": return fieldImageViewCreator(images.get("rankMedalCustom"));
+            case "B-List Star Level Requirement":
+            case "A-List Star Level Requirement":
             case "Superstar Level Requirement": return fieldImageViewCreator(images.get("rankMedalCustom"));
             case "Spike/Fire Hazard Damage":
             case "Water Hazard Damage":
             case "Pit Hazard Damage": return fieldImageViewCreator(images.get("fishCustom"));
+            case "Koops Flip Duration": return fieldImageViewCreator(images.get("koopsPartnerSwitch"));
+            case "Parabuzzy Flip Duration": return fieldImageViewCreator(images.get("unitParabuzzy"));
+            case "Spiky Parabuzzy Flip Duration": return fieldImageViewCreator(images.get("unitSpikyParabuzzy"));
+            case "Koopa Troopa Flip Duration": return fieldImageViewCreator(images.get("unitKoopaTroopa"));
+            case "Parakoopa Flip Duration": return fieldImageViewCreator(images.get("unitParatroopa"));
+            case "Hyper Cleft Flip Duration": return fieldImageViewCreator(images.get("unitHyperCleft"));
+            case "Moon Cleft Flip Duration": return fieldImageViewCreator(images.get("unitMoonCleft"));
+            case "Bald Cleft Flip Duration": return fieldImageViewCreator(images.get("unitBaldCleft"));
+            case "Bristle Flip Duration": return fieldImageViewCreator(images.get("unitBristle"));
+            case "Cleft Flip Duration": return fieldImageViewCreator(images.get("unitCleft"));
+            case "Buzzy Beetle Flip Duration": return fieldImageViewCreator(images.get("unitBuzzyBeetle"));
+            case "Spiky Buzzy Flip Duration": return fieldImageViewCreator(images.get("unitSpikyBuzzy"));
+            case "Spiny Flip Duration": return fieldImageViewCreator(images.get("unitSpiny"));
+            case "Dark Koopa Flip Duration": return fieldImageViewCreator(images.get("unitDarkKoopa"));
+            case "Shady Koopa Flip Duration": return fieldImageViewCreator(images.get("unitShadyKoopa"));
+            case "Dark Parakoopa Flip Duration": return fieldImageViewCreator(images.get("unitDarkParatroopa"));
+            case "Dark Bristle Flip Duration": return fieldImageViewCreator(images.get("unitDarkBristle"));
+            case "Dark Koopatrol Flip Duration": return fieldImageViewCreator(images.get("unitDarkKoopatrol"));
+            case "Sky Blue Spiny Flip Duration": return fieldImageViewCreator(images.get("unitSkyBlueSpiny"));
+            case "Doopliss Koops Flip Duration": return fieldImageViewCreator(images.get("unitDoopliss"));
+            case "Koopatrol Flip Duration": return fieldImageViewCreator(images.get("unitKoopatrol"));
+            case "Shady Parakoopa Flip Duration": return fieldImageViewCreator(images.get("unitShadyParatroopa"));
+            case "KP Koopa Flip Duration": return fieldImageViewCreator(images.get("unitKPKoopa"));
+            case "KP Parakoopa Flip Duration": return fieldImageViewCreator(images.get("unitKPParatroopa"));
+            case "Red Spiky Buzzy Flip Duration": return fieldImageViewCreator(images.get("unitRedSpikyBuzzy"));
+            case "Blooper Flip Duration":
+            case "Blooper Grounded Duration": return fieldImageViewCreator(images.get("unitBlooper"));
+            case "Payback Contact Damage %": return fieldImageViewCreator(images.get("paybackStatus"));
+            case "Hold Fast Contact Damage %": return fieldImageViewCreator(images.get("bobberyPartnerSwitch"));
+            case "Return Postage Contact Damage %": return fieldImageViewCreator(images.get("returnPostage"));
+            case "Yoshi Flutter Frames": return fieldImageViewCreator(images.get("yoshiPartnerSwitch"));
 
             default: return fieldImageViewCreator(images.get("routingSlip"));
         }
@@ -921,6 +1008,21 @@ public class MMGUI extends Application
             case "Mario's Jump Snap": return fieldImageViewCreator(images.get("marioHeadCustom"));
             case "Bingo Success SP Multiplier Scale":
             case "Shine Bingo Success SP Multiplier Scale": return fieldImageViewCreator(images.get("bingoCustom"));
+            case "Message Star x-Position": 
+            case "Message Star y-Position": return fieldImageViewCreator(images.get("bingoStar"));
+            case "Toad SP Multiplier Scale": return fieldImageViewCreator(images.get("audienceToadCustom"));
+            case "X-Naut SP Multiplier Scale": return fieldImageViewCreator(images.get("audienceXNautCustom"));
+            case "Boo SP Multiplier Scale": return fieldImageViewCreator(images.get("audienceBooCustom"));
+            case "Hammer Bro SP Multiplier Scale": return fieldImageViewCreator(images.get("audienceHammerBroCustom"));
+            case "Dull Bones SP Multiplier Scale": return fieldImageViewCreator(images.get("audienceDullBonesCustom"));
+            case "Shy Guy SP Multiplier Scale": return fieldImageViewCreator(images.get("audienceShyGuyCustom"));
+            case "Dayzee SP Multiplier Scale": return fieldImageViewCreator(images.get("audienceDayzeeCustom"));
+            case "Puni SP Multiplier Scale": return fieldImageViewCreator(images.get("audiencePuniCustom"));
+            case "Koopa SP Multiplier Scale": return fieldImageViewCreator(images.get("audienceKoopaCustom"));
+            case "Bulky Bob-omb SP Multiplier Scale": return fieldImageViewCreator(images.get("audienceBulkyBobombCustom"));
+            case "Goomba SP Multiplier Scale": return fieldImageViewCreator(images.get("audienceGoombaCustom"));
+            case "Piranha Plant SP Multiplier Scale": return fieldImageViewCreator(images.get("audiencePiranhaPlantCustom"));
+            case "Luigi SP Multiplier Scale": return fieldImageViewCreator(images.get("audienceLuigiCustom"));
             
             default: return fieldImageViewCreator(images.get("routingSlip"));
         }
@@ -1024,6 +1126,30 @@ public class MMGUI extends Application
             case "Crystal Star Overlay Color 13":
             case "Crystal Star Overlay Color 14":
             case "Crystal Star Overlay Color 15": return fieldImageViewCreator(images.get("crystalStar"));
+            case "Ember Flame Attack Color 1":
+            case "Ember Flame Attack Color 2":
+            case "Ember Flame Attack Color 3":
+            case "Ember Flame Attack Color 4":
+            case "Ember Flame Attack Color 5":
+            case "Ember Flame Attack Color 6":
+            case "Ember Flame Attack Color 7":
+            case "Ember Flame Attack Color 8": return fieldImageViewCreator(images.get("unitEmber"));
+            case "Lava Bubble Flame Attack Color 1":
+            case "Lava Bubble Flame Attack Color 2":
+            case "Lava Bubble Flame Attack Color 3":
+            case "Lava Bubble Flame Attack Color 4":
+            case "Lava Bubble Flame Attack Color 5":
+            case "Lava Bubble Flame Attack Color 6":
+            case "Lava Bubble Flame Attack Color 7":
+            case "Lava Bubble Flame Attack Color 8": return fieldImageViewCreator(images.get("unitLavaBubble"));
+            case "Phantom Ember Flame Attack Color 1":
+            case "Phantom Ember Flame Attack Color 2":
+            case "Phantom Ember Flame Attack Color 3":
+            case "Phantom Ember Flame Attack Color 4":
+            case "Phantom Ember Flame Attack Color 5":
+            case "Phantom Ember Flame Attack Color 6":
+            case "Phantom Ember Flame Attack Color 7":
+            case "Phantom Ember Flame Attack Color 8": return fieldImageViewCreator(images.get("unitPhantomEmber"));
             
             default: return fieldImageViewCreator(images.get("colorWheelCustom"));
         }
@@ -1068,7 +1194,8 @@ public class MMGUI extends Application
             case "Fog Always Disabled": return fieldImageViewCreator(images.get("gateHandle"));
             case "Remove Run from Confuse": return fieldImageViewCreator(images.get("confuseStatus"));
             case "Prevent Switching Position in Battle":
-            case "Prevent Switching Partners in Battle": return fieldImageViewCreator(images.get("goombellaPartnerSwitch"));
+            case "Prevent Switching Partners in Battle":
+            case "Able to Swap in Fainted Partners":
             case "Tattle No Longer Takes Turn":
             case "Tattle No Longer Gives SP": return fieldImageViewCreator(images.get("goombellaPartnerSwitch"));
             case "Mowz Smooch Heal Amount Fix": return fieldImageViewCreator(images.get("mowzPartnerSwitch"));
@@ -1077,9 +1204,37 @@ public class MMGUI extends Application
             case "Never Lose Coins When Running From Battle": return fieldImageViewCreator(images.get("runArrow"));
             case "Plane Mode Anywhere": return fieldImageViewCreator(images.get("planeCurse"));
             case "Make Hooktail immune to Attack FXR Damage Drop": return fieldImageViewCreator(images.get("unitHooktail"));
-            case "Puni's Increased Speed and Sight": return fieldImageViewCreator(images.get("puniCustom"));
+            case "Punis Increased Speed and Sight": return fieldImageViewCreator(images.get("puniCustom"));
+            case "Flip Panels Ignore Partners": return fieldImageViewCreator(images.get("flipPanel"));
+            case "Punis Do Not Fear Piders": return fieldImageViewCreator(images.get("puniCustom"));
+            case "Always Show Enemy HP Bars": return fieldImageViewCreator(images.get("heart"));
+            case "Defense Down can Drop Defense Below 0": return fieldImageViewCreator(images.get("defenseDownStatus"));
+            case "Disable Danger Warning Sound":
+            case "Disable Peril Warning Sound": return fieldImageViewCreator(images.get("dangerHeartCustom"));
+            case "Always Succeed Glitz Pit Conditions": return fieldImageViewCreator(images.get("grubbaCustom"));
+            case "Disable Starting Hammer": return fieldImageViewCreator(images.get("hammer"));
+            case "Yoshi 360 Flutter Movement": return fieldImageViewCreator(images.get("yoshiPartnerSwitch"));
+            case "Unlimited Lottery Number Rolls": return fieldImageViewCreator(images.get("lotteryPick"));
+            case "Double Pain also Affects Partners": return fieldImageViewCreator(images.get("doublePain"));
+            case "Disable Triple Poison Stat Reduction":
+            case "Disable Triple Poison Audience Reduction": return fieldImageViewCreator(images.get("poisonMushroom"));
+            case "Bump/First Attack Badges Work in Pit": return fieldImageViewCreator(images.get("bumpAttack"));
             
             default: return fieldImageViewCreator(images.get("cog"));
+        }
+    }
+
+    /**
+     * @Author Jemaroo
+     * @Function Returns an image based on misc field name
+     */
+    public ImageView determineMiscIcon(Misc.probBar misc)
+    {
+        switch(misc.name)
+        {
+            case "Merlee Spell Type Probability": return fieldImageViewCreator(images.get("merleeCustom"));
+            
+            default: return fieldImageViewCreator(images.get("spBar6"));
         }
     }
 
@@ -1182,6 +1337,18 @@ public class MMGUI extends Application
         box.setEditable(false);
     }
     
+    /**
+     * @Author Jemaroo
+     * @Function Sets the text style to red or black depending on value
+     */
+    private void setDarkStyle(Scene scene, boolean yesno) 
+    {
+        darkModeActive = yesno;
+        scene.getStylesheets().clear();
+        String css = yesno ? "/css/dark.css" : "/css/light.css";
+        scene.getStylesheets().add(getClass().getResource(css).toExternalForm());
+    }
+
     public static void main(String[] args) 
     {
         launch(args);
