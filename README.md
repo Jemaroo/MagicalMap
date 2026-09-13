@@ -7,11 +7,11 @@ Magical Map contains a variety of modding tools that allow you to modify TTYD.
 
 ## Additional Mentions
 
-Huge thanks to **Jdaster64** for [documentation](https://github.com/jdaster64/ttyd-utils/blob/master/docs/ttyd_structures_pseudocode.txt) on TTYD's structures their [sheet](https://docs.google.com/spreadsheets/d/15hTm80MaefXxEuWorJOSBD3e6lvw2CCAQTtKUVRhbf4/edit?gid=0#gid=0) on the Switch remake's registry values which helped obtain some of the flag names!
+Huge thanks to **Jdaster64** for [documentation](https://github.com/jdaster64/ttyd-utils/blob/master/docs/ttyd_structures_pseudocode.txt) on TTYD's structures their [sheet](https://docs.google.com/spreadsheets/d/15hTm80MaefXxEuWorJOSBD3e6lvw2CCAQTtKUVRhbf4/edit?gid=0#gid=0) on the Switch remake's registry values, in addition to providing helpful information.
 
 Huge thanks to **NWPlayer123** for their [decomped item tables](https://github.com/doldecomp/ttyd/blob/f3ce61550f927cfd08b1e97ff1079f9f476f4d9f/include/evt/evt_badgeshop.h)!
 
-Huge thanks to **Silver** for their work on writing the tooltips and research on [various flags and values](https://www.youtube.com/@SilverGames136/videos)!
+Huge thanks to **Silver** for their work on writing the tooltips and their research on [TTYD's mechanics](https://www.youtube.com/@SilverGames136/videos)!
 
 Shoutouts to **hirothetraveler**, **Reed**, **Diagamma**, **cursed**, and others for their suggestions and feedback!
 
@@ -35,20 +35,19 @@ Shoutouts to **hirothetraveler**, **Reed**, **Diagamma**, **cursed**, and others
 
 ## Planned Future Features/Additions
 ### Magical Map
-- Implement Text Tool
+- Implement More Tools
+- Add Option to Autoload Tool on Startup
 ### Battle Unit Tool
 - Attack Property Tabs
-- Enemy Formations?
-- Randomizer Option
+- Enemy Formations
 - BattleUnitSetup Structs
 - Stage Object Weapons
 ### Item Data Tool
-- More Field Objects?
-- Tooltips
+- Tooltips?
+### Text Editor Tool
+- 
 ### Miscellaneous Edits
-- Audience SP Multipliers
-- Merlee Effect Probability
-- Tooltips
+- Tooltips?
 
 <br/>
 
@@ -72,7 +71,7 @@ Shoutouts to **hirothetraveler**, **Reed**, **Diagamma**, **cursed**, and others
 - [slf4j-api-1.7.36](https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/)
 - [SparseBitSet-1.2](https://repo1.maven.org/maven2/com/zaxxer/SparseBitSet/1.2/)
 - [xmlbeans-5.1.1](https://repo1.maven.org/maven2/org/apache/xmlbeans/xmlbeans/5.1.1/)
-- [SegmentedRangeBar-1.0.0-FXextension](https://github.com/Jemaroo/MagicalMap/blob/main/lib/SegmentedRangeBar-1.0.0-FXextension.jar)
+- [SegmentedRangeBar-1.0.0-FXextension](https://github.com/Jemaroo/MagicalMap/blob/main/lib/SegmentedRangeBar-1.0.3.jar)
 
 ### Packing
 Compile the .jar file, then Command Line:
