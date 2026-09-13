@@ -1,4 +1,13 @@
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import javafx.scene.image.Image;
+
+import FXextension.SegmentedRangeBar;
 
 public class test 
 {
@@ -225,7 +234,7 @@ public class test
     {
         for(MMData m : fileData)
         {
-            System.out.println(m.type + " Size: " + m.miscData.size());
+            System.out.println('\n' + m.type + " Size: " + m.miscData.size() + '\n');
             for(Object o : m.miscData)
             {
                 if(o instanceof Misc.oneint)
@@ -288,7 +297,43 @@ public class test
                     Misc.bingoSelectionBox temp = (Misc.bingoSelectionBox)o;
                     System.out.println(temp.name + ": " + temp.value);
                 }
+                else if(o instanceof Misc.probBar)
+                {
+                    Misc.probBar temp = (Misc.probBar)o;
+                    for(SegmentedRangeBar.Segment s : temp.rangeBar.getSegments())
+                    {
+                        System.out.println(temp.name + " - " + s.getName() + ": " + s.getValue());
+                    }
+                }
             }
+        }
+    }
+
+    public static void outputImageList(HashMap<String, Image> images)
+    {
+        StringBuilder retString = new StringBuilder();
+
+        ArrayList<String> imageNames = new ArrayList<>(images.keySet());
+        Collections.sort(imageNames, String.CASE_INSENSITIVE_ORDER);
+
+        for (String imageName : imageNames)
+        {
+            Image image = images.get(imageName);
+            retString.append(imageName).append(".png ").append((int) image.getWidth()).append("px/").append((int) image.getHeight()).append("px\n");
+        }
+
+        byte[] fileData = retString.toString().getBytes(StandardCharsets.UTF_8);
+
+        try
+        {
+            File dest = new File("docs/iconList.txt");
+            FileOutputStream fos = new FileOutputStream(dest);
+            fos.write(fileData);
+            fos.close();
+        }
+        catch (IOException ex) 
+        {
+            System.out.println("There was an error creating the image output file");
         }
     }
 }
