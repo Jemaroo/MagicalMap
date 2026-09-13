@@ -37,6 +37,7 @@ class ItemData
     public int HPRestored = 0;
     public int FPRestored = 0;
     public int SPRestored = 0;
+    public long weapon = 0;
 
     public final int UseLocationFlags_offset = 16;
     public final int sortOrder_offset = 18;
@@ -48,6 +49,7 @@ class ItemData
     public final int HPRestored_offset = 29;
     public final int FPRestored_offset = 30;
     public final int SPRestored_offset = 31;
+    public final int weapon_offset = 36;
 
     public static class BadgeProperty {String propertyName; int propertyValue;}
     public ArrayList<BadgeProperty> properties = new ArrayList<BadgeProperty>();
@@ -147,4 +149,7 @@ class FieldLocationData
 
     //Save Block
     public static class evt_mobj_save_blk extends FieldLocationData {}
+
+    //Breakable Block
+    public static class evt_mobj_lv_blk extends FieldLocationData {}
 }
