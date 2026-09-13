@@ -95,22 +95,25 @@ public class IDTGUI extends Application
     private TextField yCoordField = new TextField();
     private TextField zCoordField = new TextField();
     private TextField coinCostField = new TextField();
+    private ComboBox<String> weaponBox = new ComboBox<String>();
 
     private static final String RED_STYLE = "-fx-text-fill: red; -fx-font-weight: bold;";
     private static final String BLACK_STYLE = "-fx-text-fill: black; -fx-font-weight: normal;";
-    ChangeListener<String> redTextListener1 = (obs, oldText, newText) -> { if ("0".equals(newText)) {sortOrderField.setStyle(RED_STYLE);} else {sortOrderField.setStyle(BLACK_STYLE);}};
-    ChangeListener<String> redTextListener2 = (obs, oldText, newText) -> { if ("0".equals(newText)) {buyPriceField.setStyle(RED_STYLE);} else {buyPriceField.setStyle(BLACK_STYLE);}};
-    ChangeListener<String> redTextListener3 = (obs, oldText, newText) -> { if ("0".equals(newText)) {discountPriceField.setStyle(RED_STYLE);} else {discountPriceField.setStyle(BLACK_STYLE);}};
-    ChangeListener<String> redTextListener4 = (obs, oldText, newText) -> { if ("0".equals(newText)) {starPiecePriceField.setStyle(RED_STYLE);} else {starPiecePriceField.setStyle(BLACK_STYLE);}};
-    ChangeListener<String> redTextListener5 = (obs, oldText, newText) -> { if ("0".equals(newText)) {sellPriceField.setStyle(RED_STYLE);} else {sellPriceField.setStyle(BLACK_STYLE);}};
-    ChangeListener<String> redTextListener6 = (obs, oldText, newText) -> { if ("0".equals(newText)) {BPCostField.setStyle(RED_STYLE);} else {BPCostField.setStyle(BLACK_STYLE);}};
-    ChangeListener<String> redTextListener7 = (obs, oldText, newText) -> { if ("0".equals(newText)) {HPRestoredField.setStyle(RED_STYLE);} else {HPRestoredField.setStyle(BLACK_STYLE);}};
-    ChangeListener<String> redTextListener8 = (obs, oldText, newText) -> { if ("0".equals(newText)) {FPRestoredField.setStyle(RED_STYLE);} else {FPRestoredField.setStyle(BLACK_STYLE);}};
-    ChangeListener<String> redTextListener9 = (obs, oldText, newText) -> { if ("0".equals(newText)) {SPRestoredField.setStyle(RED_STYLE);} else {SPRestoredField.setStyle(BLACK_STYLE);}};
-    ChangeListener<String> redTextListener10 = (obs, oldText, newText) -> { if ("0".equals(newText)) {xCoordField.setStyle(RED_STYLE);} else {xCoordField.setStyle(BLACK_STYLE);}};
-    ChangeListener<String> redTextListener11 = (obs, oldText, newText) -> { if ("0".equals(newText)) {yCoordField.setStyle(RED_STYLE);} else {yCoordField.setStyle(BLACK_STYLE);}};
-    ChangeListener<String> redTextListener12 = (obs, oldText, newText) -> { if ("0".equals(newText)) {zCoordField.setStyle(RED_STYLE);} else {zCoordField.setStyle(BLACK_STYLE);}};
-    ChangeListener<String> redTextListener13 = (obs, oldText, newText) -> { if ("0".equals(newText)) {coinCostField.setStyle(RED_STYLE);} else {coinCostField.setStyle(BLACK_STYLE);}};
+    private static final String WHITE_STYLE = "-fx-text-fill: white; -fx-font-weight: normal;";
+    boolean darkModeActive = false;
+    ChangeListener<String> redTextListener1 = (obs, oldText, newText) -> { if ("0".equals(newText)) {sortOrderField.setStyle(RED_STYLE);} else {if(darkModeActive)sortOrderField.setStyle(WHITE_STYLE); else sortOrderField.setStyle(BLACK_STYLE);}};
+    ChangeListener<String> redTextListener2 = (obs, oldText, newText) -> { if ("0".equals(newText)) {buyPriceField.setStyle(RED_STYLE);} else {if(darkModeActive)buyPriceField.setStyle(WHITE_STYLE); else buyPriceField.setStyle(BLACK_STYLE);}};
+    ChangeListener<String> redTextListener3 = (obs, oldText, newText) -> { if ("0".equals(newText)) {discountPriceField.setStyle(RED_STYLE);} else {if(darkModeActive)discountPriceField.setStyle(WHITE_STYLE); else discountPriceField.setStyle(BLACK_STYLE);}};
+    ChangeListener<String> redTextListener4 = (obs, oldText, newText) -> { if ("0".equals(newText)) {starPiecePriceField.setStyle(RED_STYLE);} else {if(darkModeActive)starPiecePriceField.setStyle(WHITE_STYLE); else starPiecePriceField.setStyle(BLACK_STYLE);}};
+    ChangeListener<String> redTextListener5 = (obs, oldText, newText) -> { if ("0".equals(newText)) {sellPriceField.setStyle(RED_STYLE);} else {if(darkModeActive)sellPriceField.setStyle(WHITE_STYLE); else sellPriceField.setStyle(BLACK_STYLE);}};
+    ChangeListener<String> redTextListener6 = (obs, oldText, newText) -> { if ("0".equals(newText)) {BPCostField.setStyle(RED_STYLE);} else {if(darkModeActive)BPCostField.setStyle(WHITE_STYLE); else BPCostField.setStyle(BLACK_STYLE);}};
+    ChangeListener<String> redTextListener7 = (obs, oldText, newText) -> { if ("0".equals(newText)) {HPRestoredField.setStyle(RED_STYLE);} else {if(darkModeActive)HPRestoredField.setStyle(WHITE_STYLE); else HPRestoredField.setStyle(BLACK_STYLE);}};
+    ChangeListener<String> redTextListener8 = (obs, oldText, newText) -> { if ("0".equals(newText)) {FPRestoredField.setStyle(RED_STYLE);} else {if(darkModeActive)FPRestoredField.setStyle(WHITE_STYLE); else FPRestoredField.setStyle(BLACK_STYLE);}};
+    ChangeListener<String> redTextListener9 = (obs, oldText, newText) -> { if ("0".equals(newText)) {SPRestoredField.setStyle(RED_STYLE);} else {if(darkModeActive)SPRestoredField.setStyle(WHITE_STYLE); else SPRestoredField.setStyle(BLACK_STYLE);}};
+    ChangeListener<String> redTextListener10 = (obs, oldText, newText) -> { if ("0".equals(newText)) {xCoordField.setStyle(RED_STYLE);} else {if(darkModeActive)xCoordField.setStyle(WHITE_STYLE); else xCoordField.setStyle(BLACK_STYLE);}};
+    ChangeListener<String> redTextListener11 = (obs, oldText, newText) -> { if ("0".equals(newText)) {yCoordField.setStyle(RED_STYLE);} else {if(darkModeActive)yCoordField.setStyle(WHITE_STYLE); else yCoordField.setStyle(BLACK_STYLE);}};
+    ChangeListener<String> redTextListener12 = (obs, oldText, newText) -> { if ("0".equals(newText)) {zCoordField.setStyle(RED_STYLE);} else {if(darkModeActive)zCoordField.setStyle(WHITE_STYLE); else zCoordField.setStyle(BLACK_STYLE);}};
+    ChangeListener<String> redTextListener13 = (obs, oldText, newText) -> { if ("0".equals(newText)) {coinCostField.setStyle(RED_STYLE);} else {if(darkModeActive)coinCostField.setStyle(WHITE_STYLE); else coinCostField.setStyle(BLACK_STYLE);}};
 
     @Override
     public void start(Stage primaryStage) 
@@ -163,6 +166,7 @@ public class IDTGUI extends Application
 
             if(((String)root.get("IDTLastFolder")).equals("true")) startPath = (String)root.get("startPath");
             if(((String)root.get("IDTRedFields")).equals("true")) setRed0TextFieldFormats(true);
+            if(((String)root.get("IDTDarkMode")).equals("true")) setDarkStyle(emptyScene, true);
         }
         catch (FileNotFoundException e){System.out.println("There was an Error Finding the JSON File");}
         catch (IOException e){System.out.println("There was an Error Reading the JSON File");}
@@ -236,7 +240,7 @@ public class IDTGUI extends Application
                         fileChooser.getExtensionFilters().addAll(relFilter);
                     }
                     fileChooser.setTitle("Save As");
-                    fileChooser.setInitialDirectory(givenFile);
+                    fileChooser.setInitialDirectory(fileSelector.getSelectionModel().getSelectedItem().getParentFile());
 
                     File dest = fileChooser.showSaveDialog(window);
                     if (dest != null) 
@@ -262,6 +266,7 @@ public class IDTGUI extends Application
                             successPane.setAlignment(Pos.CENTER);
 
                             Scene successScene = new Scene(successPane, 150, 50);
+                            if(darkModeActive) setDarkStyle(successScene, true);
 
                             successBox.setScene(successScene);
                             successBox.initModality(Modality.APPLICATION_MODAL);
@@ -300,7 +305,7 @@ public class IDTGUI extends Application
 
                 CheckBox lastFolderBox = new CheckBox();
                 CheckBox redFieldBox = new CheckBox();
-                CheckBox mysteryBox = new CheckBox();
+                CheckBox darkModeBox = new CheckBox();
                 Button saveOptionsButton = new Button("Save Options");
 
                 try
@@ -311,7 +316,7 @@ public class IDTGUI extends Application
 
                     if(((String)root.get("IDTLastFolder")).equals("true")) lastFolderBox.setSelected(true); else lastFolderBox.setSelected(false);
                     if(((String)root.get("IDTRedFields")).equals("true")) redFieldBox.setSelected(true); else redFieldBox.setSelected(false);
-                    if(((String)root.get("IDTMystery")).equals("true")) mysteryBox.setSelected(true); else mysteryBox.setSelected(false);
+                    if(((String)root.get("IDTDarkMode")).equals("true")) darkModeBox.setSelected(true); else darkModeBox.setSelected(false);
                 }
                 catch (FileNotFoundException e){System.out.println("There was an Error Finding the JSON File");}
                 catch (IOException e){System.out.println("There was an Error Reading the JSON File");}
@@ -329,9 +334,9 @@ public class IDTGUI extends Application
                 optionsForm.add(unitImageViewCreator(images.get("cog")), 0, 1);
                 optionsForm.add(new Label("Highlight 0's Red"), 1, 1);
                 optionsForm.add(redFieldBox, 2, 1);
-                // optionsForm.add(unitImageViewCreator(images.get("cog")), 0, 2);
-                // optionsForm.add(new Label("Patch Mystery Fix (Unstable)"), 1, 2);
-                // optionsForm.add(mysteryBox, 2, 2);
+                optionsForm.add(unitImageViewCreator(images.get("cog")), 0, 2);
+                optionsForm.add(new Label("Dark Mode"), 1, 2);
+                optionsForm.add(darkModeBox, 2, 2);
 
                 VBox optionsVBox = new VBox();
                 optionsVBox.setAlignment(Pos.CENTER);
@@ -343,6 +348,7 @@ public class IDTGUI extends Application
                 optionsPane.setAlignment(Pos.CENTER);
 
                 Scene optionsScene = new Scene(optionsPane, 250, 200);
+                if(darkModeActive) setDarkStyle(optionsScene, true);
 
                 optionsBox.setScene(optionsScene);
                 optionsBox.initModality(Modality.APPLICATION_MODAL);
@@ -364,8 +370,8 @@ public class IDTGUI extends Application
                             if(redFieldBox.isSelected()) root.put("IDTRedFields", "true");
                             else root.put("IDTRedFields", "false");
 
-                            if(mysteryBox.isSelected()) root.put("IDTMystery", "true");
-                            else root.put("IDTMystery", "false");
+                            if(darkModeBox.isSelected()) root.put("IDTDarkMode", "true");
+                            else root.put("IDTDarkMode", "false");
 
                             Gson gson = new GsonBuilder().setPrettyPrinting().create();
                             Object asJson = gson.fromJson(root.toJSONString(), Object.class);
@@ -377,6 +383,9 @@ public class IDTGUI extends Application
                         catch (FileNotFoundException e){System.out.println("There was an Error Finding the JSON File");}
                         catch (IOException e){System.out.println("There was an Error Reading the JSON File");}
                         catch (ParseException e){System.out.println("There was an Error Parsing the JSON File");}
+
+                        if(darkModeBox.isSelected()) {setDarkStyle(emptyScene, true); darkModeActive = true;}
+                        else {setDarkStyle(emptyScene, false); darkModeActive = false;}
 
                         if(redFieldBox.isSelected()) setRed0TextFieldFormats(true);
                         else setRed0TextFieldFormats(false);
@@ -394,28 +403,43 @@ public class IDTGUI extends Application
                 Stage alertBox = new Stage();
                 alertBox.setTitle("About");
                 alertBox.getIcons().add(images.get("itemsIcon"));
+                alertBox.initModality(Modality.APPLICATION_MODAL);
+                alertBox.setResizable(false);
 
-                VBox alertMenu = new VBox();
+                ImageView logo = new ImageView(images.get("magicalMapLogo"));
+                logo.setFitWidth(100);
+                logo.setFitHeight(100);
+
+                Label versionLabel = new Label("Magical Map Version: " + GUI.version);
+                versionLabel.setMaxWidth(Double.MAX_VALUE);
+                versionLabel.setAlignment(Pos.CENTER);
+                versionLabel.setTextAlignment(TextAlignment.CENTER);
+
+                Label creditLabel = new Label("Item Data Tool Written by Jemaroo");
+                creditLabel.setAlignment(Pos.CENTER);
+                creditLabel.setTextAlignment(TextAlignment.CENTER);
+
+                VBox informationBox = new VBox(6, versionLabel, creditLabel);
+                informationBox.setAlignment(Pos.CENTER);
+
+                HBox headerBox = new HBox(15, logo, informationBox);
+                headerBox.setAlignment(Pos.CENTER);
+
+                Label descriptionLabel = new Label("Item Data Tool allows you to open up the game's main dol or any rel file containing item data and edit item data fields, shop item tables, field objects, and more.");
+                descriptionLabel.setWrapText(true);
+                descriptionLabel.setMaxWidth(300);
+                descriptionLabel.setAlignment(Pos.CENTER);
+                descriptionLabel.setTextAlignment(TextAlignment.CENTER);
+
+                VBox alertMenu = new VBox(15, headerBox, descriptionLabel);
                 alertMenu.setAlignment(Pos.CENTER);
-                Text versionText = new Text("Magical Map Version: " + GUI.version);
-                versionText.setWrappingWidth(290);
-                versionText.setTextAlignment(TextAlignment.CENTER);
-                Text creditText = new Text("Item Data Tool Written by Jemaroo");
-                creditText.setWrappingWidth(290);
-                creditText.setTextAlignment(TextAlignment.CENTER);
-                Text description = new Text("Item Data Tool allows you to open up the game's main dol or any rel file containing item data and edit item data fields, shop item tables, field objects, and more.");
-                description.setWrappingWidth(290);
-                description.setTextAlignment(TextAlignment.CENTER);
-                alertMenu.getChildren().addAll(new Label(""), versionText, creditText, new Label(""), description);
+                alertMenu.setPadding(new Insets(15, 20, 15, 20));
 
-                StackPane alertPane = new StackPane();
-                alertPane.getChildren().add(alertMenu);
-                alertPane.setAlignment(Pos.CENTER);
+                Scene alertScene = new Scene(alertMenu);
 
-                Scene alertScene = new Scene(alertPane, 350, 150);
+                if(darkModeActive) setDarkStyle(alertScene, true);
 
                 alertBox.setScene(alertScene);
-                alertBox.initModality(Modality.APPLICATION_MODAL);
                 alertBox.show();
             }
         });
@@ -492,6 +516,7 @@ public class IDTGUI extends Application
 
         fileSelector.setOnAction(e -> 
         {
+            if(fileSelector.getSelectionModel().getSelectedItem() == null) return;
             centerMenu.getChildren().clear();
 
             if(fileSelector.getSelectionModel().getSelectedItem().getName().equals("main.dol") || fileSelector.getSelectionModel().getSelectedItem().getName().equals("Start.dol"))
@@ -676,6 +701,9 @@ public class IDTGUI extends Application
                     upperBox.getChildren().clear();
                     upperBox.getChildren().addAll(searchField, saveChangesButton);
 
+                    weaponBox.getItems().clear();
+                    weaponBox.getItems().addAll("None", "Lucky Start", "Jump", "Spin Jump 1", "Spin Jump 2", "Spring Jump 1", "Spring Jump 2", "First Strike Super Hammer", "First Strike Ultra Hammer", "Hammer", "Super Hammer 1", "Super Hammer 2", "Ultra Hammer 1", "Ultra Hammer 2", "Ultra Hammer 3", "Multibounce", "Power Jump", "Mega Jump", "Power Bounce", "Tornado Jump 1", "Tornado Jump 2", "Shrink Stomp", "Sleepy Stomp", "Soft Stomp", "Power Smash", "Mega Smash", "Quake Hammer", "Mega Quake", "Hammer Throw", "Piercing Blow", "Head Rattle", "Fire Drive 1", "Fire Drive 2", "Ice Smash", "Charge", "Charge P", "Super Charge", "Super Charge P", "Double Dip", "Triple Dip", "Mario Defend", "Partner Defend", "Clock Out", "Art Attack", "Supernova", "Sweet Treat", "Sweet Feast", "Earth Tremor", "Power Lift", "Showstopper", "defaultWeapon_Dummy_NoItem$743", "ItemWeaponData_CookingItem", "Mushroom", "Life Shroom", "Super Shroom", "Ultra Shroom", "Dried Shroom", "Honey Syrup", "Maple Syrup", "Jammin' Jelly", "Whacka Bump", "Pow Block", "Fire Flower", "Thunder Rage", "Thunder Bolt", "Shooting Star", "Ice Storm", "Earth Quake", "Boo's Sheet", "Volt Shroom", "Repel Cape", "Ruin Powder", "Sleepy Sheep", "Stopwatch", "Dizzy Dial", "Power Punch", "Courage Shell", "HP Drain", "Trade Off", "Mini Mr. Mini", "Mr. Softener", "Tasty Tonic", "Slow Shroom", "Gradual Syrup", "Point Swap", "Fright Mask", "Mystery", "Spite Pouch", "Koopa Curse", "Space Food", "Icicle Pop", "Zess Frappe", "Snow Bunny", "Shroom Broth", "Love Pudding 1", "Love Pudding 2", "Love Pudding 3", "Meteor Meal", "Spicy Pasta", "Heartful Cake", "Peach Tart 1", "Peach Tart 2", "Peach Tart 3", "Electro Pop", "Healthy Salad", "Fresh Juice", "Hot Sauce", "Couple's Cake", "Zess Dynamite", "Coconut Bomb", "Courage Meal", "Egg Bomb", "Poison Shroom", "Trial Stew", "Body Slam", "Gale Force", "Lip Lock", "Dodgy Fog", "Ground Pound", "Gulp 1", "Gulp 2", "Gulp 3", "Gulp 4", "Gulp 5", "Mini Egg", "Stampede", "Love Slap 1", "Love Slap 2", "Love Slap 3", "Love Slap 4", "Tease", "Kiss Thief", "Smooch", "Bomb First Strike", "Bomb", "Bomb Squad", "Hold Fast", "Bob-ombast", "Shade Fist", "Veil", "Fiery Jinx", "Infatuate", "Shell Toss First Strike", "Shell Toss", "Power Shell", "Shell Shield", "Shell Slam", "Headbonk", "Tattle", "Multibonk", "Rally Wink");
+
                     ItemData selected = itemList.getSelectionModel().getSelectedItem();
                     propertyFields = new ArrayList<TextField>();
 
@@ -726,6 +754,9 @@ public class IDTGUI extends Application
                     form.add(fieldImageViewCreator(images.get("appealAction")), 0, 12);
                     form.add(new Label("Can be Used in the Field:"), 1, 12);
                     form.add(UseLocationFieldBox, 2, 12);
+                    form.add(fieldImageViewCreator(images.get("hammer")), 0, 13);
+                    form.add(new Label("Weapon:"), 1, 13);
+                    form.add(weaponBox, 2, 13);
 
                     if(selected.properties.size() > 0 && selected != null)
                     {
@@ -1029,6 +1060,10 @@ public class IDTGUI extends Application
                                     {
                                         count++;
                                     }
+                                    else if (field instanceof FieldLocationData.evt_mobj_lv_blk && previousItem instanceof FieldLocationData.evt_mobj_lv_blk && field.map.equals(((FieldLocationData)previousItem).map)) 
+                                    {
+                                        count++;
+                                    }
                                 }
                             }
 
@@ -1087,6 +1122,11 @@ public class IDTGUI extends Application
                             {
                                 setText(field.map + " Save Block " + (count + 1));
                                 setGraphic(fieldImageViewCreator(images.get("saveBlock")));
+                            }
+                            else if(field instanceof FieldLocationData.evt_mobj_lv_blk)
+                            {
+                                setText(field.map + " Breakable Block " + (count + 1));
+                                setGraphic(fieldImageViewCreator(images.get("lvBlock")));
                             }
                         }
                     }
@@ -1182,6 +1222,10 @@ public class IDTGUI extends Application
                         else if (field instanceof FieldLocationData.evt_mobj_save_blk)
                         {
                             name = field.map + " Save Block";
+                        }
+                        else if (field instanceof FieldLocationData.evt_mobj_lv_blk)
+                        {
+                            name = field.map + " Breakable Block";
                         }
                         else
                         {
@@ -1476,6 +1520,8 @@ public class IDTGUI extends Application
             HPRestoredField.setText(String.valueOf(b.HPRestored));
             FPRestoredField.setText(String.valueOf(b.FPRestored));
             SPRestoredField.setText(String.valueOf(b.SPRestored));
+
+            weaponBox.getSelectionModel().select(WPtoIndex(b.weapon));
         } 
     }
 
@@ -1661,6 +1707,7 @@ public class IDTGUI extends Application
             b.HPRestored = Integer.parseInt(HPRestoredField.getText());
             b.FPRestored = Integer.parseInt(FPRestoredField.getText());
             b.SPRestored = Integer.parseInt(SPRestoredField.getText());
+            b.weapon = IndexToWP(weaponBox.getSelectionModel().getSelectedIndex());
 
             if(b.name.equals("HP Plus") || b.name.equals("FP Plus") || b.name.equals("HP Plus P"))
             {
@@ -1742,174 +1789,51 @@ public class IDTGUI extends Application
                 else {b.coinCost = Integer.parseInt((coinCostField).getText());}
             }
         }
-        else if(selected instanceof FieldLocationData.evt_item_entry b)
+        else if(selected instanceof FieldLocationData f)
         {
             if(!((TextField)fieldFields.get(0)).isDisabled())
             {
-                System.out.println("Saving X");
-                b.xCoord = Long.parseLong(((TextField)fieldFields.get(0)).getText());
+                if(f.xCoord > -250000000L && f.xCoord <= -220000000L) f.xCoord = Math.round((Double.parseDouble(((TextField)fieldFields.get(0)).getText()) * 1024.0) - 230000000L);
+                else f.xCoord = Long.parseLong(((TextField)fieldFields.get(0)).getText());
             }
+
             if(!((TextField)fieldFields.get(1)).isDisabled())
             {
-                System.out.println("Saving Y");
-                b.yCoord = Long.parseLong(((TextField)fieldFields.get(1)).getText());
+                if(f.yCoord > -250000000L && f.yCoord <= -220000000L) f.yCoord = Math.round((Double.parseDouble(((TextField)fieldFields.get(1)).getText()) * 1024.0) - 230000000L);
+                else f.yCoord = Long.parseLong(((TextField)fieldFields.get(1)).getText());
             }
+
             if(!((TextField)fieldFields.get(2)).isDisabled())
             {
-                System.out.println("Saving Z");
-                b.zCoord = Long.parseLong(((TextField)fieldFields.get(2)).getText());
+                if(f.zCoord > -250000000L && f.zCoord <= -220000000L) f.zCoord = Math.round((Double.parseDouble(((TextField)fieldFields.get(2)).getText()) * 1024.0) - 230000000L);
+                else f.zCoord = Long.parseLong(((TextField)fieldFields.get(2)).getText());
             }
-            b.itemID = ((ComboBox<String>)fieldFields.get(3)).getSelectionModel().getSelectedIndex();
-        }
-        else if(selected instanceof FieldLocationData.evt_mobj_badgeblk b)
-        {
-            if(!((TextField)fieldFields.get(0)).isDisabled())
+
+            if(f instanceof FieldLocationData.evt_item_entry b)
             {
-                System.out.println("Saving X");
-                b.xCoord = Long.parseLong(((TextField)fieldFields.get(0)).getText());
+                b.itemID = ((ComboBox<String>)fieldFields.get(3)).getSelectionModel().getSelectedIndex();
             }
-            if(!((TextField)fieldFields.get(1)).isDisabled())
+            else if(f instanceof FieldLocationData.evt_mobj_badgeblk b)
             {
-                System.out.println("Saving Y");
-                b.yCoord = Long.parseLong(((TextField)fieldFields.get(1)).getText());
+                b.itemID = ((ComboBox<String>)fieldFields.get(3)).getSelectionModel().getSelectedIndex();
+                b.blockType = ((ComboBox<String>)fieldFields.get(4)).getSelectionModel().getSelectedIndex();
             }
-            if(!((TextField)fieldFields.get(2)).isDisabled())
+            else if(f instanceof FieldLocationData.evt_mobj_brick b)
             {
-                System.out.println("Saving Z");
-                b.zCoord = Long.parseLong(((TextField)fieldFields.get(2)).getText());
+                b.itemID = ((ComboBox<String>)fieldFields.get(3)).getSelectionModel().getSelectedIndex();
+                b.blockType = IndexToBB(((ComboBox<String>)fieldFields.get(4)).getSelectionModel().getSelectedIndex());
             }
-            b.itemID = ((ComboBox<String>)fieldFields.get(3)).getSelectionModel().getSelectedIndex();
-            b.blockType = ((ComboBox<String>)fieldFields.get(4)).getSelectionModel().getSelectedIndex();
-        }
-        else if(selected instanceof FieldLocationData.evt_mobj_blk b)
-        {
-            if(!((TextField)fieldFields.get(0)).isDisabled())
+            else if(f instanceof FieldLocationData.evt_mobj_itembox b)
             {
-                System.out.println("Saving X");
-                b.xCoord = Long.parseLong(((TextField)fieldFields.get(0)).getText());
+                b.chestType = ((ComboBox<String>)fieldFields.get(3)).getSelectionModel().getSelectedIndex();
             }
-            if(!((TextField)fieldFields.get(1)).isDisabled())
+            else if(f instanceof FieldLocationData.evt_mobj_kururing_floor b)
             {
-                System.out.println("Saving Y");
-                b.yCoord = Long.parseLong(((TextField)fieldFields.get(1)).getText());
+                b.itemID = ((ComboBox<String>)fieldFields.get(3)).getSelectionModel().getSelectedIndex();
             }
-            if(!((TextField)fieldFields.get(2)).isDisabled())
+            else if(f instanceof FieldLocationData.evt_mobj_recovery_blk b)
             {
-                System.out.println("Saving Z");
-                b.zCoord = Long.parseLong(((TextField)fieldFields.get(2)).getText());
-            }
-        }
-        else if(selected instanceof FieldLocationData.evt_mobj_brick b)
-        {
-            if(!((TextField)fieldFields.get(0)).isDisabled())
-            {
-                System.out.println("Saving X");
-                b.xCoord = Long.parseLong(((TextField)fieldFields.get(0)).getText());
-            }
-            if(!((TextField)fieldFields.get(1)).isDisabled())
-            {
-                System.out.println("Saving Y");
-                b.yCoord = Long.parseLong(((TextField)fieldFields.get(1)).getText());
-            }
-            if(!((TextField)fieldFields.get(2)).isDisabled())
-            {
-                System.out.println("Saving Z");
-                b.zCoord = Long.parseLong(((TextField)fieldFields.get(2)).getText());
-            }
-            b.itemID = ((ComboBox<String>)fieldFields.get(3)).getSelectionModel().getSelectedIndex();
-            b.blockType = IndexToBB(((ComboBox<String>)fieldFields.get(4)).getSelectionModel().getSelectedIndex());
-        }
-        else if(selected instanceof FieldLocationData.evt_mobj_itembox b)
-        {
-            if(!((TextField)fieldFields.get(0)).isDisabled())
-            {
-                System.out.println("Saving X");
-                b.xCoord = Long.parseLong(((TextField)fieldFields.get(0)).getText());
-            }
-            if(!((TextField)fieldFields.get(1)).isDisabled())
-            {
-                System.out.println("Saving Y");
-                b.yCoord = Long.parseLong(((TextField)fieldFields.get(1)).getText());
-            }
-            if(!((TextField)fieldFields.get(2)).isDisabled())
-            {
-                System.out.println("Saving Z");
-                b.zCoord = Long.parseLong(((TextField)fieldFields.get(2)).getText());
-            }
-            b.chestType = ((ComboBox<String>)fieldFields.get(3)).getSelectionModel().getSelectedIndex();
-        }
-        else if(selected instanceof FieldLocationData.evt_mobj_kururing_floor b)
-        {
-            if(!((TextField)fieldFields.get(0)).isDisabled())
-            {
-                System.out.println("Saving X");
-                b.xCoord = Long.parseLong(((TextField)fieldFields.get(0)).getText());
-            }
-            if(!((TextField)fieldFields.get(1)).isDisabled())
-            {
-                System.out.println("Saving Y");
-                b.yCoord = Long.parseLong(((TextField)fieldFields.get(1)).getText());
-            }
-            if(!((TextField)fieldFields.get(2)).isDisabled())
-            {
-                System.out.println("Saving Z");
-                b.zCoord = Long.parseLong(((TextField)fieldFields.get(2)).getText());
-            }
-            b.itemID = ((ComboBox<String>)fieldFields.get(3)).getSelectionModel().getSelectedIndex();
-        }
-        else if(selected instanceof FieldLocationData.evt_mobj_powerupblk b)
-        {
-            if(!((TextField)fieldFields.get(0)).isDisabled())
-            {
-                System.out.println("Saving X");
-                b.xCoord = Long.parseLong(((TextField)fieldFields.get(0)).getText());
-            }
-            if(!((TextField)fieldFields.get(1)).isDisabled())
-            {
-                System.out.println("Saving Y");
-                b.yCoord = Long.parseLong(((TextField)fieldFields.get(1)).getText());
-            }
-            if(!((TextField)fieldFields.get(2)).isDisabled())
-            {
-                System.out.println("Saving Z");
-                b.zCoord = Long.parseLong(((TextField)fieldFields.get(2)).getText());
-            }
-        }
-        else if(selected instanceof FieldLocationData.evt_mobj_recovery_blk b)
-        {
-            if(!((TextField)fieldFields.get(0)).isDisabled())
-            {
-                System.out.println("Saving X");
-                b.xCoord = Long.parseLong(((TextField)fieldFields.get(0)).getText());
-            }
-            if(!((TextField)fieldFields.get(1)).isDisabled())
-            {
-                System.out.println("Saving Y");
-                b.yCoord = Long.parseLong(((TextField)fieldFields.get(1)).getText());
-            }
-            if(!((TextField)fieldFields.get(2)).isDisabled())
-            {
-                System.out.println("Saving Z");
-                b.zCoord = Long.parseLong(((TextField)fieldFields.get(2)).getText());
-            }
-            b.coinCost = Long.parseLong(((TextField)fieldFields.get(3)).getText());
-        }
-        else if(selected instanceof FieldLocationData.evt_mobj_save_blk b)
-        {
-            if(!((TextField)fieldFields.get(0)).isDisabled())
-            {
-                System.out.println("Saving X");
-                b.xCoord = Long.parseLong(((TextField)fieldFields.get(0)).getText());
-            }
-            if(!((TextField)fieldFields.get(1)).isDisabled())
-            {
-                System.out.println("Saving Y");
-                b.yCoord = Long.parseLong(((TextField)fieldFields.get(1)).getText());
-            }
-            if(!((TextField)fieldFields.get(2)).isDisabled())
-            {
-                System.out.println("Saving Z");
-                b.zCoord = Long.parseLong(((TextField)fieldFields.get(2)).getText());
+                b.coinCost = Long.parseLong(((TextField)fieldFields.get(3)).getText());
             }
         }
     }
@@ -1966,19 +1890,38 @@ public class IDTGUI extends Application
             zCoordField.textProperty().removeListener(redTextListener12);
             coinCostField.textProperty().removeListener(redTextListener13);
 
-            sortOrderField.setStyle(BLACK_STYLE);
-            buyPriceField.setStyle(BLACK_STYLE);
-            discountPriceField.setStyle(BLACK_STYLE);
-            starPiecePriceField.setStyle(BLACK_STYLE);
-            sellPriceField.setStyle(BLACK_STYLE);
-            BPCostField.setStyle(BLACK_STYLE);
-            HPRestoredField.setStyle(BLACK_STYLE);
-            FPRestoredField.setStyle(BLACK_STYLE);
-            SPRestoredField.setStyle(BLACK_STYLE);
-            xCoordField.setStyle(BLACK_STYLE);
-            yCoordField.setStyle(BLACK_STYLE);
-            zCoordField.setStyle(BLACK_STYLE);
-            coinCostField.setStyle(BLACK_STYLE);
+            if(darkModeActive)
+            {
+                sortOrderField.setStyle(WHITE_STYLE);
+                buyPriceField.setStyle(WHITE_STYLE);
+                discountPriceField.setStyle(WHITE_STYLE);
+                starPiecePriceField.setStyle(WHITE_STYLE);
+                sellPriceField.setStyle(WHITE_STYLE);
+                BPCostField.setStyle(WHITE_STYLE);
+                HPRestoredField.setStyle(WHITE_STYLE);
+                FPRestoredField.setStyle(WHITE_STYLE);
+                SPRestoredField.setStyle(WHITE_STYLE);
+                xCoordField.setStyle(WHITE_STYLE);
+                yCoordField.setStyle(WHITE_STYLE);
+                zCoordField.setStyle(WHITE_STYLE);
+                coinCostField.setStyle(WHITE_STYLE);
+            }
+            else
+            {
+                sortOrderField.setStyle(BLACK_STYLE);
+                buyPriceField.setStyle(BLACK_STYLE);
+                discountPriceField.setStyle(BLACK_STYLE);
+                starPiecePriceField.setStyle(BLACK_STYLE);
+                sellPriceField.setStyle(BLACK_STYLE);
+                BPCostField.setStyle(BLACK_STYLE);
+                HPRestoredField.setStyle(BLACK_STYLE);
+                FPRestoredField.setStyle(BLACK_STYLE);
+                SPRestoredField.setStyle(BLACK_STYLE);
+                xCoordField.setStyle(BLACK_STYLE);
+                yCoordField.setStyle(BLACK_STYLE);
+                zCoordField.setStyle(BLACK_STYLE);
+                coinCostField.setStyle(BLACK_STYLE);
+            }
         }
     }
 
@@ -1988,7 +1931,20 @@ public class IDTGUI extends Application
      */
     private void applyRBStyle(TextField field) 
     {
-        field.setStyle("0".equals(field.getText()) ? RED_STYLE : BLACK_STYLE);
+        if(darkModeActive) field.setStyle("0".equals(field.getText()) ? RED_STYLE : WHITE_STYLE);
+        else field.setStyle("0".equals(field.getText()) ? RED_STYLE : BLACK_STYLE);
+    }
+
+    /**
+     * @Author Jemaroo
+     * @Function Sets the text style to red or black depending on value
+     */
+    private void setDarkStyle(Scene scene, boolean yesno) 
+    {
+        darkModeActive = yesno;
+        scene.getStylesheets().clear();
+        String css = yesno ? "/css/dark.css" : "/css/light.css";
+        scene.getStylesheets().add(getClass().getResource(css).toExternalForm());
     }
 
     /**
@@ -2682,40 +2638,73 @@ public class IDTGUI extends Application
     public void loadFieldDataFields(FieldLocationData selected)
     {
         TextField xCoordField = new TextField();
-        if(checkForLW(selected.xCoord))
+        if(checkForEvtValue(selected.xCoord))
         {
-            xCoordField.setDisable(true);
-            xCoordField.setEditable(false);
-            xCoordField.setText(getLW(selected.xCoord));
+            xCoordField.setText(getEvtValue(selected.xCoord));
+
+            if(selected.xCoord > -220000000L)
+            {
+                xCoordField.setDisable(true);
+                xCoordField.setEditable(false);
+            }
+            else
+            {
+                xCoordField.setDisable(false);
+                xCoordField.setEditable(true);
+            }
         }
         else
         {
+            xCoordField.setDisable(false);
+            xCoordField.setEditable(true);
             xCoordField.setText(String.valueOf(selected.xCoord));
         }
         fieldFields.add(xCoordField);
 
         TextField yCoordField = new TextField();
-        if(checkForLW(selected.yCoord))
+        if(checkForEvtValue(selected.yCoord))
         {
-            yCoordField.setDisable(true);
-            yCoordField.setEditable(false);
-            yCoordField.setText(getLW(selected.yCoord));
+            yCoordField.setText(getEvtValue(selected.yCoord));
+
+            if(selected.yCoord > -220000000L)
+            {
+                yCoordField.setDisable(true);
+                yCoordField.setEditable(false);
+            }
+            else
+            {
+                yCoordField.setDisable(false);
+                yCoordField.setEditable(true);
+            }
         }
         else
         {
+            yCoordField.setDisable(false);
+            yCoordField.setEditable(true);
             yCoordField.setText(String.valueOf(selected.yCoord));
         }
         fieldFields.add(yCoordField);
 
         TextField zCoordField = new TextField();
-        if(checkForLW(selected.zCoord))
+        if(checkForEvtValue(selected.zCoord))
         {
-            zCoordField.setDisable(true);
-            zCoordField.setEditable(false);
-            zCoordField.setText(getLW(selected.zCoord));
+            zCoordField.setText(getEvtValue(selected.zCoord));
+
+            if(selected.zCoord > -220000000L)
+            {
+                zCoordField.setDisable(true);
+                zCoordField.setEditable(false);
+            }
+            else
+            {
+                zCoordField.setDisable(false);
+                zCoordField.setEditable(true);
+            }
         }
         else
         {
+            zCoordField.setDisable(false);
+            zCoordField.setEditable(true);
             zCoordField.setText(String.valueOf(selected.zCoord));
         }
         fieldFields.add(zCoordField);
@@ -2830,35 +2819,360 @@ public class IDTGUI extends Application
     
     /**
      * @Author Jemaroo
-     * @Function Checks to see if a long value is a LW variable
+     * @Function Checks to see if a long value is an event variable
      */
-    public static boolean checkForLW(long value)
+    public static boolean checkForEvtValue(long value)
     {
-        if(value < -29999985L)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        if (value > -250000000L && value <= -20000000L) {return true;}
+        else {return false;}
     }
     
     /**
      * @Author Jemaroo
-     * @Function Returns the corresponding LW variable name
+     * @Function Returns the corresponding event variable name
      */
-    public static String getLW(long value)
+    public static String getEvtValue(long value)
     {
-        long base = -30000000L;
-        long index = value - base;
-
-        if (index >= 0 && index <= 15)
+        if (value > -250000000L && value <= -220000000L)
         {
-            return "LW(" + index + ")";
+            double decoded = (value + 230000000L) / 1024.0;
+            return String.valueOf(decoded);
         }
+        else if (value > -220000000L && value <= -200000000L) return "UF(" + (value + 210000000L) + ")";
+        else if (value > -200000000L && value <= -180000000L) return "UW(" + (value + 190000000L) + ")";
+        else if (value > -180000000L && value <= -160000000L) return "GSW(" + (value + 170000000L) + ")";
+        else if (value > -160000000L && value <= -140000000L) return "LSW(" + (value + 150000000L) + ")";
+        else if (value > -140000000L && value <= -120000000L) return "GSWF(" + (value + 130000000L) + ")";
+        else if (value > -120000000L && value <= -100000000L) return "LSWF(" + (value + 110000000L) + ")";
+        else if (value > -100000000L && value <= -80000000L) return "GWF(" + (value + 90000000L) + ")";
+        else if (value > -80000000L && value <= -60000000L) return "LWF(" + (value + 70000000L) + ")";
+        else if (value > -60000000L && value <= -40000000L) return "GW(" + (value + 50000000L) + ")";
+        else if (value > -40000000L && value <= -20000000L) return "LW(" + (value + 30000000L) + ")";
 
-        return "LW(?)";
+        return String.valueOf(value);
+    }
+
+    /**
+     * @Author Jemaroo
+     * @Function Turns the value of a Weapon Pointer into it's index
+     */
+    public static int WPtoIndex(long WP)
+    {
+        if(WP == 2150561848L) return 1; //Lucky Start
+        if(WP == 2150971560L) return 2; //Jump
+        if(WP == 2150971752L) return 3; //Super Jump 1
+        if(WP == 2150971944L) return 4; //Super Jump 2
+        if(WP == 2150972136L) return 5; //Spring Jump 1
+        if(WP == 2150972328L) return 6; //Spring Jump 2
+        if(WP == 2150972520L) return 7; //First Strike Super Hammer
+        if(WP == 2150972712L) return 8; //First Strike Ultra Hammer
+        if(WP == 2150972904L) return 9; //Hammer
+        if(WP == 2150973096L) return 10; //Super Hammer 1
+        if(WP == 2150973288L) return 11; //Super Hammer 2
+        if(WP == 2150973480L) return 12; //Ultra Hammer 1
+        if(WP == 2150973672L) return 13; //Ultra Hammer 2
+        if(WP == 2150973864L) return 14; //Ultra Hammer 3
+        if(WP == 2150974056L) return 15; //Multibounce
+        if(WP == 2150974248L) return 16; //Power Jump
+        if(WP == 2150974440L) return 17; //Mega Jump
+        if(WP == 2150974632L) return 18; //Power Bounce
+        if(WP == 2150974824L) return 19; //Tornado Jump 1
+        if(WP == 2150975016L) return 20; //Tornado Jump 2
+        if(WP == 2150975208L) return 21; //Shrink Stomp
+        if(WP == 2150975400L) return 22; //Sleepy Stomp
+        if(WP == 2150975592L) return 23; //Soft Stomp
+        if(WP == 2150975784L) return 24; //Power Smash
+        if(WP == 2150975976L) return 25; //Ultra Smash
+        if(WP == 2150976168L) return 26; //Quake Hammer
+        if(WP == 2150976360L) return 27; //Mega Quake
+        if(WP == 2150976552L) return 28; //Hammer Throw
+        if(WP == 2150976744L) return 29; //Piercing Blow
+        if(WP == 2150976936L) return 30; //Head Rattle
+        if(WP == 2150977128L) return 31; //Fire Drive 1
+        if(WP == 2150977320L) return 32; //Fire Drive 2
+        if(WP == 2150977512L) return 33; //Ice Smash
+        if(WP == 2150977704L) return 34; //Charge
+        if(WP == 2150977896L) return 35; //Charge P
+        if(WP == 2150978088L) return 36; //Super Charge
+        if(WP == 2150978280L) return 37; //Super Charge P
+        if(WP == 2150978472L) return 38; //Double Dip
+        if(WP == 2150978664L) return 39; //Triple Dip
+        if(WP == 2150978856L) return 40; //Mario Defend
+        if(WP == 2150979048L) return 41; //Partner Defend
+        if(WP == 2150979240L) return 42; //Clock Out
+        if(WP == 2150979432L) return 43; //Art Attack
+        if(WP == 2150979624L) return 44; //Supernova
+        if(WP == 2150979816L) return 45; //Sweet Treat
+        if(WP == 2150980008L) return 46; //Sweet Feast
+        if(WP == 2150980200L) return 47; //Earth Tremor
+        if(WP == 2150980392L) return 48; //Power Lift
+        if(WP == 2150980584L) return 49; //Showstopper
+        if(WP == 2151038560L) return 50; //Out of Items
+        if(WP == 2151044232L) return 51; //Generic Recipe Healing Item
+        if(WP == 2151044424L) return 52; //Mushroom
+        if(WP == 2151044616L) return 53; //Life Shroom
+        if(WP == 2151044808L) return 54; //Super Shroom
+        if(WP == 2151045000L) return 55; //Ultra Shroom
+        if(WP == 2151045192L) return 56; //Dried Shroom
+        if(WP == 2151045384L) return 57; //Honey Syrup
+        if(WP == 2151045576L) return 58; //Maple Syrup
+        if(WP == 2151045768L) return 59; //Jammin' Jelly
+        if(WP == 2151045960L) return 60; //Whacka Bump
+        if(WP == 2151047824L) return 61; //Pow Block
+        if(WP == 2151048908L) return 62; //Fire Flower
+        if(WP == 2151050312L) return 63; //Thunder Rage
+        if(WP == 2151050504L) return 64; //Thunder Bolt
+        if(WP == 2151052616L) return 65; //Shooting Star
+        if(WP == 2151054048L) return 66; //Ice Storm
+        if(WP == 2151055608L) return 67; //Earth Quake
+        if(WP == 2151056744L) return 68; //Boo's Sheet
+        if(WP == 2151057044L) return 69; //Volt Shroom
+        if(WP == 2151057344L) return 70; //Repel Cape
+        if(WP == 2151057536L) return 71; //Ruin Powder
+        if(WP == 2151058092L) return 72; //Sleepy Sheep
+        if(WP == 2151059200L) return 73; //Stopwatch
+        if(WP == 2151059532L) return 74; //Dizzy Dial
+        if(WP == 2151059724L) return 75; //Power Punch
+        if(WP == 2151059916L) return 76; //Courage Shell
+        if(WP == 2151061232L) return 77; //HP Drain
+        if(WP == 2151062368L) return 78; //Trade Off
+        if(WP == 2151062560L) return 79; //Mini Mr. Mini
+        if(WP == 2151062752L) return 80; //Mr. Softener
+        if(WP == 2151062944L) return 81; //Tasty Tonic
+        if(WP == 2151063244L) return 82; //Slow Shroom
+        if(WP == 2151063544L) return 83; //Gradual Syrup
+        if(WP == 2151064364L) return 84; //Point Swap
+        if(WP == 2151065224L) return 85; //Fright Mask
+        if(WP == 2151066244L) return 86; //Mystery
+        if(WP == 2151066492L) return 87; //Spite Pouch
+        if(WP == 2151066684L) return 88; //Koopa Curse
+        if(WP == 2151067860L) return 89; //Space Food
+        if(WP == 2151068052L) return 90; //Icicle Pop
+        if(WP == 2151068244L) return 91; //Zess Frappe
+        if(WP == 2151068436L) return 92; //Snow Bunny
+        if(WP == 2151068628L) return 93; //Shroom Broth
+        if(WP == 2151068820L) return 94; //Love Pudding 1
+        if(WP == 2151069012L) return 95; //Love Pudding 2
+        if(WP == 2151069204L) return 96; //Love Pudding 3
+        if(WP == 2151069396L) return 97; //Meteor Meal
+        if(WP == 2151069588L) return 98; //Spicy Pasta
+        if(WP == 2151069780L) return 99; //Heartful Cake
+        if(WP == 2151069972L) return 100; //Peach Tart 1
+        if(WP == 2151070164L) return 101; //Peach Tart 2
+        if(WP == 2151070356L) return 102; //Peach Tart 3
+        if(WP == 2151070548L) return 103; //Electro Pop
+        if(WP == 2151070740L) return 104; //Healthy Salad
+        if(WP == 2151070932L) return 105; //Fresh Juice
+        if(WP == 2151071124L) return 106; //Hot Sauce
+        if(WP == 2151071316L) return 107; //Couple's Cake
+        if(WP == 2151073236L) return 108; //Zess Dynamite
+        if(WP == 2151073428L) return 109; //Coconut Bomb
+        if(WP == 2151073620L) return 110; //Courage Meal
+        if(WP == 2151073812L) return 111; //Egg Bomb
+        if(WP == 2151074348L) return 112; //Poison Shroom
+        if(WP == 2151075452L) return 113; //Trial Stew
+        if(WP == 2151124384L) return 114; //Flurrie Body Slam
+        if(WP == 2151124576L) return 115; //Flurrie Gale Force
+        if(WP == 2151124768L) return 116; //Flurrie Lip Lock
+        if(WP == 2151124960L) return 117; //Flurrie Dodgy Fog
+        if(WP == 2151139940L) return 118; //Yoshi Ground Pound
+        if(WP == 2151140132L) return 119; //Yoshi Gulp 1
+        if(WP == 2151140324L) return 120; //Yoshi Gulp 2
+        if(WP == 2151140516L) return 121; //Yoshi Gulp 3
+        if(WP == 2151140708L) return 122; //Yoshi Gulp 4
+        if(WP == 2151140900L) return 123; //Yoshi Gulp 5
+        if(WP == 2151141092L) return 124; //Yoshi Mini Egg
+        if(WP == 2151141284L) return 125; //Yoshi Stampede
+        if(WP == 2151160688L) return 126; //Ms. Mowz Love Slap 1
+        if(WP == 2151160880L) return 127; //Ms. Mowz Love Slap 2
+        if(WP == 2151161072L) return 128; //Ms. Mowz Love Slap 3
+        if(WP == 2151161264L) return 129; //Ms. Mowz Love Slap 4
+        if(WP == 2151161456L) return 130; //Ms. Mowz Tease
+        if(WP == 2151161648L) return 131; //Ms. Mowz Kiss Thief
+        if(WP == 2151161840L) return 132; //Ms. Mowz Smooch
+        if(WP == 2151185248L) return 133; //Bobbery First Strike
+        if(WP == 2151185440L) return 134; //Bobbery Bomb
+        if(WP == 2151185632L) return 135; //Bobbery Bomb Squad
+        if(WP == 2151185824L) return 136; //Bobbery Hold Fast
+        if(WP == 2151186016L) return 137; //Bobbery Bob-ombast
+        if(WP == 2151202528L) return 138; //Vivian Shade Fist
+        if(WP == 2151202720L) return 139; //Vivian Veil
+        if(WP == 2151202912L) return 140; //Vivian Fiery Jinx
+        if(WP == 2151203104L) return 141; //Vivian Infatuate
+        if(WP == 2151216284L) return 142; //Koops First Strike
+        if(WP == 2151216476L) return 143; //Koops Shell Toss
+        if(WP == 2151216668L) return 144; //Koops Power Shell
+        if(WP == 2151216860L) return 145; //Koops Shell Shield
+        if(WP == 2151217052L) return 146; //Koops Shell Slam
+        if(WP == 2151235240L) return 147; //Goombella Headbonk
+        if(WP == 2151235432L) return 148; //Goombella Tattle
+        if(WP == 2151235624L) return 149; //Goombella Multibonk
+        if(WP == 2151235816L) return 150; //Goombella Rally Wink
+
+        return 0; //None
+    }
+
+    /**
+     * @Author Jemaroo
+     * @Function Turns the value of a index into it's Weapon Pointer
+     */
+    public static long IndexToWP(int index)
+    {
+        switch(index)
+        {
+            case 1: return 2150561848L; //Lucky Start
+            case 2: return 2150971560L; //Jump
+            case 3: return 2150971752L; //Super Jump 1
+            case 4: return 2150971944L; //Super Jump 2
+            case 5: return 2150972136L; //Spring Jump 1
+            case 6: return 2150972328L; //Spring Jump 2
+            case 7: return 2150972520L; //First Strike Super Hammer
+            case 8: return 2150972712L; //First Strike Ultra Hammer
+            case 9: return 2150972904L; //Hammer
+            case 10: return 2150973096L; //Super Hammer 1
+            case 11: return 2150973288L; //Super Hammer 2
+            case 12: return 2150973480L; //Ultra Hammer 1
+            case 13: return 2150973672L; //Ultra Hammer 2
+            case 14: return 2150973864L; //Ultra Hammer 3
+            case 15: return 2150974056L; //Multibounce
+            case 16: return 2150974248L; //Power Jump
+            case 17: return 2150974440L; //Mega Jump
+            case 18: return 2150974632L; //Power Bounce
+            case 19: return 2150974824L; //Tornado Jump 1
+            case 20: return 2150975016L; //Tornado Jump 2
+            case 21: return 2150975208L; //Shrink Stomp
+            case 22: return 2150975400L; //Sleepy Stomp
+            case 23: return 2150975592L; //Soft Stomp
+            case 24: return 2150975784L; //Power Smash
+            case 25: return 2150975976L; //Ultra Smash
+            case 26: return 2150976168L; //Quake Hammer
+            case 27: return 2150976360L; //Mega Quake
+            case 28: return 2150976552L; //Hammer Throw
+            case 29: return 2150976744L; //Piercing Blow
+            case 30: return 2150976936L; //Head Rattle
+            case 31: return 2150977128L; //Fire Drive 1
+            case 32: return 2150977320L; //Fire Drive 2
+            case 33: return 2150977512L; //Ice Smash
+            case 34: return 2150977704L; //Charge
+            case 35: return 2150977896L; //Charge P
+            case 36: return 2150978088L; //Super Charge
+            case 37: return 2150978280L; //Super Charge P
+            case 38: return 2150978472L; //Double Dip
+            case 39: return 2150978664L; //Triple Dip
+            case 40: return 2150978856L; //Mario Defend
+            case 41: return 2150979048L; //Partner Defend
+            case 42: return 2150979240L; //Clock Out
+            case 43: return 2150979432L; //Art Attack
+            case 44: return 2150979624L; //Supernova
+            case 45: return 2150979816L; //Sweet Treat
+            case 46: return 2150980008L; //Sweet Feast
+            case 47: return 2150980200L; //Earth Tremor
+            case 48: return 2150980392L; //Power Lift
+            case 49: return 2150980584L; //Showstopper
+            case 50: return 2151038560L; //Out of Items
+            case 51: return 2151044232L; //Generic Recipe Healing Item
+            case 52: return 2151044424L; //Mushroom
+            case 53: return 2151044616L; //Life Shroom
+            case 54: return 2151044808L; //Super Shroom
+            case 55: return 2151045000L; //Ultra Shroom
+            case 56: return 2151045192L; //Dried Shroom
+            case 57: return 2151045384L; //Honey Syrup
+            case 58: return 2151045576L; //Maple Syrup
+            case 59: return 2151045768L; //Jammin' Jelly
+            case 60: return 2151045960L; //Whacka Bump
+            case 61: return 2151047824L; //Pow Block
+            case 62: return 2151048908L; //Fire Flower
+            case 63: return 2151050312L; //Thunder Rage
+            case 64: return 2151050504L; //Thunder Bolt
+            case 65: return 2151052616L; //Shooting Star
+            case 66: return 2151054048L; //Ice Storm
+            case 67: return 2151055608L; //Earth Quake
+            case 68: return 2151056744L; //Boo's Sheet
+            case 69: return 2151057044L; //Volt Shroom
+            case 70: return 2151057344L; //Repel Cape
+            case 71: return 2151057536L; //Ruin Powder
+            case 72: return 2151058092L; //Sleepy Sheep
+            case 73: return 2151059200L; //Stopwatch
+            case 74: return 2151059532L; //Dizzy Dial
+            case 75: return 2151059724L; //Power Punch
+            case 76: return 2151059916L; //Courage Shell
+            case 77: return 2151061232L; //HP Drain
+            case 78: return 2151062368L; //Trade Off
+            case 79: return 2151062560L; //Mini Mr. Mini
+            case 80: return 2151062752L; //Mr. Softener
+            case 81: return 2151062944L; //Tasty Tonic
+            case 82: return 2151063244L; //Slow Shroom
+            case 83: return 2151063544L; //Gradual Syrup
+            case 84: return 2151064364L; //Point Swap
+            case 85: return 2151065224L; //Fright Mask
+            case 86: return 2151066244L; //Mystery
+            case 87: return 2151066492L; //Spite Pouch
+            case 88: return 2151066684L; //Koopa Curse
+            case 89: return 2151067860L; //Space Food
+            case 90: return 2151068052L; //Icicle Pop
+            case 91: return 2151068244L; //Zess Frappe
+            case 92: return 2151068436L; //Snow Bunny
+            case 93: return 2151068628L; //Shroom Broth
+            case 94: return 2151068820L; //Love Pudding 1
+            case 95: return 2151069012L; //Love Pudding 2
+            case 96: return 2151069204L; //Love Pudding 3
+            case 97: return 2151069396L; //Meteor Meal
+            case 98: return 2151069588L; //Spicy Pasta
+            case 99: return 2151069780L; //Heartful Cake
+            case 100: return 2151069972L; //Peach Tart 1
+            case 101: return 2151070164L; //Peach Tart 2
+            case 102: return 2151070356L; //Peach Tart 3
+            case 103: return 2151070548L; //Electro Pop
+            case 104: return 2151070740L; //Healthy Salad
+            case 105: return 2151070932L; //Fresh Juice
+            case 106: return 2151071124L; //Hot Sauce
+            case 107: return 2151071316L; //Couple's Cake
+            case 108: return 2151073236L; //Zess Dynamite
+            case 109: return 2151073428L; //Coconut Bomb
+            case 110: return 2151073620L; //Courage Meal
+            case 111: return 2151073812L; //Egg Bomb
+            case 112: return 2151074348L; //Poison Shroom
+            case 113: return 2151075452L; //Trial Stew
+            case 114: return 2151124384L; //Flurrie Body Slam
+            case 115: return 2151124576L; //Flurrie Gale Force
+            case 116: return 2151124768L; //Flurrie Lip Lock
+            case 117: return 2151124960L; //Flurrie Dodgy Fog
+            case 118: return 2151139940L; //Yoshi Ground Pound
+            case 119: return 2151140132L; //Yoshi Gulp 1
+            case 120: return 2151140324L; //Yoshi Gulp 2
+            case 121: return 2151140516L; //Yoshi Gulp 3
+            case 122: return 2151140708L; //Yoshi Gulp 4
+            case 123: return 2151140900L; //Yoshi Gulp 5
+            case 124: return 2151141092L; //Yoshi Mini Egg
+            case 125: return 2151141284L; //Yoshi Stampede
+            case 126: return 2151160688L; //Ms. Mowz Love Slap 1
+            case 127: return 2151160880L; //Ms. Mowz Love Slap 2
+            case 128: return 2151161072L; //Ms. Mowz Love Slap 3
+            case 129: return 2151161264L; //Ms. Mowz Love Slap 4
+            case 130: return 2151161456L; //Ms. Mowz Tease
+            case 131: return 2151161648L; //Ms. Mowz Kiss Thief
+            case 132: return 2151161840L; //Ms. Mowz Smooch
+            case 133: return 2151185248L; //Bobbery First Strike
+            case 134: return 2151185440L; //Bobbery Bomb
+            case 135: return 2151185632L; //Bobbery Bomb Squad
+            case 136: return 2151185824L; //Bobbery Hold Fast
+            case 137: return 2151186016L; //Bobbery Bob-ombast
+            case 138: return 2151202528L; //Vivian Shade Fist
+            case 139: return 2151202720L; //Vivian Veil
+            case 140: return 2151202912L; //Vivian Fiery Jinx
+            case 141: return 2151203104L; //Vivian Infatuate
+            case 142: return 2151216284L; //Koops First Strike
+            case 143: return 2151216476L; //Koops Shell Toss
+            case 144: return 2151216668L; //Koops Power Shell
+            case 145: return 2151216860L; //Koops Shell Shield
+            case 146: return 2151217052L; //Koops Shell Slam
+            case 147: return 2151235240L; //Goombella Headbonk
+            case 148: return 2151235432L; //Goombella Tattle
+            case 149: return 2151235624L; //Goombella Multibonk
+            case 150: return 2151235816L; //Goombella Rally Wink
+
+            default: return 0L; //None
+        }
     }
 
     /**
