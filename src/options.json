@@ -1,9 +1,15 @@
 {
-  "IDTMystery": "false",
   "BUTLastFolder": "true",
+  "TETLastFolder": "true",
+  "TETPM2Font": "true",
+  "TETMessageStar": "true",
+  "IDTRedFields": "true",
+  "BUTDarkMode": "true",
+  "MMDarkMode": "true",
   "IDTLastFolder": "true",
   "startPath": "",
   "MMLastFolder": "true",
+  "IDTDarkMode": "true",
   "BUTRedFields": "true",
-  "IDTRedFields": "true"
+  "TETDarkMode": "true"
 }
