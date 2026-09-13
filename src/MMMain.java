@@ -9,6 +9,8 @@ import org.json.simple.parser.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import FXextension.SegmentedRangeBar;
+
 /**
  * @Author Jemaroo
  * @Function Main Functions for reading and parsing input data
@@ -628,6 +630,68 @@ public class MMMain
 
                         break;
                     }
+                    case "probBar":
+                    {
+                        JSONArray offsetsArray = (JSONArray)(((JSONObject)dataArray.get(i)).get("Offsets"));
+                        JSONArray segmentsArray = (JSONArray)(((JSONObject)dataArray.get(i)).get("Segments"));
+
+                        Misc.probBar tempMisc = new Misc.probBar();
+                        tempMisc.name = (String)((JSONObject)dataArray.get(i)).get("Name");
+
+                        int total = Math.toIntExact((Long)((JSONObject)dataArray.get(i)).get("Total"));
+
+                        tempMisc.rangeBar.setTotal(total);
+                        tempMisc.rangeBar.setSnapIncrement(1);
+                        tempMisc.rangeBar.setMinimumSegmentSize(1);
+                        tempMisc.rangeBar.setPrefHeight(40);
+
+                        int previousValue = 0;
+
+                        for(int j = 0; j < offsetsArray.size(); j++)
+                        {
+                            locator = Math.toIntExact((Long)offsetsArray.get(j));
+
+                            int cumulativeValue = ByteUtils.bytesToInt(givenFiledata[locator], givenFiledata[locator + 1]);
+
+                            tempMisc.rangeBar.getSegments().add(new SegmentedRangeBar.Segment((String)segmentsArray.get(j), cumulativeValue - previousValue));
+
+                            previousValue = cumulativeValue;
+                        }
+
+                        tempMisc.rangeBar.getSegments().add(new SegmentedRangeBar.Segment((String)segmentsArray.get(segmentsArray.size() - 1), total - previousValue));
+
+                        if(miscDataSorted.size() == 0)
+                        {
+                            miscDataSorted.add(new MMData());
+                            miscDataSorted.get(0).type = (String)((JSONObject)dataArray.get(i)).get("Type");
+                            miscDataSorted.get(0).miscData.add(tempMisc);
+                        }
+                        else
+                        {
+                            boolean matchFound = false;
+
+                            for(int j = 0; j < miscDataSorted.size(); j++)
+                            {
+                                if(miscDataSorted.get(j).type.equals((String)((JSONObject)dataArray.get(i)).get("Type")))
+                                {
+                                    matchFound = true;
+                                    miscDataSorted.get(j).miscData.add(tempMisc);
+                                    break;
+                                }
+                            }
+
+                            if(!matchFound)
+                            {
+                                MMData tempMmData = new MMData();
+                                tempMmData.type = (String)((JSONObject)dataArray.get(i)).get("Type");
+                                tempMmData.miscData.add(tempMisc);
+
+                                miscDataSorted.add(tempMmData);
+                            }
+                        }
+
+                        break;
+                    }
                 }
             }
 
@@ -1026,6 +1090,31 @@ public class MMMain
                         }
 
                         counts.put(tempType, (counts.get(tempType) + 1));
+
+                        break;
+                    }
+                    case "probBar":
+                    {
+                        JSONArray offsetsArray = (JSONArray)(((JSONObject)dataArray.get(i)).get("Offsets"));
+                        String tempType = (String)((JSONObject)dataArray.get(i)).get("Type");
+
+                        int tracker = findMMDataIndexByType(fileData, tempType);
+
+                        Misc.probBar probBar = (Misc.probBar)(fileData.get(tracker).miscData.get(counts.get(tempType)));
+
+                        for(int j = 0; j < offsetsArray.size(); j++)
+                        {
+                            locator = Math.toIntExact((Long)offsetsArray.get(j));
+
+                            int cumulativeValue = (int)Math.round(probBar.rangeBar.getCumulativeValue(j));
+
+                            byte[] tempValue = ByteUtils.intTo2Bytes(cumulativeValue);
+
+                            givenFiledata[locator] = tempValue[0];
+                            givenFiledata[locator + 1] = tempValue[1];
+                        }
+
+                        counts.put(tempType, counts.get(tempType) + 1);
 
                         break;
                     }
