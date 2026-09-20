@@ -130,6 +130,7 @@ public class MMGUI extends Application
                 DirectoryChooser directoryChooser = new DirectoryChooser();
                 directoryChooser.setTitle("Select the root folder");
                 givenFile = directoryChooser.showDialog(window);
+                if(givenFile == null) return;
 
                 try
                 {
@@ -893,6 +894,7 @@ public class MMGUI extends Application
             case "Hold Fast Contact Damage %": return fieldImageViewCreator(images.get("bobberyPartnerSwitch"));
             case "Return Postage Contact Damage %": return fieldImageViewCreator(images.get("returnPostage"));
             case "Yoshi Flutter Frames": return fieldImageViewCreator(images.get("yoshiPartnerSwitch"));
+            case "10 Coin Block Frame Count Timer": return fieldImageViewCreator(images.get("brickBlock"));
 
             default: return fieldImageViewCreator(images.get("routingSlip"));
         }
