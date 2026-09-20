@@ -159,6 +159,7 @@ public class BUTGUI extends Application
                 DirectoryChooser directoryChooser = new DirectoryChooser();
                 directoryChooser.setTitle("Select the root folder");
                 givenFile = directoryChooser.showDialog(window);
+                if(givenFile == null) return;
 
                 try
                 {
@@ -375,6 +376,7 @@ public class BUTGUI extends Application
                     FileChooser.ExtensionFilter bupFilter = new FileChooser.ExtensionFilter("Battle Unit Preset File Format (*.bup)", "*.bup");
                     fileChooser.getExtensionFilters().addAll(bupFilter);
                     givenPreset = fileChooser.showOpenDialog(window);
+                    if(givenPreset == null) return;
 
                     byte[] givenPresetData = ByteUtils.readData(givenPreset);
 
@@ -464,6 +466,7 @@ public class BUTGUI extends Application
                     fileChooser.getExtensionFilters().addAll(textFilter);
                     fileChooser.setInitialDirectory(givenFile);
                     givenGlobal = fileChooser.showOpenDialog(window);
+                    if(givenGlobal == null) return;
 
                     try
                     {
@@ -1110,6 +1113,7 @@ public class BUTGUI extends Application
                     FileChooser.ExtensionFilter bupFilter = new FileChooser.ExtensionFilter("Battle Unit Preset File Format (*.bup)", "*.bup");
                     fileChooser.getExtensionFilters().addAll(bupFilter);
                     givenPreset = fileChooser.showOpenDialog(window);
+                    if(givenPreset == null) return;
 
                     byte[] givenPresetData = ByteUtils.readData(givenPreset);
 
