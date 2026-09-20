@@ -508,6 +508,7 @@ public class TETGUI extends Application
                 DirectoryChooser directoryChooser = new DirectoryChooser();
                 directoryChooser.setTitle("Select the root folder");
                 givenFile = directoryChooser.showDialog(window);
+                if(givenFile == null) return;
 
                 try
                 {
