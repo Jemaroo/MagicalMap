@@ -45,9 +45,9 @@
                     "Name": "Yoshi 360 Flutter Movement",
                     "Type": "General",
                     "DataType": "Function",
-                    "Offsets": [731552, 731556, 731560, 731564, 731568, 731572],
-                    "Vanilla": ["2C030044", "4181001C", "A01D0150", "540005EF", "41820010", "4BFA67A5"],
-                    "Rewrites": ["C0010024", "D01D0100", "D01D00FC", "7FA3EB78", "C0010020", "D01D0104"]
+                    "Offsets": [731552, 731556, 731564, 731576, 731580, 731584, 731588, 731592, 731596, 731600],
+                    "Vanilla": ["7FA3EB78", "4BFFEFE1", "7FA3EB78", "C3FD0100", "C3DD0104", "839D0160", "809D0058", "801D005C", "90810034", "90010038"],
+                    "Rewrites": ["C3E10024", "D3FD0100", "D3FD00FC", "C3C10020", "C0029D78", "EFDE0032", "D3DD0104", "7FA3EB78", "E01D0058", "F0010034"]
                 },
                 {
                     "Name": "Mario HP Limit",
@@ -470,6 +470,12 @@
                     "Type": "General",
                     "DataType": "Float",
                     "Offsets": [3984336]
+                },
+                {
+                    "Name": "10 Coin Block Frame Count Timer",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [404926]
                 },
                 {
                     "Name": "Happy Lucky Lottery Fourth Prize Base Required Days",
@@ -1693,9 +1699,9 @@
                     "Name": "Yoshi 360 Flutter Movement",
                     "Type": "General",
                     "DataType": "Function",
-                    "Offsets": [731552, 731556, 731560, 731564, 731568, 731572],
-                    "Vanilla": ["2C030044", "4181001C", "A01D0150", "540005EF", "41820010", "4BFA67A5"],
-                    "Rewrites": ["C0010024", "D01D0100", "D01D00FC", "7FA3EB78", "C0010020", "D01D0104"]
+                    "Offsets": [731552, 731556, 731564, 731576, 731580, 731584, 731588, 731592, 731596, 731600],
+                    "Vanilla": ["7FA3EB78", "4BFFEFE1", "7FA3EB78", "C3FD0100", "C3DD0104", "839D0160", "809D0058", "801D005C", "90810034", "90010038"],
+                    "Rewrites": ["C3E10024", "D3FD0100", "D3FD00FC", "C3C10020", "C0029D78", "EFDE0032", "D3DD0104", "7FA3EB78", "E01D0058", "F0010034"]
                 },
                 {
                     "Name": "Mario HP Limit",
@@ -2118,6 +2124,12 @@
                     "Type": "General",
                     "DataType": "Float",
                     "Offsets": [3984336]
+                },
+                {
+                    "Name": "10 Coin Block Frame Count Timer",
+                    "Type": "General",
+                    "DataType": "twoint",
+                    "Offsets": [404926]
                 },
                 {
                     "Name": "Happy Lucky Lottery Fourth Prize Base Required Days",
